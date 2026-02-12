@@ -33,7 +33,7 @@
         --nav-height: 72px;
 
         /* Glow tokens */
-        --glow-radial: radial-gradient(circle at center, #39FF141F 0%, #22990C00 12%)
+        --glow-radial: radial-gradient(circle at center, #39ff141f 0%, #22990c00 12%);
     }
 
     /* Dark mode overrides */
@@ -55,7 +55,7 @@
 
         --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
 
-        --glow-radial: radial-gradient(circle at center, #39FF141F 0%, #22990C00 12%)
+        --glow-radial: radial-gradient(circle at center, #39ff141f 0%, #22990c00 12%);
     }
 
 
