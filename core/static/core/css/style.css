@@ -1,3 +1,72 @@
-body { 
-    font-family: system-ui, -apple-system, sans-serif; padding: 24px;
-}
+/* ==========================================================================
+    Portfolio 2026 — Global Styles
+    Structure : Tokens → Base → Layout → Components → Utilities → Pages
+    ========================================================================== */
+
+    /* 1) TOKENS (keep these small and stable) */
+    :root {
+        /* Backgrounds */
+        --bg-page: #ffffff;
+        --bg-section: #f7f7f8;
+        --bg-card: #ffffff;
+
+        /* Text */
+        --text-primary: #121214;
+        --text-secondary: #2A2A2F;
+        --text-muted: #6b6b76;
+
+        /* Borders */
+        --border-default: #d9d9de;
+        --border-subtle: #e9e9ee;
+        --border-strong: #b9b9c2;
+
+        /* Actions */
+        --action-primary-bg: #121214;
+        --action-primary-text: #ffffff;
+
+        /* Accent (brand) */
+        --accent: #39ff14;
+
+        /* Effects */
+        --shadow-1: 0 6px 24px rgba(18, 18, 20, 0.08);
+        --radius: 16px;
+        --nav-height: 72px;
+
+        /* Glow tokens */
+        --glow-radial: radial-gradient(circle at center, #39FF141F 0%, #22990C00 12%)
+    }
+
+    /* Dark mode overrides */
+    html[data-theme="dark"] {
+        --bg-page: #0f0f10;
+        --bg-section: #141416;
+        --bg-card: #1b1b1f;
+
+        --text-primary: #f5f5f7;
+        --text-secondary: #8A8A96;
+        --text-muted: #8a8a96;
+
+        --border-default: #d9d9de;
+        --border-subtle: #1e1e23;
+        --border-strong: #3a3a43;
+
+        --action-primary-bg: #39ff14;
+        --action-primary-text: #0f0f10;
+
+        --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+        --glow-radial: radial-gradient(circle at center, #39FF141F 0%, #22990C00 12%)
+    }
+
+
+/* 2) BASE (global element defaults) */
+
+/* 3) BOOTSTRAP OVERRIDES (light-touch) */
+
+/* 4) LAYOUT HELPERS */
+
+/* 5) COMPONENTS */
+
+/* 6) UTILITIES (tiny reusable helpers) */
+
+/* 7) PAGES */
