@@ -180,6 +180,63 @@
 
 /* 4) LAYOUT HELPERS */
 
+/* Page structure */
+main {
+    display: block;
+}
+
+/* Consistent section padding (mobile first) */
+.section {
+    padding: 80px 16px;
+}
+
+.section--compact {
+    padding: 64px 16px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .section {
+        padding: 96px 24px;
+    }
+
+    .section--compact {
+        padding: 72px 24px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+    .section {
+        padding: 120px 80px;
+    }
+
+    .section--compact {
+        padding: 80px 80px;
+    }
+}
+
+.prose {
+    max-width: 65ch;
+}
+
+/* Reusable helper for section headers */
+.section-header {
+    margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+    .section-header {
+        margin-bottom: 32px;
+    }
+}
+
+@media (min-width: 992px) {
+    .section-header {
+        margin-bottom: 48px;
+    }
+}
+
 /* 5) COMPONENTS */
 
 /* 6) UTILITIES (tiny reusable helpers) */
