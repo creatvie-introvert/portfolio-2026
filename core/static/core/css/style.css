@@ -239,6 +239,93 @@ main {
 
 /* 5) COMPONENTS */
 
+/* 5.1 Navbar */
+.nav-brand {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.2em;
+}
+
+.nav-link {
+    font-family: var(--font-body);
+    font-weight: 500;
+    opacity: 0.85;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    opacity: 1;
+}
+
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+    background-color: transparent;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-section);
+    border-color: var(--border-subtle);
+    box-shadow: none;
+}
+
+.theme-toggle:focus-visible {
+    background-color: var(--bg-section);
+    border-color: var(--border-subtle);
+    box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.10);
+}
+
+.theme-toggle.btn-link {
+    color: inherit;
+}
+
+.theme-toggle.btn-link:focus {
+    box-shadow: none;
+}
+
+
+.theme-toggle svg {
+    pointer-events: none;
+}
+
+/* Make active link feel intentional */
+.nav-link.active {
+    opacity: 1;
+    color: var(--text-primary);
+}
+
+/* 5.2 Footer */
+.footer {
+    padding: 24px 16px;
+}
+
+.footer .footer-link {
+    font-family: var(--font-body);
+    opacity: 0.85;
+}
+
+.footer .footer-link:hover,
+.footer .footer-link:focus {
+    opacity: 1;
+    color: var(--link-hover);
+}
+
+/* Footer headings */
+.footer .fw-semibold {
+    color: var(--text-muted);
+}
+
+/* Footer muted text */
+.footer .text-muted {
+    color: var(--text-muted) !important;
+}
+
 /* 6) UTILITIES (tiny reusable helpers) */
 
 /* 7) PAGES */
