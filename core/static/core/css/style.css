@@ -117,7 +117,66 @@
         outline-offset: 3px;
     }
 
-/* 3) BOOTSTRAP OVERRIDES (light-touch) */
+    /* 3) BOOTSTRAP OVERRIDES (light-touch) */
+
+    /* Global container breathing room (optional) */
+    /* 
+        Most spacing controlled via section padding instead of changing container widths
+    */
+
+    /* Navbar */
+    .navbar {
+        min-height: var(--nav-height);
+        background: var(--bg-page);
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .navbar-toggler {
+        border: 1px solid var(--border-default);
+        border-radius: 12px;
+        padding: 10px 12px;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+
+    /* Make the hamburger menu visible on light/dark */
+    .navbar-toggler-icon {
+        filter: none;
+    }
+
+    /* Buttons (primary used for "action" button) */
+    .btn-dark {
+        background: var(--action-primary-bg);
+        border-color: var(--action-primary-bg);
+        color: var(--action-primary-text);
+    }
+
+    .btn-dark:hover,
+    .btn-dark:focus,
+    .btn-dark:focus-visible {
+        background: var(--action-primary-bg);
+        border-color: var(--action-primary-bg);
+        color: var(--action-primary-text);
+        opacity: 0.92;
+    }
+
+    /* Links inside nav */
+    .nav-link {
+        color: var(--text-secondary);
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+        color: var(--text-primary);
+    }
+
+    /* Footer */
+    .footer {
+        background: var(--bg-section);
+        border-top: 1px solid var(--border-subtle);
+    }
 
 /* 4) LAYOUT HELPERS */
 
