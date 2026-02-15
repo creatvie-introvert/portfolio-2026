@@ -328,4 +328,33 @@ main {
 
 /* 6) UTILITIES (tiny reusable helpers) */
 
+/* Visually hidden (accessibility) */
+.u-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Soft divider line */
+.u-divider {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1);
+}
+
+/* Subtle card surface */
+.u-surface {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1);
+}
+
 /* 7) PAGES */
