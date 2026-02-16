@@ -388,6 +388,18 @@ main {
 /* 7.1 Home */
 .page-home {}
 
+.hero-media--dark {
+    display: none;
+}
+
+html[data-theme="dark"] .hero-media--light {
+    display: none;
+}
+
+html[data-theme="dark"] .hero-media--dark {
+    display: block;
+}
+
 /* 7.2 Work */
 .page-work {}
 

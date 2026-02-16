@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
@@ -42,7 +43,39 @@
             <!-- Image column -->
             <div class="col-12 col-lg-6">
                 <div class="hero-image u-surface">
-                    <img src="https://placehold.co/800x600" alt="">
+                    <picture class="hero-media hero-media--light">
+                        <source 
+                            media="(min-width: 992px)" 
+                            srcset="{% static 'core/img/hero/hero-illustration-desktop-light.webp' %}">
+                        <source 
+                            media="(min-width: 768px)" 
+                            srcset="{% static 'core/img/hero/hero-illustration-tablet-light.webp' %}">
+                        <source
+                            media="(max-width: 767px)"
+                            srcset="{% static 'core/img/hero/hero-illustration-mobile-light.webp' %}">
+
+                        <img 
+                            src="{% static 'core/img/hero/hero-illustration-mobile-light.webp' %}" 
+                            alt="Abstract UI cards illustration with green glow"
+                            loading="eager" decoding="async">
+                    </picture>
+
+                    <picture class="hero-media hero-media--dark">
+                        <source 
+                            media="(min-width: 992px)" 
+                            srcset="{% static 'core/img/hero/hero-illustration-desktop-dark.webp' %}">
+                        <source 
+                            media="(min-width: 768px)" 
+                            srcset="{% static 'core/img/hero/hero-illustration-tablet-dark.webp' %}">
+                        <source
+                            media="(max-width: 767px)"
+                            srcset="{% static 'core/img/hero/hero-illustration-mobile-dark.webp' %}">
+
+                        <img 
+                            src="{% static 'core/img/hero/hero-illustration-mobile-dark.webp' %}" 
+                            alt="Mock UI cards illustration with green glow"
+                            loading="eager" decoding="async">
+                    </picture>
                 </div>
             </div>
         </div>
