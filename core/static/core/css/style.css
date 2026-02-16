@@ -51,7 +51,7 @@
         --bg-card: #1b1b1f;
 
         --text-primary: #f5f5f7;
-        --text-secondary: ##CFCFD6;
+        --text-secondary: #CFCFD6;
         --text-muted: #8a8a96;
 
         --border-default: #d9d9de;
@@ -201,6 +201,11 @@
         border-top: 1px solid var(--border-subtle);
     }
 
+    /* Global Bootstrap muted text override */
+    .text-muted {
+        color: var(--text-muted) !important;
+    }
+
 /* 4) LAYOUT HELPERS */
 
 /* Page structure */
@@ -280,11 +285,11 @@ main {
     opacity: 1;
 }
 
-.theme-toggle {
+.navbar .theme-toggle {
     width: 44px;
     height: 44px;
     background-color: transparent;
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
     border-radius: 12px;
     display: inline-flex;
     align-items: center;
@@ -296,17 +301,12 @@ main {
 .theme-toggle:hover {
     background-color: var(--bg-section);
     border-color: var(--border-subtle);
-    box-shadow: none;
 }
 
 .theme-toggle:focus-visible {
     background-color: var(--bg-section);
     border-color: var(--border-subtle);
     box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.10);
-}
-
-.theme-toggle.btn-link {
-    color: inherit;
 }
 
 .theme-toggle.btn-link:focus {
