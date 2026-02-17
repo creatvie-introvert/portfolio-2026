@@ -2,3 +2,14 @@ venv/
 .venv/
 
 .env
+
+# Python
+__pycache__/
+*.pyc
+
+# Django
+db.sqlite3
+
+# Media uploads
+case-studies/
+media/

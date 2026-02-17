@@ -123,6 +123,7 @@ class CaseStudy(models.Model):
 
     # Reflection
     reflection_intro = models.TextField()
+    reflection_body = models.TextField()
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -202,6 +202,10 @@
     }
 
     /* Global Bootstrap muted text override */
+    .text-secondary {
+        columns: var(--text-secondary);
+    }
+    
     .text-muted {
         color: var(--text-muted) !important;
     }
