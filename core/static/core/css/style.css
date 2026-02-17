@@ -210,210 +210,217 @@
         color: var(--text-muted) !important;
     }
 
-/* 4) LAYOUT HELPERS */
+    /* 4) LAYOUT HELPERS */
 
-/* Page structure */
-main {
-    display: block;
-}
+    /* Page structure */
+    main {
+        display: block;
+    }
 
-/* Consistent section padding (mobile first) */
-.section {
-    padding: 80px 16px;
-}
-
-.section--compact {
-    padding: 64px 16px;
-}
-
-/* Tablet */
-@media (min-width: 768px) {
+    /* Consistent section padding (mobile first) */
     .section {
-        padding: 96px 24px;
+        padding: 80px 16px;
     }
 
     .section--compact {
-        padding: 72px 24px;
-    }
-}
-
-/* Desktop */
-@media (min-width: 992px) {
-    .section {
-        padding: 120px 80px;
+        padding: 64px 16px;
     }
 
-    .section--compact {
-        padding: 80px 80px;
+    /* Tablet */
+    @media (min-width: 768px) {
+        .section {
+            padding: 96px 24px;
+        }
+
+        .section--compact {
+            padding: 72px 24px;
+        }
     }
-}
 
-.prose {
-    max-width: 65ch;
-}
+    /* Desktop */
+    @media (min-width: 992px) {
+        .section {
+            padding: 120px 80px;
+        }
 
-/* Reusable helper for section headers */
-.section-header {
-    margin-bottom: 24px;
-}
+        .section--compact {
+            padding: 80px 80px;
+        }
+    }
 
-@media (min-width: 768px) {
+    .prose {
+        max-width: 65ch;
+    }
+
+    /* Reusable helper for section headers */
     .section-header {
-        margin-bottom: 32px;
+        margin-bottom: 24px;
     }
-}
 
-@media (min-width: 992px) {
-    .section-header {
-        margin-bottom: 48px;
+    @media (min-width: 768px) {
+        .section-header {
+            margin-bottom: 32px;
+        }
     }
-}
 
-/* 5) COMPONENTS */
+    @media (min-width: 992px) {
+        .section-header {
+            margin-bottom: 48px;
+        }
+    }
 
-/* 5.1 Navbar */
-.nav-brand {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    letter-spacing: -0.2em;
-}
+    /* 5) COMPONENTS */
 
-.nav-link {
-    font-family: var(--font-body);
-    font-weight: 500;
-    opacity: 0.85;
-}
+    /* 5.1 Navbar */
+    .nav-brand {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        letter-spacing: -0.2em;
+    }
 
-.nav-link:hover,
-.nav-link:focus {
-    opacity: 1;
-}
+    .nav-link {
+        font-family: var(--font-body);
+        font-weight: 500;
+        opacity: 0.85;
+    }
 
-.navbar .theme-toggle {
-    width: 44px;
-    height: 44px;
-    background-color: transparent;
-    color: var(--text-primary) !important;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid transparent;
-    transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-}
+    .nav-link:hover,
+    .nav-link:focus {
+        opacity: 1;
+    }
 
-.theme-toggle:hover {
-    background-color: var(--bg-section);
-    border-color: var(--border-subtle);
-}
+    .navbar .theme-toggle {
+        width: 44px;
+        height: 44px;
+        background-color: transparent;
+        color: var(--text-primary) !important;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
 
-.theme-toggle:focus-visible {
-    background-color: var(--bg-section);
-    border-color: var(--border-subtle);
-    box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.10);
-}
+    .theme-toggle:hover {
+        background-color: var(--bg-section);
+        border-color: var(--border-subtle);
+    }
 
-.theme-toggle.btn-link:focus {
-    box-shadow: none;
-}
+    .theme-toggle:focus-visible {
+        background-color: var(--bg-section);
+        border-color: var(--border-subtle);
+        box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.10);
+    }
 
-
-.theme-toggle svg {
-    pointer-events: none;
-}
-
-/* Make active link feel intentional */
-.nav-link.active {
-    opacity: 1;
-    color: var(--text-primary);
-}
+    .theme-toggle.btn-link:focus {
+        box-shadow: none;
+    }
 
 
+    .theme-toggle svg {
+        pointer-events: none;
+    }
 
-/* 5.2 Footer */
-.footer {
-    padding: 24px 16px;
-}
+    /* Make active link feel intentional */
+    .nav-link.active {
+        opacity: 1;
+        color: var(--text-primary);
+    }
 
-.footer .footer-link {
-    font-family: var(--font-body);
-    opacity: 0.85;
-}
+    /* 5.2 Footer */
+    .footer {
+        padding: 24px 16px;
+    }
 
-.footer .footer-link:hover,
-.footer .footer-link:focus {
-    opacity: 1;
-    color: var(--link-hover);
-}
+    .footer .footer-link {
+        font-family: var(--font-body);
+        opacity: 0.85;
+    }
 
-/* Footer headings */
-.footer .fw-semibold {
-    color: var(--text-muted);
-}
+    .footer .footer-link:hover,
+    .footer .footer-link:focus {
+        opacity: 1;
+        color: var(--link-hover);
+    }
 
-/* Footer muted text */
-.footer .text-muted {
-    color: var(--text-muted) !important;
-}
+    /* Footer headings */
+    .footer .fw-semibold {
+        color: var(--text-muted);
+    }
 
-/* 6) UTILITIES (tiny reusable helpers) */
+    /* Footer muted text */
+    .footer .text-muted {
+        color: var(--text-muted) !important;
+    }
 
-/* Visually hidden (accessibility) */
-.u-sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
+    /* 5.3) Tags */
+    .badge-tag {
+        background: var(--bg-section);
+        color: var(--text-muted);
+        border: 1px solid var(--border-subtle);
+        font-weight: 500;
+        padding: 0.35rem 0.6rem;
+    }
 
-/* Soft divider line */
-.u-divider {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-1);
-}
+    /* 6) UTILITIES (tiny reusable helpers) */
 
-/* Subtle card surface */
-.u-surface {
-    background: var(--bg-card);
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-1);
-}
+    /* Visually hidden (accessibility) */
+    .u-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
 
-/* 7) PAGES */
+    /* Soft divider line */
+    .u-divider {
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-1);
+    }
 
-/* 7.1 Home */
-.page-home {}
+    /* Subtle card surface */
+    .u-surface {
+        background: var(--bg-card);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-1);
+    }
 
-.hero-media--dark {
-    display: none;
-}
+    /* 7) PAGES */
 
-html[data-theme="dark"] .hero-media--light {
-    display: none;
-}
+    /* 7.1 Home */
+    .page-home {}
 
-html[data-theme="dark"] .hero-media--dark {
-    display: block;
-}
+    .hero-media--dark {
+        display: none;
+    }
 
-/* 7.2 Work */
-.page-work {}
+    html[data-theme="dark"] .hero-media--light {
+        display: none;
+    }
 
-/* 7.3 Case study */
-.page-case-study {}
+    html[data-theme="dark"] .hero-media--dark {
+        display: block;
+    }
 
-/* 7.4 Legal */
-.page-legal {}
+    /* 7.2 Work */
+    .page-work {}
 
-/* 7.5 Thank you + 404 */
-.page-thanks {}
+    /* 7.3 Case study */
+    .page-case-study {}
 
-.page-404 {}
+    /* 7.4 Legal */
+    .page-legal {}
+
+    /* 7.5 Thank you + 404 */
+    .page-thanks {}
+
+    .page-404 {}

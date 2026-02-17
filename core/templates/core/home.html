@@ -124,7 +124,7 @@
                     {% if project.tags.all %}
                     <div class="d-flex flex-wrap gap-2 mb-3">
                         {% for tag in project.tags.all %}
-                        <span class="badge rounded-pill text-bg-light border">
+                        <span class="badge rounded-pill badge-tag">
                             {{ tag.name }}
                         </span>
                         {% endfor %}
