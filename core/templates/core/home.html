@@ -103,6 +103,13 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <article class="u-surface h-100 p-4">
 
+                    <!-- Thumbnails -->
+                    {% if project.thumbnail%}
+                    <img 
+                        src="{{ project.thumbnail.url }}" 
+                        alt="{{ project.name }} thumbnail">
+                    {% endif %}
+
                     <!-- Title -->
                     <h3 class="h5 fw-semibold mb-2">
                         {{ project.name }}

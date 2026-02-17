@@ -19,6 +19,12 @@ class Project(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, related_name="projects")
     short_description = models.CharField(max_length=180)
 
+    thumbnail = models.ImageField(
+        upload_to="projects/thumbnails/",
+        blank=True,
+        null=True,
+    )
+
     is_featured = models.BooleanField(default=False)
     is_published = models.BooleanField(default=True)
 
