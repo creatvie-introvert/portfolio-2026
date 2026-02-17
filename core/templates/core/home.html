@@ -101,38 +101,41 @@
 
             {% for project in featured_projects %}
             <div class="col-12 col-md-6 col-lg-4">
-                <article class="u-surface h-100 p-4">
+                <article class="project-card u-surface h-100 p-4">
 
-                    <!-- Thumbnails -->
-                    {% if project.thumbnail%}
-                    <img 
-                        src="{{ project.thumbnail.url }}" 
-                        alt="{{ project.name }} thumbnail">
-                    {% endif %}
-
-                    <!-- Title -->
-                    <h3 class="h5 fw-semibold mb-2">
-                        {{ project.name }}
-                    </h3>
-
-                    <!-- Short description -->
-                    <p class="text-secondary mb-4">
-                        {{ project.short_description }}
-                    </p>
-
-                    <!-- Tags -->
-                    {% if project.tags.all %}
-                    <div class="d-flex flex-wrap gap-2 mb-3">
-                        {% for tag in project.tags.all %}
-                        <span class="badge rounded-pill badge-tag">
-                            {{ tag.name }}
-                        </span>
-                        {% endfor %}
+                    <!-- Image -->
+                    {% if project.thumbnail %}
+                    <div class="project-card__media u-glow">
+                        <img 
+                            src="{{ project.thumbnail.url }}" 
+                            alt="{{ project.name }} thumbnail"
+                            class="project-card__img">
                     </div>
                     {% endif %}
 
-                    <!-- Action -->
-                    <div class="d-flex justify-content-between mt-auto">
+                    <!-- Content -->
+                    <div class="project-card__content">
+                        <h3 class="h5 fw-semibold">
+                            {{ project.name }}
+                        </h3>
+
+                        <p class="text-secondary">
+                            {{ project.short_description }}
+                        </p>
+
+                        {% if project.tags.all %}
+                        <div class="project-card__tags">
+                            {% for tag in project.tags.all %}
+                            <span class="badge rounded-pill badge-tag">
+                                {{ tag.name }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Links -->
+                    <div class="project-card__links d-flex justify-content-between">
                         <a href="#">
                             View case study
                         </a>

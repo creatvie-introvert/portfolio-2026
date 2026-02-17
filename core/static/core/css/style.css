@@ -37,7 +37,12 @@
         --nav-height: 72px;
 
         /* Glow tokens */
-        --glow-radial: radial-gradient(circle at center, #39ff141f 0%, #22990c00 12%);
+        --glow-radial: radial-gradient(
+            circle at bottom center,
+            rgba(57, 255, 20, 0.28) 0%,
+            rgba(57, 255, 20, 0.16) 45%,
+            rgba(34, 153, 12, 0) 85%
+        );
 
         /* Font tokens */
         --font-heading: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -66,7 +71,12 @@
 
         --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
 
-        --glow-radial: radial-gradient(circle at center, #39ff141f 0%, #22990c00 12%);
+        --glow-radial: radial-gradient(
+            circle at bottom center,
+            rgba(57, 255, 20, 0.14) 0%,
+            rgba(57, 255, 20, 0.08) 45%,
+            rgba(34, 153, 12, 0) 85%
+        );
     }
 
     /* 2) BASE (global element defaults) */
@@ -203,7 +213,7 @@
 
     /* Global Bootstrap muted text override */
     .text-secondary {
-        columns: var(--text-secondary);
+        columns: var(--text-secondary) !important;
     }
     
     .text-muted {
@@ -363,6 +373,36 @@
         padding: 0.35rem 0.6rem;
     }
 
+    /* 5.4) Project cards */
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .project-card__content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .project-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .project-card__media {
+        border-radius: var(--radius);
+    }
+
+    .project-card__img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+    }
+
     /* 6) UTILITIES (tiny reusable helpers) */
 
     /* Visually hidden (accessibility) */
@@ -392,6 +432,26 @@
         border: 1px solid var(--border-default);
         border-radius: var(--radius);
         box-shadow: var(--shadow-1);
+    }
+
+    /* Radial glow */
+    .u-glow {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .u-glow::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--glow-radial);
+        pointer-events: none;
+        opacity: 1;
+    }
+
+    .u-glow > * {
+        position: relative;
+        z-index: 1;
     }
 
     /* 7) PAGES */
