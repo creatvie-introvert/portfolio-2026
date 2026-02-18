@@ -667,6 +667,16 @@
         z-index: 1;
     }
 
+    .u-note {
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--text-muted);
+    }
+    .u-note--tight {
+        margin-top: 0;
+    }
+
     /* Button: full width on mobile only */
     .u-btn-fluid {
         width: 100%;
