@@ -44,37 +44,27 @@
             <div class="col-12 col-lg-6">
                 <div class="hero-image u-surface">
                     <picture class="hero-media hero-media--light">
-                        <source 
-                            media="(min-width: 992px)" 
+                        <source media="(min-width: 992px)"
                             srcset="{% static 'core/img/hero/hero-illustration-desktop-light.webp' %}">
-                        <source 
-                            media="(min-width: 768px)" 
+                        <source media="(min-width: 768px)"
                             srcset="{% static 'core/img/hero/hero-illustration-tablet-light.webp' %}">
-                        <source
-                            media="(max-width: 767px)"
+                        <source media="(max-width: 767px)"
                             srcset="{% static 'core/img/hero/hero-illustration-mobile-light.webp' %}">
 
-                        <img 
-                            src="{% static 'core/img/hero/hero-illustration-mobile-light.webp' %}" 
-                            alt="Abstract UI cards illustration with green glow"
-                            loading="eager" decoding="async">
+                        <img src="{% static 'core/img/hero/hero-illustration-mobile-light.webp' %}"
+                            alt="Abstract UI cards illustration with green glow" loading="eager" decoding="async">
                     </picture>
 
                     <picture class="hero-media hero-media--dark">
-                        <source 
-                            media="(min-width: 992px)" 
+                        <source media="(min-width: 992px)"
                             srcset="{% static 'core/img/hero/hero-illustration-desktop-dark.webp' %}">
-                        <source 
-                            media="(min-width: 768px)" 
+                        <source media="(min-width: 768px)"
                             srcset="{% static 'core/img/hero/hero-illustration-tablet-dark.webp' %}">
-                        <source
-                            media="(max-width: 767px)"
+                        <source media="(max-width: 767px)"
                             srcset="{% static 'core/img/hero/hero-illustration-mobile-dark.webp' %}">
 
-                        <img 
-                            src="{% static 'core/img/hero/hero-illustration-mobile-dark.webp' %}" 
-                            alt="Mock UI cards illustration with green glow"
-                            loading="eager" decoding="async">
+                        <img src="{% static 'core/img/hero/hero-illustration-mobile-dark.webp' %}"
+                            alt="Mock UI cards illustration with green glow" loading="eager" decoding="async">
                     </picture>
                 </div>
             </div>
@@ -106,9 +96,7 @@
                     <!-- Image -->
                     {% if project.thumbnail %}
                     <div class="project-card__media u-glow">
-                        <img 
-                            src="{{ project.thumbnail.url }}" 
-                            alt="{{ project.name }} thumbnail"
+                        <img src="{{ project.thumbnail.url }}" alt="{{ project.name }} thumbnail"
                             class="project-card__img">
                     </div>
                     {% endif %}
@@ -153,6 +141,115 @@
                 </p>
             </div>
             {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section--compact">
+    <div class="container">
+
+        <!-- Section header -->
+        <div class="section-header">
+            <h2 class="h3 fw-semibold mb-2">
+                How I work
+            </h2>
+            <p class="text-secondary prose mb-0">
+                A simple, repeatable process that keeps projects clear, collaborative, and focused on the user.
+            </p>
+        </div>
+
+        <!-- Cards -->
+        <div class="how-grid">
+
+            <!-- Card 1 -->
+            <article class="how-card u-surface">
+
+                <div class="how-card__icon u-glow">
+                    <!-- Discover icon -->
+                    <svg class="process-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M12 12H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM16 8L9.5 9.5L8 16L14.5 14.5L16 8Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+
+                <div class="how-card__text">
+                    <h3 class="h4 fw-semibold mb-1">
+                        Discover
+                    </h3>
+                    <p class="text-secondary mb-0">
+                        Clarify goals, users, and success criteria before jumping into design.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="how-card u-surface">
+
+                <div class="how-card__icon u-glow">
+                    <!-- Design icon -->
+                    <svg class="process-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path
+                            d="M1.547 0.309 C 1.258 0.384,1.016 0.529,0.773 0.773 C 0.524 1.022,0.416 1.198,0.316 1.520 L 0.253 1.720 0.253 8.000 L 0.253 14.280 0.316 14.480 C 0.416 14.802,0.524 14.978,0.773 15.227 C 1.022 15.476,1.198 15.584,1.520 15.684 L 1.720 15.747 8.000 15.747 L 14.280 15.747 14.480 15.684 C 14.802 15.584,14.978 15.476,15.227 15.227 C 15.476 14.978,15.584 14.802,15.684 14.480 L 15.747 14.280 15.747 8.000 L 15.747 1.720 15.684 1.520 C 15.584 1.198,15.476 1.022,15.227 0.773 C 14.980 0.525,14.739 0.382,14.441 0.307 C 14.207 0.248,1.774 0.249,1.547 0.309 M14.170 1.830 L 14.240 1.901 14.240 3.324 L 14.240 4.747 8.000 4.747 L 1.760 4.747 1.760 3.324 L 1.760 1.901 1.830 1.830 L 1.901 1.760 8.000 1.760 L 14.099 1.760 14.170 1.830 M4.747 10.267 L 4.747 14.267 3.403 14.267 C 2.665 14.267,2.023 14.259,1.977 14.250 C 1.931 14.241,1.864 14.203,1.827 14.166 L 1.760 14.099 1.760 10.183 L 1.760 6.267 3.253 6.267 L 4.747 6.267 4.747 10.267 M14.240 10.183 L 14.240 14.099 14.173 14.166 C 14.136 14.203,14.069 14.241,14.023 14.250 C 13.977 14.259,12.214 14.267,10.103 14.267 L 6.267 14.267 6.267 10.267 L 6.267 6.267 10.253 6.267 L 14.240 6.267 14.240 10.183"
+                            fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" />
+                    </svg>
+                </div>
+
+                <div class="how-card__text">
+                    <h3 class="h4 fw-semibold mb-1">
+                        Design
+                    </h3>
+                    <p class="text-secondary mb-0">
+                        Wireframe, prototype, and test structure so the UI feels effortless.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="how-card u-surface">
+
+                <div class="how-card__icon u-glow">
+                    <!-- Build icon -->
+                    <svg class="process-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                        <path
+                            d="M33.53,18.76,26.6,15.57V6.43A1,1,0,0,0,26,5.53l-7.5-3.45a1,1,0,0,0-.84,0l-7.5,3.45a1,1,0,0,0-.58.91v9.14L2.68,18.76a1,1,0,0,0-.58.91v9.78h0a1,1,0,0,0,.58.91l7.5,3.45a1,1,0,0,0,.84,0l7.08-3.26,7.08,3.26a1,1,0,0,0,.84,0l7.5-3.45a1,1,0,0,0,.58-.91h0V19.67A1,1,0,0,0,33.53,18.76ZM25.61,22,20.5,19.67l5.11-2.35,5.11,2.35Zm-1-6.44-6.44,3V10.87a1,1,0,0,0,.35-.08L24.6,8v7.58ZM18.1,4.08l5.11,2.35L18.1,8.78,13,6.43ZM10.6,17.31l5.11,2.35L10.6,22,5.49,19.67Zm6.5,11.49-6.5,3h0V24.11h0A1,1,0,0,0,11,24l6.08-2.8Zm15,0-6.46,3V24.11A1,1,0,0,0,26,24l6.08-2.8Z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+
+                <div class="how-card__text">
+                    <h3 class="h4 fw-semibold mb-1">
+                        Build
+                    </h3>
+                    <p class="text-secondary mb-0">
+                        Develop clean, responsive layouts with accessible, reusable components.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="how-card u-surface">
+
+                <div class="how-card__icon u-glow">
+                    <!-- Refine & Launch icon -->
+                    <svg class="process-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M13.8179 4.54512L13.6275 4.27845C12.8298 3.16176 11.1702 3.16176 10.3725 4.27845L10.1821 4.54512C9.76092 5.13471 9.05384 5.45043 8.33373 5.37041L7.48471 5.27608C6.21088 5.13454 5.13454 6.21088 5.27608 7.48471L5.37041 8.33373C5.45043 9.05384 5.13471 9.76092 4.54512 10.1821L4.27845 10.3725C3.16176 11.1702 3.16176 12.8298 4.27845 13.6275L4.54512 13.8179C5.13471 14.2391 5.45043 14.9462 5.37041 15.6663L5.27608 16.5153C5.13454 17.7891 6.21088 18.8655 7.48471 18.7239L8.33373 18.6296C9.05384 18.5496 9.76092 18.8653 10.1821 19.4549L10.3725 19.7215C11.1702 20.8382 12.8298 20.8382 13.6275 19.7215L13.8179 19.4549C14.2391 18.8653 14.9462 18.5496 15.6663 18.6296L16.5153 18.7239C17.7891 18.8655 18.8655 17.7891 18.7239 16.5153L18.6296 15.6663C18.5496 14.9462 18.8653 14.2391 19.4549 13.8179L19.7215 13.6275C20.8382 12.8298 20.8382 11.1702 19.7215 10.3725L19.4549 10.1821C18.8653 9.76092 18.5496 9.05384 18.6296 8.33373L18.7239 7.48471C18.8655 6.21088 17.7891 5.13454 16.5153 5.27608L15.6663 5.37041C14.9462 5.45043 14.2391 5.13471 13.8179 4.54512Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9 12L10.8189 13.8189C10.9189 13.9189 11.0811 13.9189 11.1811 13.8189L15 10"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+
+                <div class="how-card__text">
+                    <h3 class="h4 fw-semibold mb-1">
+                        Refine & Launch
+                    </h3>
+                    <p class="text-secondary mb-0">
+                        Polish details, test across devices, and ship with confidence.
+                    </p>
+                </div>
+            </article>
         </div>
     </div>
 </section>

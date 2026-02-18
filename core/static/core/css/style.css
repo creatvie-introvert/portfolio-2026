@@ -213,7 +213,7 @@
 
     /* Global Bootstrap muted text override */
     .text-secondary {
-        columns: var(--text-secondary) !important;
+        color: var(--text-secondary) !important;
     }
     
     .text-muted {
@@ -401,6 +401,52 @@
         height: auto;
         display: block;
         border-radius: 12px;
+    }
+
+    /* 5.4) How I work */
+    .how-grid {
+        display: grid;
+        gap: 16px;
+    }
+
+    /* Tablet: 2 columns */
+    @media (min-width: 768px) {
+        .how-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Desktop: 4 columns */
+    @media (min-width: 1200px) {
+        .how-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    /* How card */
+    .how-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    /* Icon wrapper */
+    .how-card__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        border: 1px solid var(--border-subtle);
+        background: var(--bg-section);
+    }
+
+    .process-icon {
+        width: 24px;
+        height: 24px;
+        display: block;
     }
 
     /* 6) UTILITIES (tiny reusable helpers) */
