@@ -449,6 +449,51 @@
         display: block;
     }
 
+    /* 5.5) Skills & Tools */
+    .skills-grid {
+        display: grid;
+        gap: 16px;
+    }
+
+    /* Tablet: 2 columns */
+    @media (min-width: 768px) {
+        .skills-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Desktop: 2 columns */
+    @media (min-width: 992px) {
+        .skills-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* Skills card */
+    .skills-card {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Make the divider behave like a divider, not a mini card */
+    .skills-card .u-divider {
+        border: none;
+        border-top: 1px solid var(--border-subtle);
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+        height: 0;
+    }
+
+    /* Tags layout */
+    .skills-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
     /* 6) UTILITIES (tiny reusable helpers) */
 
     /* Visually hidden (accessibility) */
@@ -466,7 +511,7 @@
 
     /* Soft divider line */
     .u-divider {
-        background: var(--bg-card);
+        /* background: var(--bg-card); */
         border: 1px solid var(--border-subtle);
         border-radius: var(--radius);
         box-shadow: var(--shadow-1);
