@@ -616,6 +616,76 @@
         gap: 8px;
     }
 
+    /* 5.6) About */
+    .about-grid {
+        display: grid;
+        gap: 24px;
+        align-items: start;
+    }
+
+    /* Image */
+    .about-media {
+        display: flex;
+        justify-content: center;
+    }
+
+    .about-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 999px;
+        object-fit: cover;
+        border: 1px solid var(--border-default);
+        box-sizing: var(--shadow-1);
+    }
+
+    /* Text + buttons */
+    .about-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about-links {
+        display: grid;
+        gap: 12px;
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) {
+        .about-grid {
+            grid-template-columns: 240px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .about-media {
+            justify-content: flex-start;
+        }
+
+        .about-img {
+            width: 220px;
+            height: 220px;
+        }
+
+        .about-links {
+            display: flex;
+            flex: wrap;
+            gap: 12px;
+        }
+    }
+
+    /* Desktop */
+    @media (min-width: 992px) {
+        .about-grid {
+            grid-template-columns: 280px 1fr;
+            gap: 48px;
+        }
+
+        .about-img {
+            width: 240px;
+            height: 240px;
+        }
+    }
+
     /* 6) UTILITIES (tiny reusable helpers) */
 
     /* Visually hidden (accessibility) */
