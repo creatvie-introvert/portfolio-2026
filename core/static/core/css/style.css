@@ -667,6 +667,17 @@
         z-index: 1;
     }
 
+    /* Button: full width on mobile only */
+    .u-btn-fluid {
+        width: 100%;
+    }
+
+    @media (min-width: 576px) {
+        .u-btn-fluid {
+            width: auto;
+        }
+    }
+
     /* 7) PAGES */
 
     /* 7.1 Home */
