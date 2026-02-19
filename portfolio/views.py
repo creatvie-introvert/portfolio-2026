@@ -35,6 +35,7 @@ def work(request):
         "projects": projects,
         "tags": tags,
         "active_tag": active_tag,
+        "active_tag_slug": active_tag_slug,
     }
 
     return render(request, "portfolio/work.html", context)

@@ -51,6 +51,9 @@
         /* Font tokens */
         --font-heading: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
         --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+        /* Size Tokens */
+        --content-max: 65ch;
     }
 
     /* Dark mode overrides */
@@ -84,6 +87,8 @@
             rgba(57, 255, 20, 0.08) 45%,
             rgba(34, 153, 12, 0) 85%
         );
+
+        --content-max: 65ch;
     }
 
     /* 2) BASE (global element defaults) */
@@ -381,7 +386,7 @@
     }
 
     .prose {
-        max-width: 65ch;
+        max-width: var(--content-max);
     }
 
     /* Reusable helper for section headers */
@@ -493,6 +498,18 @@
         border: 1px solid var(--border-subtle);
         font-weight: 500;
         padding: 0.35rem 0.6rem;
+    }
+
+    .work-filter--active {
+        background: var(--action-primary-bg);
+        color: var(--action-primary-text);
+        border-color: var(--action-primary-bg);
+    }
+
+    @media (min-width: 992px) {
+        .work-filters {
+            max-width: var(--content-max);
+        }
     }
 
     /* 5.4) Project cards */
