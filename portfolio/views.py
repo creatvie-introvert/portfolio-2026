@@ -1,10 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import Project, Tag
 
 
 def work(request):
     # Multi-select: /work/?tag=django&tag=ux
     selected_tag_slugs = request.GET.getlist("tag")
+
+    # Get valid tag slugs from DB
+    valid_slugs = list(
+        Tag.objects
+        .filter(slug__in=selected_tag_slugs)
+        .values_list("slug", flat=True)
+    )
+
+    # If invalid slug exists → redirect to cleaned URL
+    if set(selected_tag_slugs) != set(valid_slugs):
+        if valid_slugs:
+            query = "&".join([f"tag={slug}" for slug in valid_slugs])
+            return redirect(f"{reverse('work')}?{query}")
+        return redirect(reverse("work"))
 
     # Base queryset: all published projects
     projects = (
@@ -13,6 +28,9 @@ def work(request):
         .prefetch_related("tags")
     )
 
+    if valid_slugs:
+        projects = projects.filter(tags__slug__in=valid_slugs)
+
     # Tags for the filter UI (only tags linked to published projects)
     tags = (
         Tag.objects
@@ -20,10 +38,6 @@ def work(request):
         .distinct()
         .order_by("name")
     )
-
-    # OR logic: must match at least 1 selected tag
-    if selected_tag_slugs:
-        projects = projects.filter(tags__slug__in=selected_tag_slugs)
 
     context = {
         "projects": projects.distinct(),
