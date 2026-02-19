@@ -5,13 +5,48 @@
 {% block content %}
 <section class="section section-work-page">
     <div class="container">
-        <h1 class="h2 fw-bold mb-2">
-            Work
-        </h1>
 
-        <p class="text-secondary prose mb-0">
-            A selection of projects focused on UX clarity, clean frontend implementation, and structured full-stack builds.
-        </p>
+        <!-- Page header -->
+        <div class="section-header">
+            <h1 class="h2 fw-bold mb-2">
+                Work
+            </h1>
+
+            <p class="text-secondary prose mb-0">
+                A selection of projects focused on UX clarity, clean frontend implementation, and structured full-stack builds.
+            </p>
+        </div>
+
+        <!-- Filters -->
+        <div class="work-filters mb-4 mb-md-5">
+
+            <p class="small text-muted mb-2">
+                Filter by tag
+            </p>
+
+            <div class="work-filters__list">
+
+                <!-- All -->
+                <a 
+                    href="{% url 'work' %}" 
+                    class="badge rounded-pill badge-tag {% if not active_tag %}work-filter--active{% endif %}">
+                    All
+                </a>
+
+                <!-- Tags -->
+                {% for tag in tags %}
+                <a 
+                    href="{% url 'work' %}?tag={{ tag.slug }}" 
+                    class="badge rounded-pill badge-tag {% if active_tag and active_tag_slug == tag.slug %}work-filter--active{% endif %}"
+                >
+                    {{ tag.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Projects grid -->
+        <div class="row g4"></div>
     </div>
 </section>
 {% endblock %}

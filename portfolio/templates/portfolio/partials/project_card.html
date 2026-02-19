@@ -1,0 +1,36 @@
+<article class="project-card u-surface h-100 p-4">
+
+    {% if project.thumbnail %}
+        <div class="project-card__media u-glow">
+            <img src="{{ project.thumbnail.url }}"
+                 alt="{{ project.name }} thumbnail"
+                 class="project-card__img">
+        </div>
+    {% endif %}
+
+    <div class="project-card__content">
+        <h3 class="h5 fw-semibold">
+            {{ project.name }}
+        </h3>
+
+        <p class="text-secondary">
+            {{ project.short_description }}
+        </p>
+
+        {% if project.tags.all %}
+            <div class="project-card__tags">
+                {% for tag in project.tags.all %}
+                    <span class="badge rounded-pill badge-tag">
+                        {{ tag.name }}
+                    </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="project-card__links d-flex justify-content-between">
+        <a href="#">View case study</a>
+        <a href="#">View live</a>
+    </div>
+
+</article>
