@@ -3,17 +3,17 @@ from .models import Project, Tag
 
 
 def work(request):
-    # 1) Read the active tag slug from the querystring
-    active_tag_slug = request.GET.get("tag")
+    # Multi-select: /work/?tag=django&tag=ux
+    selected_tag_slugs = request.GET.getlist("tag")
 
-    # 2) Base queryset: all published projects
+    # Base queryset: all published projects
     projects = (
         Project.objects
         .filter(is_published=True)
         .prefetch_related("tags")
     )
 
-    # 3) Tags for the filter UI (only tags linked to published projects)
+    # Tags for the filter UI (only tags linked to published projects)
     tags = (
         Tag.objects
         .filter(projects__is_published=True)
@@ -21,21 +21,14 @@ def work(request):
         .order_by("name")
     )
 
-    # 4) Filtering logic + invalid slug fallback
-    active_tag = None
-    if active_tag_slug:
-        active_tag = tags.filter(slug=active_tag_slug).first()
-
-        if active_tag:
-            projects = projects.filter(tags=active_tag)
-
-        # If invalid slug: fallback to show all projects
+    # OR logic: must match at least 1 selected tag
+    if selected_tag_slugs:
+        projects = projects.filter(tags__slug__in=selected_tag_slugs)
 
     context = {
-        "projects": projects,
+        "projects": projects.distinct(),
         "tags": tags,
-        "active_tag": active_tag,
-        "active_tag_slug": active_tag_slug,
+        "selected_tag_slugs": selected_tag_slugs,
     }
 
     return render(request, "portfolio/work.html", context)

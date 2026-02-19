@@ -25,7 +25,7 @@
                     Filter by tag:
                 </p>
 
-                {% if active_tag %}
+                {% if selected_tag_slugs %}
                 <a 
                     href="{% url 'work' %}" 
                     class="small text-muted"
@@ -40,18 +40,28 @@
                 <!-- All -->
                 <a 
                     href="{% url 'work' %}" 
-                    class="badge rounded-pill badge-tag {% if not active_tag %}work-filter--active{% endif %}">
+                    class="badge rounded-pill badge-tag {% if not selected_tag_slugs %}work-filter--active{% endif %}">
                     All
                 </a>
 
                 <!-- Tags -->
                 {% for tag in tags %}
+
+                {% if tag.slug in selected_tag_slugs %}
                 <a 
-                    href="{% url 'work' %}?tag={{ tag.slug }}" 
-                    class="badge rounded-pill badge-tag {% if active_tag and active_tag_slug == tag.slug %}work-filter--active{% endif %}"
+                    href="{% url 'work' %}?{% for slug in selected_tag_slugs %}{% if slug != tag.slug %}tag={{ slug }}&{% endif %}{% endfor %}" 
+                    class="badge rounded-pill badge-tag work-filter--active"
                 >
                     {{ tag.name }}
                 </a>
+                {% else %}
+                <a 
+                    href="{% url 'work' %}?{% for slug in selected_tag_slugs %}tag={{ slug }}&{% endfor %}tag={{ tag.slug }}" 
+                    class="badge rounded-pill badge-tag"
+                >
+                    {{ tag.name }}
+                </a>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
