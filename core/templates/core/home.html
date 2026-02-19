@@ -143,7 +143,7 @@
             {% endfor %}
         </div>
 
-        <!-- Sectionm CTA -->
+        <!-- Section CTA -->
         <div class="d-flex justify-content-center mt-4 mt-md-5">
             <a href="#" class="btn btn-outline-secondary btn-lg u-btn-fluid">
                 View my work
@@ -152,7 +152,7 @@
     </div>
 </section>
 
-<section class="section section--compact">
+<section class="section section--compact section-process">
     <div class="container">
 
         <!-- Section header -->
@@ -261,7 +261,7 @@
     </div>
 </section>
 
-<section class="section section--compact">
+<section class="section section--compact section-skills-tools">
     <div class="container">
 
         <!-- Section header -->
@@ -399,7 +399,7 @@
     </div>
 </section>
 
-<section class="section">
+<section class="section section--compact section-about">
     <div class="container">
 
         <!-- Section header -->
@@ -437,7 +437,7 @@
 
                 <div class="about-links">
 
-                    <a href="#" class="btn-outline-secondary btn-lg u-btn-fluid">
+                    <a href="#" class="btn btn-outline-secondary btn-lg u-btn-fluid">
                         LinkedIn
                     </a>
 
@@ -449,6 +449,124 @@
                         Download CV
                     </a>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-contact" id="contact">
+    <div class="container">
+
+        <!-- Section header -->
+        <div class="section-header">
+            <h2 class="h2 fw-bold mb-2">
+                Let's work together
+            </h2>
+
+            <p class="text-secondary prose mb-0">
+                Send a quick message with what you need — I'll reply by email. No phone calls, no pressure.
+            </p>
+        </div>
+
+        <!-- Contact layout -->
+        <div class="contact-grid u-surface">
+
+            <!-- Text column -->
+            <div class="contact-intro">
+                <h3 class="h4 fw-semibold mb-2">
+                    Want to work together?
+                </h3>
+
+                <p class="text-secondary mb-0">
+                    If you've got a project in mind, I'm happy to chat. No pressure — just a quick message to see if we're a good fit.
+                </p>
+            </div>
+
+            <!-- Form column -->
+            <div class="contact-form">
+                <form action="#" method="post">
+                    {% csrf_token %}
+
+                    <div class="row g-3">
+
+                        <!-- Name -->
+                        <div class="col-12 col-md-6">
+                            <label for="contact-name" class="form-label fw-semibold">
+                                Name
+                            </label>
+
+                            <input 
+                                type="text"
+                                name="name"
+                                class="form-control"
+                                id="contact-name"
+                                placeholder="Your name"
+                                required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-12 col-md-6">
+                            <label for="contact-email" class="form-label fw-semibold">
+                                Email
+                            </label>
+
+                            <input 
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                id="contact-email"
+                                placeholder="you@example.com"
+                                required>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="col-12">
+                            <label for="contact-message" class="form-label fw-semibold">
+                                Message
+                            </label>
+
+                            <textarea
+                                class="form-control" 
+                                id="contact-message"
+                                name="message"
+                                rows="5"
+                                placeholder="Write your message..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <!-- Privacy Checkbox -->
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input 
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value="1"
+                                    id="contact-privacy"
+                                    required>
+
+                                <label class="form-check-label text-secondary" for="contact-privacy">
+                                    I agree to the privacy policy and understand my data will be used only to respond to my enquiry.
+                                </label>
+                            </div>
+
+                            <p class="small text-muted mt-2 mb-0">
+                                Required
+                            </p>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-dark btn-lg u-btn-fluid">
+                                Send message
+                            </button>
+
+                            <p class="u-note u-note--tight text-muted mt-3 mb-0">
+                                I'll only use your details to respond — no mailing lists, no spam.
+                            </p>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

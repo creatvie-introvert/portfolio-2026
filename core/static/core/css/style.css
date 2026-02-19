@@ -686,6 +686,101 @@
         }
     }
 
+    /* 5.7) Contact */
+    .contact-grid {
+        display: grid;
+        gap: 24px;
+        padding: 16px;
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) {
+        .contact-grid {
+            padding: 24px;
+            gap: 32px;
+        }
+    }
+
+    /* Desktop: 2-column layout */
+    @media (min-width: 992px) {
+        .contact-grid {
+            grid-template-columns: 1fr 1.25fr;
+            align-items: start;
+            padding: 32px;
+            gap: 48px;
+        }
+    }
+
+    /* Left intro column */
+    .contact-intro {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    @media (min-width: 992px) {
+        .contact-intro {
+            padding-top: 6px;
+        }
+    }
+
+    /* Right form column */
+    .contact-form {
+        width: 100%;
+    }
+
+    /* Form labels */
+    .contact-form .form-label {
+        font-family: var(--font-body);
+        color: var(--text-primary);
+        margin-bottom: 8px;
+    }
+
+    /* Inputs + textarea */
+    .contact-form .form-control {
+        background: var(--bg-page);
+        border: 1px solid var(--border-default);
+        border-radius: 12px;
+        padding: 12px;
+        min-height: 48px;
+        color: var(--text-primary);
+        transition: 
+            border-color 160ms ease,
+            box-shadow 160ms ease;
+    }
+
+    /* Placeholder */
+    .contact-form .form-control::placeholder {
+        color: var(--text-muted);
+        opacity: 1;
+    }
+
+    /* Focus */
+    .contact-form .form-control:focus {
+        border-color: var(--focus-ring);
+        box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.10);
+    }
+
+    /* Checkbox */
+    .contact-form .form-check-input {
+        width: 20px;
+        height: 20px;
+        margin-top: 4px;
+        border: 1px solid var(--border-default);
+        background-color: var(--bg-page);
+    }
+
+    /* Checkbox focus */
+    .contact-form .form-check-input:focus {
+        border-color: var(--focus-ring);
+        box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.10);
+    }
+
+    /* Checkbox label */
+    .contact-form .form-check-label {
+        line-height: 1.4;
+    }
+
     /* 6) UTILITIES (tiny reusable helpers) */
 
     /* Visually hidden (accessibility) */
