@@ -793,6 +793,17 @@
         box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.10);
     }
 
+    /* Checkbox checked (show tick) */
+    .contact-form .form-check-input:checked {
+        background-color: var(--accent);
+        border-color: var(--accent);
+        background-image: 
+            url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='black' d='M6.173 12.727L2.4 8.954l1.414-1.414 2.36 2.36 5.657-5.657 1.414 1.414z'/%3e%3c/svg%3e");
+        background-size: 14px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
     /* Checkbox label */
     .contact-form .form-check-label {
         line-height: 1.4;
@@ -1188,6 +1199,24 @@
         flex-shrink: 0;
         border: 1px solid var(--border-subtle);
         background: var(--bg-section);
+    }
+
+    .case-more-work {
+        display: grid;
+        gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+        .case-more-work {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+
+    @media (min-width: 992px) {
+        .case-more-work {
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 
     /* 7.4 Legal */

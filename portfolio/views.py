@@ -60,9 +60,17 @@ def case_study(request, slug):
         project=project,
     )
 
+    other_projects = {
+        Project.objects
+        .filter(is_published=True)
+        .exclude(pk=project.pk)
+        .order_by("-created_at")[:3]
+    }
+
     context = {
         "project": project,
         "case_study": case_study,
+        "other_projects": other_projects,
     }
 
     return render(request, "portfolio/case_study.html", context)
