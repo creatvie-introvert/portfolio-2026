@@ -1056,7 +1056,7 @@
     .case-process__icon {
         width: 48px;
         height: 48px;
-        border: 12px;
+        border-radius: 12px;
         display: grid;
         place-items: center;
         flex-shrink: 0;
@@ -1158,6 +1158,36 @@
 
     html[data-theme="dark"] .solution-media--dark {
         display: block;
+    }
+
+    .case-outcome__list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding-left: 0;
+    }
+
+    .case-outcome__item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .case-outcome-icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+    }
+
+    .case-outcome__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-content: center;
+        flex-shrink: 0;
+        border: 1px solid var(--border-subtle);
+        background: var(--bg-section);
     }
 
     /* 7.4 Legal */

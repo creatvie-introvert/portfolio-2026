@@ -334,7 +334,7 @@
         <!-- Section header -->
         <div class="section-header">
 
-            <h2 class="h3 fw-semibold mb-0">
+            <h2 class="h3 fw-semibold mb-4">
                 Solution
             </h2>
 
@@ -458,6 +458,93 @@
             </div>
             {% endif %}
         </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Outcome -->
+{% if case_study.outcome_intro or case_study.outcome_bullets %}
+<section class="section section--compact page-case-study-outcome">
+    <div class="container">
+
+        <!-- Section header -->
+        <div class="section-header">
+            <h2 class="h3 fw-semibold mb-3">
+                Outcome
+            </h2>
+
+            <!-- Intro -->
+            {% if case_study.outcome_intro %}
+            <p class="text-secondary prose mb-4">
+                {{ case_study.outcome_intro }}
+            </p>
+            {% endif %}
+        </div>
+
+        <!-- Bullets -->
+        {% if case_study.outcome_bullets %}
+        <ul class="case-outcome__list">
+
+            {% for bullet in case_study.outcome_bullets.splitlines %}
+            {% if bullet %}
+            <li class="case-outcome__item">
+                <span class="case-outcome__icon u-glow">
+                    <!-- Outcome SVG -->
+                    <svg 
+                        class="case-outcome-icon" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        aria-hidden="true"
+                    >
+                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+                        <path 
+                            d="M8 12.5L10.5 15L16 9.5" 
+                            stroke="currentColor" 
+                            stroke-width="1.8" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </span>
+
+                <span>
+                    {{ bullet }}
+                </span>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Reflections -->
+{% if case_study.reflection_intro or case_study.relection.reflection_body %}
+<section class="section section--compact page-case-study-reflection">
+    <div class="container">
+
+        <!-- Section header -->
+        <div class="section-header">
+
+            <h2 class="h3 fw-semibold mb-4">
+                Reflections
+            </h2>
+
+            {% if case_study.reflection_intro %}
+            <p class="text-secondary prose mb-4">
+                {{ case_study.reflection_intro }}
+            </p>
+            {% endif %}
+        </div>
+
+        <!-- Body -->
+        {% if case_study.reflection_body %}
+        <div class="case-reflection__content prose text-muted">
+            {{ case_study.reflection_body|linebreaks }}
+        </div>
+        {% endif %}
     </div>
 </section>
 {% endif %}
