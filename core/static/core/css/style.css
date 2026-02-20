@@ -1069,6 +1069,97 @@
         height: 24px;
     }
 
+    /* Solution section */
+    .case-solution {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    /* Each solution row */
+    .case-solution__row {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Tablet: 2 columns */
+    @media (min-width: 768px) {
+        .case-solution {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .case-solution__row {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+    }
+
+    /* Desktop: Reverse layout */
+    @media (min-width: 992px) {
+        .case-solution {
+            display: block;
+        }
+
+        .case-solution__row {
+            display: grid;
+            grid-template-columns: minmax(420px, 560px) 1fr;
+            gap: 48px;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .case-solution__row--reverse {
+            grid-template-columns: 1fr minmax(420px, 560px);
+        }
+
+        .case-solution__row--reverse .case-solution__media {
+            order: 2;
+        }
+
+        .case-solution__row--reverse .case-solution__content {
+            order: 1;
+        }
+    }
+
+    /* Media (image container) */
+    .case-solution__media {
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+
+    /* Image */
+    .case-solution-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+    }
+
+    /* Content */
+    .case-solution__content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-width: var(--content-max);
+    }
+
+    /* Light / Dark image switching */
+    .solution-media--dark {
+        display: none;
+    }
+
+    html[data-theme="dark"] .solution-media--light {
+        display: none;
+    }
+
+    html[data-theme="dark"] .solution-media--dark {
+        display: block;
+    }
+
     /* 7.4 Legal */
     .page-legal {}
 
