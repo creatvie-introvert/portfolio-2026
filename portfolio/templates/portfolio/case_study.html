@@ -325,4 +325,140 @@
     </div>
 </section>
 {% endif %}
+
+<!-- Solution -->
+{% if case_study.solution_intro or case_study.solution_1_title or case_study.solution_2_title or case_study.solution_3_title %}
+<section class="section section--compact page-case-study-solution">
+    <div class="container">
+
+        <!-- Section header -->
+        <div class="section-header">
+
+            <h2 class="h3 fw-semibold mb-0">
+                Solution
+            </h2>
+
+            {% if case_study.solution_intro %}
+            <p class="prose mb-4">
+                {{ case_study.solution_intro }}
+            </p>
+            {% endif %}
+        </div>
+
+        <div class="case-solution">
+
+            <!-- Solution 1 -->
+            {% if case_study.solution_1_title %}
+            <div class="case-solution__row">
+
+                <!-- Image -->
+                {% if case_study.solution_1_image_light or case_study.solution_1_image_dark %}
+                <div class="case-solution__media u-surface p3 p-md-4">
+
+                    {% if case_study.solution_1_image_light %}
+                    <img 
+                        src="{{ case_study.solution_1_image_light.url }}" 
+                        alt="{{ case_study.solution_1_title }}" 
+                        class="solution-media--light case-solution-img">
+                    {% endif %}
+
+                    {% if case_study.solution_1_image_dark %}
+                    <img 
+                        src="{{ case_study.solution_1_image_dark.url }}" 
+                        alt="{{ case_study.solution_1_title }}" 
+                        class="solution-media--dark case-solution-img">
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- Content -->
+                <div class="case-solution__content">
+                    <h3 class="h5 fw-semibold mb-2">
+                        {{ case_study.solution_1_title }}
+                    </h3>
+
+                    <p class="text-secondary mb-0">
+                        {{ case_study.solution_1_body }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Solution 2 (reversed layout) -->
+            {% if case_study.solution_2_title %}
+            <div class="case-solution__row">
+
+                <!-- Image -->
+                {% if case_study.solution_2_image_light or case_study.solution_2_image_dark %}
+                <div class="case-solution__media u-surface p3 p-md-4">
+
+                    {% if case_study.solution_2_image_light %}
+                    <img 
+                        src="{{ case_study.solution_2_image_light.url }}" 
+                        alt="{{ case_study.solution_2_title }}" 
+                        class="solution-media--light case-solution-img">
+                    {% endif %}
+
+                    {% if case_study.solution_2_image_dark %}
+                    <img 
+                        src="{{ case_study.solution_2_image_dark.url }}" 
+                        alt="{{ case_study.solution_2_title }}" 
+                        class="solution-media--dark case-solution-img">
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- Content -->
+                <div class="case-solution__content">
+                    <h3 class="h5 fw-semibold mb-2">
+                        {{ case_study.solution_2_title }}
+                    </h3>
+
+                    <p class="text-secondary mb-0">
+                        {{ case_study.solution_2_body }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Solution 3 -->
+            {% if case_study.solution_3_title %}
+            <div class="case-solution__row">
+
+                <!-- Image -->
+                {% if case_study.solution_3_image_light or case_study.solution_3_image_dark %}
+                <div class="case-solution__media u-surface p3 p-md-4">
+
+                    {% if case_study.solution_3_image_light %}
+                    <img 
+                        src="{{ case_study.solution_3_image_light.url }}" 
+                        alt="{{ case_study.solution_3_title }}" 
+                        class="solution-media--light case-solution-img">
+                    {% endif %}
+
+                    {% if case_study.solution_3_image_dark %}
+                    <img 
+                        src="{{ case_study.solution_3_image_dark.url }}" 
+                        alt="{{ case_study.solution_3_title }}" 
+                        class="solution-media--dark case-solution-img">
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- Content -->
+                <div class="case-solution__content">
+                    <h3 class="h5 fw-semibold mb-2">
+                        {{ case_study.solution_3_title }}
+                    </h3>
+
+                    <p class="text-secondary mb-0">
+                        {{ case_study.solution_3_body }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
 {% endblock %}
