@@ -940,6 +940,135 @@
         }
     }
 
+    /* Case study — Overview */
+    .case-overview {
+        display: grid;
+        gap: 16px;
+    }
+
+    /* Tablet: 2-columns */
+    @media (min-width: 768px) {
+        .case-overview {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+    }
+
+    /* Desktop: 3-columns */
+    @media (min-width: 992px) {
+        .case-overview {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+    }
+
+    /* Overview card styling */
+    .case-overview__card {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+    }
+
+    .case-overview__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        border: 1px solid var(--border-subtle);
+        background: var(--bg-section);
+    }
+
+    .case-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .case-overview__content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .case-overview__label {
+        letter-spacing: 0.02em;
+    }
+
+    .case-goals {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 16px;
+        max-width: var(--content-max);
+    }
+
+    .case-goal {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .case-goal__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        border: 1px solid var(--border-subtle);
+        background: var(--bg-section);
+    }
+
+    .case-goal-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .case-process {
+        display: grid;
+        gap: 16px;
+    }
+
+    /* Tablet: single column, incresed gap */
+    @media (min-width: 768px) {
+        .case-process {
+            gap: 24px;
+        }
+    }
+
+    /* Desktop: 2x2 grid layout */
+    @media (min-width: 992px) {
+        .case-process {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+    }
+
+    .case-process__card {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .case-process__icon {
+        width: 48px;
+        height: 48px;
+        border: 12px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        border: 1px solid var(--border-subtle);
+        background: var(--bg-section);
+    }
+
+    .case-process__icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
     /* 7.4 Legal */
     .page-legal {}
 

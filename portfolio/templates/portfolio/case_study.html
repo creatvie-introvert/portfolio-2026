@@ -73,4 +73,256 @@
         </div>
     </div>
 </section>
+
+<section class="section section--compact page-case-study-overview">
+    <div class="container">
+
+        <div class="case-overview">
+
+            <!-- Role -->
+            {% if case_study.role %}
+            <div class="case-overview__card u-surface p-4">
+
+                <div class="case-overview__icon u-glow">
+                    <!-- Role SVG -->
+                    <svg class="case-icon" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M69.3677,51.0059a30,30,0,1,0-42.7354,0A41.9971,41.9971,0,0,0,0,90a5.9966,5.9966,0,0,0,6,6H90a5.9966,5.9966,0,0,0,6-6A41.9971,41.9971,0,0,0,69.3677,51.0059ZM48,12A18,18,0,1,1,30,30,18.02,18.02,0,0,1,48,12ZM12.5977,84A30.0624,30.0624,0,0,1,42,60H54A30.0624,30.0624,0,0,1,83.4023,84Z"
+                        fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <div class="case-overview__content">
+                    <h3 class="h5 fw-semibold">
+                        Role
+                    </h3>
+
+                    <p class="text-secondary mb-0">
+                        {{ case_study.role }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Stack -->
+            {% if case_study.stack %}
+            <div class="case-overview__card u-surface p-4">
+
+                <div class="case-overview__icon u-glow">
+                    <!-- Stack SVG -->
+                    <svg class="case-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M8.01005 0.858582L6.01005 14.8586L7.98995 15.1414L9.98995 1.14142L8.01005 0.858582Z"
+                        fill="currentColor"/>
+                        <path d="M12.5 11.5L11.0858 10.0858L13.1716 8L11.0858 5.91422L12.5 4.5L16 8L12.5 11.5Z"
+                        fill="currentColor"/>
+                        <path d="M2.82843 8L4.91421 10.0858L3.5 11.5L0 8L3.5 4.5L4.91421 5.91422L2.82843 8Z"
+                        fill="currentColor"/>
+                    </svg>  
+                </div>
+
+                <div class="case-overview__content">
+                    <h3 class="h5 fw-semibold">
+                        Stack
+                    </h3>
+
+                    <p class="text-secondary mb-0">
+                        {{ case_study.stack }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Timeline -->
+            {% if case_study.timeline %}
+            <div class="case-overview__card u-surface p-4">
+
+                <div class="case-overview__icon u-glow">
+                    <!-- Timeline SVG -->
+                    <svg class="case-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z"
+                        fill="currentColor"/>
+                        <path d="M12 5C11.4477 5 11 5.44771 11 6V12.4667C11 12.4667 11 12.7274 11.1267 12.9235C11.2115 13.0898 11.3437 13.2343 11.5174 13.3346L16.1372 16.0019C16.6155 16.278 17.2271 16.1141 17.5032 15.6358C17.7793 15.1575 17.6155 14.5459 17.1372 14.2698L13 11.8812V6C13 5.44772 12.5523 5 12 5Z"
+                        fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <div class="case-overview__content">
+                    <h3 class="h5 fw-semibold">
+                        Timeline
+                    </h3>
+
+                    <p class="text-secondary mb-0">
+                        {{ case_study.timeline }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- The Problem -->
+{% if case_study.problem %}
+<section class="section section--compact page-case-study-problem">
+    <div class="container">
+
+        <div class="section-header">
+            <h2 class="h3 fw-semibold mb-0">
+                The problem
+            </h2>
+        </div>
+
+        <div class="prose">
+            {{ case_study.problem|linebreaks }}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Goals -->
+{% if case_study.goals %}
+<section class="section section--compact page-case-study-goals">
+    <div class="container">
+
+        <div class="section-header">
+            <h2 class="h3 fw-semibold mb-0">
+                Goals
+            </h2>
+        </div>
+
+        <ul class="case-goals">
+            {% for goal in case_study.goals.splitlines %}
+
+            {% if goal %}
+            <li class="case-goal">
+                <span class="case-goal__icon u-glow">
+                    <!-- Target icon -->
+                    <svg class="case-goal-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="1.25" />
+                        <circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="1.25" />
+                        <circle cx="10" cy="10" r="3.5" fill="none" stroke="currentColor" stroke-width="1.25" />
+                        <circle cx="10" cy="10" r="1.5" fill="currentColor" />
+                    </svg>
+                </span>
+
+                <span>
+                    {{ goal }}
+                </span>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
+
+<!-- Process -->
+{% if case_study.process_discover or case_study.process_design or case_study.process_build or case_study.process_refine_launch %}
+<section class="section section--compact page-case-study-process">
+    <div class="container">
+
+        <div class="section-header">
+            <h2 class="h3 fw-semibold mb-0">
+                Process
+            </h2>
+
+            <div class="case-process">
+
+                {% if case_study.process_discover %}
+                <div class="case-process__card u-surface p-4">
+                    <div class="case-process__icon u-glow">
+                        <!-- Discover icon -->
+                        <svg class="process-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                                d="M12 12H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM16 8L9.5 9.5L8 16L14.5 14.5L16 8Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                    <div class="case-process__content">
+                        <h3 class="h5 fw-semibold mb-2">
+                            Discover
+                        </h3>
+
+                        <p class="mb-0">
+                            {{ case_study.process_discover }}
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if case_study.process_design %}
+                <div class="case-process__card u-surface p-4">
+                    <div class="case-process__icon u-glow">
+                        <!-- Design icon -->
+                        <svg class="process-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path
+                                d="M1.547 0.309 C 1.258 0.384,1.016 0.529,0.773 0.773 C 0.524 1.022,0.416 1.198,0.316 1.520 L 0.253 1.720 0.253 8.000 L 0.253 14.280 0.316 14.480 C 0.416 14.802,0.524 14.978,0.773 15.227 C 1.022 15.476,1.198 15.584,1.520 15.684 L 1.720 15.747 8.000 15.747 L 14.280 15.747 14.480 15.684 C 14.802 15.584,14.978 15.476,15.227 15.227 C 15.476 14.978,15.584 14.802,15.684 14.480 L 15.747 14.280 15.747 8.000 L 15.747 1.720 15.684 1.520 C 15.584 1.198,15.476 1.022,15.227 0.773 C 14.980 0.525,14.739 0.382,14.441 0.307 C 14.207 0.248,1.774 0.249,1.547 0.309 M14.170 1.830 L 14.240 1.901 14.240 3.324 L 14.240 4.747 8.000 4.747 L 1.760 4.747 1.760 3.324 L 1.760 1.901 1.830 1.830 L 1.901 1.760 8.000 1.760 L 14.099 1.760 14.170 1.830 M4.747 10.267 L 4.747 14.267 3.403 14.267 C 2.665 14.267,2.023 14.259,1.977 14.250 C 1.931 14.241,1.864 14.203,1.827 14.166 L 1.760 14.099 1.760 10.183 L 1.760 6.267 3.253 6.267 L 4.747 6.267 4.747 10.267 M14.240 10.183 L 14.240 14.099 14.173 14.166 C 14.136 14.203,14.069 14.241,14.023 14.250 C 13.977 14.259,12.214 14.267,10.103 14.267 L 6.267 14.267 6.267 10.267 L 6.267 6.267 10.253 6.267 L 14.240 6.267 14.240 10.183"
+                                fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+
+                    <div class="case-process__content">
+                        <h3 class="h5 fw-semibold mb-2">
+                            Design
+                        </h3>
+
+                        <p class="mb-0">
+                            {{ case_study.process_design }}
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if case_study.process_build %}
+                <div class="case-process__card u-surface p-4">
+                    <div class="case-process__icon u-glow">
+                        <!-- Build icon -->
+                        <svg class="process-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                        <path
+                            d="M33.53,18.76,26.6,15.57V6.43A1,1,0,0,0,26,5.53l-7.5-3.45a1,1,0,0,0-.84,0l-7.5,3.45a1,1,0,0,0-.58.91v9.14L2.68,18.76a1,1,0,0,0-.58.91v9.78h0a1,1,0,0,0,.58.91l7.5,3.45a1,1,0,0,0,.84,0l7.08-3.26,7.08,3.26a1,1,0,0,0,.84,0l7.5-3.45a1,1,0,0,0,.58-.91h0V19.67A1,1,0,0,0,33.53,18.76ZM25.61,22,20.5,19.67l5.11-2.35,5.11,2.35Zm-1-6.44-6.44,3V10.87a1,1,0,0,0,.35-.08L24.6,8v7.58ZM18.1,4.08l5.11,2.35L18.1,8.78,13,6.43ZM10.6,17.31l5.11,2.35L10.6,22,5.49,19.67Zm6.5,11.49-6.5,3h0V24.11h0A1,1,0,0,0,11,24l6.08-2.8Zm15,0-6.46,3V24.11A1,1,0,0,0,26,24l6.08-2.8Z"
+                            fill="currentColor" />
+                        </svg>
+                    </div>
+
+                    <div class="case-process__content">
+                        <h3 class="h5 fw-semibold mb-2">
+                            Build
+                        </h3>
+
+                        <p class="mb-0">
+                            {{ case_study.process_build }}
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if case_study.process_refine_launch %}
+                <div class="case-process__card u-surface p-4">
+                    <div class="case-process__icon u-glow">
+                        <!-- Refine & launch icon -->
+                        <svg class="process-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M13.8179 4.54512L13.6275 4.27845C12.8298 3.16176 11.1702 3.16176 10.3725 4.27845L10.1821 4.54512C9.76092 5.13471 9.05384 5.45043 8.33373 5.37041L7.48471 5.27608C6.21088 5.13454 5.13454 6.21088 5.27608 7.48471L5.37041 8.33373C5.45043 9.05384 5.13471 9.76092 4.54512 10.1821L4.27845 10.3725C3.16176 11.1702 3.16176 12.8298 4.27845 13.6275L4.54512 13.8179C5.13471 14.2391 5.45043 14.9462 5.37041 15.6663L5.27608 16.5153C5.13454 17.7891 6.21088 18.8655 7.48471 18.7239L8.33373 18.6296C9.05384 18.5496 9.76092 18.8653 10.1821 19.4549L10.3725 19.7215C11.1702 20.8382 12.8298 20.8382 13.6275 19.7215L13.8179 19.4549C14.2391 18.8653 14.9462 18.5496 15.6663 18.6296L16.5153 18.7239C17.7891 18.8655 18.8655 17.7891 18.7239 16.5153L18.6296 15.6663C18.5496 14.9462 18.8653 14.2391 19.4549 13.8179L19.7215 13.6275C20.8382 12.8298 20.8382 11.1702 19.7215 10.3725L19.4549 10.1821C18.8653 9.76092 18.5496 9.05384 18.6296 8.33373L18.7239 7.48471C18.8655 6.21088 17.7891 5.13454 16.5153 5.27608L15.6663 5.37041C14.9462 5.45043 14.2391 5.13471 13.8179 4.54512Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9 12L10.8189 13.8189C10.9189 13.9189 11.0811 13.9189 11.1811 13.8189L15 10"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    </div>
+
+                    <div class="case-process__content">
+                        <h3 class="h5 fw-semibold mb-2">
+                            Refine & Launch
+                        </h3>
+
+                        <p class="mb-0">
+                            {{ case_study.process_refine_launch }}
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 {% endblock %}
