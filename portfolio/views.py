@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .models import Project, Tag
+from .models import Project, Tag, CaseStudy
 
 
 def work(request):
@@ -46,3 +46,23 @@ def work(request):
     }
 
     return render(request, "portfolio/work.html", context)
+
+
+def case_study(request, slug):
+    project = get_object_or_404(
+        Project.objects.prefetch_related("tags"),
+        slug=slug,
+        is_published=True,
+    )
+
+    case_study = get_object_or_404(
+        CaseStudy.objects.prefetch_related("project"),
+        project=project,
+    )
+
+    context = {
+        "project": project,
+        "case_study": case_study,
+    }
+
+    return render(request, "portfolio/case_study.html", context)

@@ -48,12 +48,12 @@ class CaseStudy(models.Model):
     # Hero
     intro = models.TextField()
     hero_image_light = models.ImageField(
-        upload_to="case-studies/hero/",
+        upload_to="case_studies",
         blank=True,
         null=True,
     )
     hero_image_dark = models.ImageField(
-        upload_to="case-studies/hero/",
+        upload_to="case_studies",
         blank=True,
         null=True,
     )

@@ -879,6 +879,7 @@
         display: none;
     }
 
+    /* Dark mode override */
     html[data-theme="dark"] .hero-media--light {
         display: none;
     }
@@ -892,6 +893,52 @@
 
     /* 7.3 Case study */
     .page-case-study {}
+
+    .case-hero-media {
+        border-radius: var(--radius);
+    }
+
+    .case-hero {
+        display: grid;
+        gap: 32px;
+        align-items: center;
+    }
+
+    @media (min-width: 992px) {
+        .case-hero {
+            grid-template-columns: 1fr 1.1fr;
+            gap: 48px;
+        }
+    }
+
+    /* Hero content spacing */
+    .case-hero__content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Tags layout */
+    .case-hero__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* Buttons */
+    .case-hero__actions {
+        display: grid;
+        gap: 12px;
+    }
+
+    /* Desktop button layout */
+    @media (min-width: 576px) {
+        .case-hero__actions {
+            grid-auto-flow: column;
+            justify-content: start;
+            grid-area: 16px;
+        }
+    }
 
     /* 7.4 Legal */
     .page-legal {}

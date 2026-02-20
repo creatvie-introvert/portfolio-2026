@@ -29,7 +29,11 @@
     </div>
 
     <div class="project-card__links d-flex justify-content-between">
-        <a href="#">View case study</a>
-        <a href="#">View live</a>
+        <a href="{% url 'case_study' project.slug %}">
+            View case study
+        </a>
+        <a href="#">
+            View live
+        </a>
     </div>
 </article>

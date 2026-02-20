@@ -1,0 +1,76 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ project.name }} | Case Study{% endblock %}
+
+{% block content %}
+<section class="section page-case-study">
+    <div class="container">
+
+        <!-- Hero -->
+        <div class="case-hero">
+            <div class="case_hero__content prose">
+                <h1 class="h2 fw-bold mb-3">
+                    {{ project.name }}
+                </h1>
+
+                <p class="text-secondary">
+                    {{ case_study.intro }}
+                </p>
+
+                <!-- Tags -->
+                {% if project.tags.all %}
+                <div class="case-hero__tags mb-4">
+                    {% for tag in project.tags.all %}
+                    <span class="badge rounded-pill badge-tag">
+                        {{ tag.name }}
+                    </span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Buttons -->
+                <div class="case-hero__actions">
+                    {% if case_study.live_url %}
+                    <a 
+                        href="{{ case_study.live_url }}" 
+                        target="_blank"
+                        rel="noopener"
+                        class="btn btn-dark btn-lg u-btn-fluid">
+                        View live
+                    </a>
+                    {% endif %}
+
+                    {% if case_study.repo_url %}
+                    <a 
+                        href="{{ case_study.repo_url }}" 
+                        target="_blank"
+                        rel="noopener"
+                        class="btn btn-outline-secondary btn-lg u-btn-fluid">
+                        View code
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if case_study.hero_image_light or case_study.hero_image_dark %}
+            <div class="case-hero__media case-hero-media u-surface p-3 p-md-4">
+
+                {% if case_study.hero_image_light %}
+                <img 
+                    src="{{ case_study.hero_image_light.url }}" 
+                    alt="{{ project.name }} preview"
+                    class="hero-media--light case-hero-img">
+                {% endif %}
+
+                {% if case_study.hero_image_dark %}
+                <img 
+                    src="{{ case_study.hero_image_dark.url }}" 
+                    alt="{{ project.name }} preview"
+                    class="hero-media--dark case-hero-img">
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
