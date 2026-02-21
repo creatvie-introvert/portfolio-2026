@@ -32,7 +32,10 @@
         <a href="{% url 'case_study' project.slug %}">
             View case study
         </a>
-        <a href="#">
+        <a 
+            href="{{ project.case_study.live_url }}"
+            target="_blank"
+            rel="noopener noreferrer">
             View live
         </a>
     </div>
