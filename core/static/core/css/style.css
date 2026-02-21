@@ -254,7 +254,7 @@
     .btn-outline-secondary:hover {
         background: var(--bg-section);
         border-color: var(--border-strong);
-        text-decoration: none;
+        color: var(--action-secondary-text) !important;
     }
 
     .btn-outline-secondary:active {
