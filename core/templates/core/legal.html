@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<section class="section page-legal">
+    <div class="container">
+
+        <!-- Header -->
+        <div class="section-header">
+            <h1 class="h2 fw-bold mb-2">
+                {{ title }}
+            </h1>
+
+            <p class="text-secondary mb-2">
+                {{ intro }}
+            </p>
+
+            <p class="text-muted small mb-0">
+                Last updated: {{ updated }}
+            </p>
+        </div>
+
+        <!-- Content -->
+        <div class="prose">
+            {{ content|safe }}
+        </div>
+
+    </div>
+</section>
+{% endblock %}
