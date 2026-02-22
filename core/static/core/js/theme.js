@@ -30,13 +30,23 @@
         const toggleButtons = document.querySelectorAll(".theme-toggle");
 
         toggleButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            const isDark = root.getAttribute("data-theme") === "dark";
-            const newTheme = isDark ? "light" : "dark";
+            btn.addEventListener("click", () => {
+                const isDark = root.getAttribute("data-theme") === "dark";
+                const newTheme = isDark ? "light" : "dark";
 
-            setTheme(newTheme);
-            localStorage.setItem(STORAGE_KEY, newTheme);
+                setTheme(newTheme);
+                localStorage.setItem(STORAGE_KEY, newTheme);
+            });
         });
-        });
+
+        const navbar = document.querySelector(".navbar");
+
+        function setNavbarState() {
+            if (!navbar) return;
+            navbar.classList.toggle("is-scrolled", window.scrollY > 8);
+        }
+
+        window.addEventListener("scroll", setNavbarState, { passive: true });
+        setNavbarState();
     });
-    })();
+})();

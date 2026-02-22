@@ -158,11 +158,30 @@
         Most spacing controlled via section padding instead of changing container widths
     */
 
+    /* Sticky header visual states */
+    header.sticky-top {
+    background: transparent; /* header itself */
+    }
+
+    .navbar {
+    background: var(--bg-page);
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    /* When scrolled: translucent glass */
+    .navbar.is-scrolled {
+    background: color-mix(in srgb, var(--bg-page) 78%, transparent);
+    border-bottom-color: color-mix(in srgb, var(--border-subtle) 60%, transparent);
+    box-shadow: var(--shadow-1);
+    backdrop-filter: blur(10px);
+    }
+
     /* Navbar */
     .navbar {
         min-height: var(--nav-height);
         background: var(--bg-page);
         border-bottom: 1px solid var(--border-subtle);
+        backdrop-filter: blur(10px);
 
         --bs-navbar-color: var(--text-primary);
         --bs-navbar-hover-color: var(--text-primary);
