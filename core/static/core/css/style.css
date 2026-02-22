@@ -899,6 +899,50 @@
         display: block;
     }
 
+    /* Minimal timeline styling (drop this in your components section) */
+    .timeline {
+        position: relative;
+    }
+
+    .timeline__item {
+        position: relative;
+        padding-left: 28px;
+        padding-bottom: 22px;
+    }
+
+    .timeline__item:last-child {
+        padding-bottom: 0;
+    }
+
+    .timeline__item::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 6px;
+        bottom: 0;
+        width: 2px;
+        background: color-mix(
+            in srgb, 
+            var(--text-primary) 12%, 
+            transparent);
+    }
+
+    .timeline__item:last-child::before {
+        bottom: 10px;
+    }
+
+    .timeline__marker {
+        position: absolute;
+        left: 4px;
+        top: 6px;
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        background: var(--action-primary-bg); 
+        border: 0;
+        box-shadow: var(--shadow-1);
+    }
+
     /* 7.2 Work */
     .page-work {}
 
