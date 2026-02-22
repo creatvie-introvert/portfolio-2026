@@ -34,6 +34,8 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
+    "leannebedeaurogers.com",
+    "www.leannebedeaurogers.com",
     "portfolio-2026-leanne-7489bcf03221.herokuapp.com",
 ]
 
