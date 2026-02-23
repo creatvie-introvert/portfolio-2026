@@ -24,11 +24,12 @@ def home(request):
 
 def contact(request):
     if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
+        try:
+            name = request.POST.get("name")
+            email = request.POST.get("email")
+            message = request.POST.get("message")
 
-        full_message = f"""
+            full_message = f"""
 New enquiry from your portfolio:
 
 Name: {name}
@@ -38,16 +39,19 @@ Message:
 {message}
 """
 
-        send_mail(
-            subject=f"New portfolio enquiry from {name}",
-            message=full_message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=["hello@leannebedeaurogers.com"],
-            reply_to=[email],
-        )
+            send_mail(
+                subject=f"New contact form submission from {name}",
+                message=full_message,
+                from_email="hello@leannebedeaurogers.com",
+                recipient_list=["hello@leannebedeaurogers.com"]
+            )
 
-        messages.success(request, "Message sent successfully!")
-        return redirect("/?contact=success")
+            messages.success(request, "Message sent successfully!")
+            return redirect("/")
+
+        except Exception as e:
+            print("EMAIL ERROR:", e)
+            return redirect("/?contact=error")
 
     return redirect("/")
 
