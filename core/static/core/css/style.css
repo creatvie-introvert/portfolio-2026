@@ -740,7 +740,7 @@
     /* Desktop: 2-column layout */
     @media (min-width: 992px) {
         .contact-grid {
-            grid-template-columns: 1fr 1.25fr;
+            grid-template-columns: 1fr 1.1fr;
             align-items: start;
             padding: 32px;
             gap: 48px;
@@ -758,6 +758,61 @@
         .contact-intro {
             padding-top: 6px;
         }
+    }
+
+    /* Contact cards */
+    .contact-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        margin-top: 16px;
+    }
+
+    /* Individual card */
+    .contact-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 12px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-default);
+        box-shadow: var(--shadow-1);
+        transition: 
+            transform 160ms ease,
+            border-color 160ms ease,
+            box-shadow 160ms ease;
+    }
+
+    /* Subtle hover */
+    .contact-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-strong);
+    }
+
+    /* Icon container */
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        background: var(--bg-section);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-primary);
+    }
+
+    /* Icon size */
+    .contact-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .contact-left {
+        display: flex;
+        flex-direction: column;
     }
 
     /* Right form column */
