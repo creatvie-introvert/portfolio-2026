@@ -542,7 +542,7 @@
             </h2>
 
             <p class="text-secondary prose mb-0">
-                Send a quick message with what you need — I'll reply by email. No phone calls, no pressure.
+                Tell me about your project and what you need — I’ll get back to you within 24-48 hours. No calls, no pressure.
             </p>
         </div>
 
@@ -556,9 +556,43 @@
                 </h3>
 
                 <p class="text-secondary mb-0">
-                    If you've got a project in mind, I'm happy to chat. No pressure — just a quick message to see if
-                    we're a good fit.
+                    If you have a project in mind, send a quick message and I'll let you know how I can help.
                 </p>
+            </div>
+
+            <!-- Contact details card -->
+            <div class="contact-details u-surface p-4 mb-4">
+
+                <h3 class="h5 fw-semibold mb-3">
+                    Contact details
+                </h3>
+
+                <ul class="list-unstyled mb-0">
+
+                    <li class="mb-2">
+                        <span class="fw-semibold">
+                            Email:
+                        </span>
+                        <br>
+                        <a 
+                            href="mailto:hello@leannebedeaurogers.com" class="text-decoration-none">
+                                hello@leannebedeaurogers.com
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fw-semibold">
+                            Location:
+                        </span>
+                        <br>
+                        London, UK
+                    </li>
+                    <li class="mb-2">
+                        <span class="fw-semibold">
+                            Response time:
+                        </span>
+                        Within 24-48 hours
+                    </li>
+                </ul>
             </div>
 
             <!-- Form column -->
@@ -574,8 +608,7 @@
                                 Name
                             </label>
 
-                            <input type="text" name="name" class="form-control" id="contact-name"
-                                placeholder="Your name" required>
+                            <input type="text" name="name" class="form-control" id="contact-name" placeholder="Your name" autocomplete="name" required>
                         </div>
 
                         <!-- Email -->
@@ -584,8 +617,7 @@
                                 Email
                             </label>
 
-                            <input type="email" name="email" class="form-control" id="contact-email"
-                                placeholder="you@example.com" required>
+                            <input type="email" name="email" class="form-control" id="contact-email" placeholder="you@example.com" autocomplete="email" required>
                         </div>
 
                         <!-- Message -->
@@ -601,7 +633,7 @@
                         <!-- Privacy Checkbox -->
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" id="contact-privacy" required>
+                                <input class="form-check-input" type="checkbox" name="privacy" value="1" id="contact-privacy" required>
 
                                 <label class="form-check-label text-secondary" for="contact-privacy">
                                     I agree to the privacy policy and understand my data will be used only to respond to
@@ -617,11 +649,15 @@
                         <!-- Submit -->
                         <div class="col-12">
                             <button type="submit" class="btn btn-dark btn-lg u-btn-fluid">
-                                Send message
+                                Send enquiry
                             </button>
 
                             <p class="u-note u-note--tight text-muted mt-3 mb-0">
                                 I'll only use your details to respond — no mailing lists, no spam.
+                            </p>
+
+                            <p class="small text-muted mt-2 mb-0">
+                                Or email me directly at <a href="mailto:hello@leannebedeaurogers.com">hello@leannebedeaurogers.com</a>
                             </p>
                         </div>
                     </div>
