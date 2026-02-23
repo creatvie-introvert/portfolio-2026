@@ -1,35 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const successFlag = document.getElementById("contact-success-flag");
-  const errorFlag = document.getElementById("contact-error-flag");
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("contact");
 
-  const successModalEl = document.getElementById("contactSuccessModal");
-  const errorModalEl = document.getElementById("contactErrorModal");
+  if (!status) return;
 
-  const form = document.querySelector(".contact-form form");
-
-  // SUCCESS
-  if (successFlag && successModalEl) {
-    const modal = new bootstrap.Modal(successModalEl);
-    modal.show();
-
-    // Clear form
-    if (form) {
-      form.reset();
+  if (status === "success") {
+    const modalEl = document.getElementById("contactSuccessModal");
+    if (modalEl) {
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
     }
 
-    // Focus modal for accessibility
-    successModalEl.addEventListener("shown.bs.modal", () => {
-      successModalEl.querySelector(".btn").focus();
-    });
+    // Clear form after success
+    const form = document.querySelector(".contact-form form");
+    if (form) form.reset();
   }
 
-  // ERROR
-  if (errorFlag && errorModalEl) {
-    const modal = new bootstrap.Modal(errorModalEl);
-    modal.show();
-
-    errorModalEl.addEventListener("shown.bs.modal", () => {
-      errorModalEl.querySelector(".btn").focus();
-    });
+  if (status === "error") {
+    const modalEl = document.getElementById("contactErrorModal");
+    if (modalEl) {
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    }
   }
 });
