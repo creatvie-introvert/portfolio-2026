@@ -931,6 +931,21 @@
         opacity: 1;
     }
 
+    /* Use focus style on Close (X) button  */
+    .btn-close:focus,
+    .btn-close:active {
+        box-shadow: none;
+        outline: none;
+    }
+
+    .btn-close:focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 4px;
+        border-radius: 12px;
+        box-shadow: none;
+        opacity: 1;
+    }
+
     /* Dark mode close button visibility */
     html[data-them="dark"] .btn-close {
         filter: invert(1);
