@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.conf import settings
 from portfolio.models import Project
 
 
@@ -27,13 +28,25 @@ def contact(request):
         email = request.POST.get("email")
         message = request.POST.get("message")
 
+        full_message = f"""
+New enquiry from your portfolio:
+
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+"""
+
         send_mail(
-            subject=f"New contact form submission from {name}",
-            message=f"{message}\n\nFrom: {email}",
-            from_email=None,
-            recipient_list=["lrogers1986@hotmail.com"]
+            subject=f"New portfolio enquiry from {name}",
+            message=full_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=["hello@leannebedeaurogers.com"],
+            reply_to=[email],
         )
 
+        messages.success(request, "Message sent successfully!")
         return redirect("/?contact=success")
 
     return redirect("/")
