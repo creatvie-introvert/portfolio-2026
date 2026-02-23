@@ -883,6 +883,69 @@
         line-height: 1.4;
     }
 
+    /* 5.X) Modal (Contact feedback) */
+
+    /* Modal container */
+    .modal-content {
+        background: var(--bg-card);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-1);
+        color: var(--text-primary);
+    }
+
+    /* Modal header */
+    .modal-header {
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 16px 20px;
+    }
+
+    /* Modal title */
+    .modal-title {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: -0.01em;
+    }
+
+    /* Modal body */
+    .modal-body {
+        padding: 16px 20px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    /* Modal footer */
+    .modal-footer {
+        border-top: 1px solid var(--border-subtle);
+        padding: 16px 20px;
+    }
+
+    /* Close (X) button fix for dark mode */
+    .btn-close {
+        filter: none;
+        opacity: 0.6;
+    }
+
+    .btn-close:hover {
+        opacity: 1;
+    }
+
+    /* Dark mode close button visibility */
+    html[data-them="dark"] .btn-close {
+        filter: invert(1);
+        opacity: 0.7;
+    }
+
+    html[data-them="dark"] .btn-close:hover {
+        opacity: 1;
+    }
+
+    /* Modal backdrop */
+    .modal-backdrop.show {
+        opacity: 0.6;
+    }
+
     /* 6) UTILITIES (tiny reusable helpers) */
 
     /* Visually hidden (accessibility) */
