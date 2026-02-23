@@ -39,16 +39,19 @@ Message:
 {message}
 """
 
+            user_email = email if email else "noreply@leannebedeaurogers.com"
+
             send_mail(
                 subject=f"New contact form submission from {name}",
                 message=full_message,
                 from_email="hello@leannebedeaurogers.com",
                 recipient_list=["hello@leannebedeaurogers.com"],
-                reply_to=[email],
+                reply_to=[user_email],
             )
 
-            messages.success(request, "Message sent successfully!")
-            return redirect("/")
+            if not name or not email or not message:
+                messages.success(request, "Message sent successfully!")
+                return redirect("/")
 
         except Exception as e:
             print("EMAIL ERROR:", e)
