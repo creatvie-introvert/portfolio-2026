@@ -715,10 +715,15 @@
 </section>
 
 <!-- Contact Success Modal -->
-{% if contact_success %}
+{% if request.GET.contact == "success" %}
 <div id="contact-success-flag" hidden></div>
 {% endif %}
 
+{% if request.GET.contact == "error" %}
+<div id="contact-error-flag" hidden></div>
+{% endif %}
+
+<!-- Success moddal -->
 <div class="modal fade" id="contactSuccessModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content u-surface">
@@ -730,6 +735,30 @@
 
             <div class="modal-body text-secondary">
                 Thanks — your message has been sent. I’ll reply by email soon.
+            </div>
+
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Error modal -->
+<div class="modal fade" id="contactErrorModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content u-surface">
+
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-semibold">Something went wrong</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-secondary">
+                There was an issue sending your message. Please try again or email me directly.
             </div>
 
             <div class="modal-footer border-0">

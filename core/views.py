@@ -53,8 +53,7 @@ Message:
 
             email_message.send(fail_silently=False)
 
-            messages.success(request, "Message sent successfully!")
-            return redirect("/")
+            return redirect("/?contact=success")
 
         except Exception as e:
             print("EMAIL ERROR:", e)
