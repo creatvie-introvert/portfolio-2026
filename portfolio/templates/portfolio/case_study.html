@@ -14,7 +14,7 @@
                 </h1>
 
                 <p class="text-secondary">
-                    {{ case_study.intro }}
+                    {{ case_study.intro|linebreaks }}
                 </p>
 
                 <!-- Tags -->
@@ -244,7 +244,7 @@
                         </h3>
 
                         <p class="mb-0">
-                            {{ case_study.process_discover }}
+                            {{ case_study.process_discover|linebreaks }}
                         </p>
                     </div>
                 </div>
@@ -267,7 +267,7 @@
                         </h3>
 
                         <p class="mb-0">
-                            {{ case_study.process_design }}
+                            {{ case_study.process_design|linebreaks }}
                         </p>
                     </div>
                 </div>
@@ -290,7 +290,7 @@
                         </h3>
 
                         <p class="mb-0">
-                            {{ case_study.process_build }}
+                            {{ case_study.process_build|linebreaks }}
                         </p>
                     </div>
                 </div>
@@ -315,7 +315,7 @@
                         </h3>
 
                         <p class="mb-0">
-                            {{ case_study.process_refine_launch }}
+                            {{ case_study.process_refine_launch|linebreaks }}
                         </p>
                     </div>
                 </div>
@@ -340,7 +340,7 @@
 
             {% if case_study.solution_intro %}
             <p class="prose mb-4">
-                {{ case_study.solution_intro }}
+                {{ case_study.solution_intro|linebreaks }}
             </p>
             {% endif %}
         </div>
@@ -378,7 +378,7 @@
                     </h3>
 
                     <p class="text-secondary mb-0">
-                        {{ case_study.solution_1_body }}
+                        {{ case_study.solution_1_body|linebreaks }}
                     </p>
                 </div>
             </div>
@@ -415,7 +415,7 @@
                     </h3>
 
                     <p class="text-secondary mb-0">
-                        {{ case_study.solution_2_body }}
+                        {{ case_study.solution_2_body|linebreaks }}
                     </p>
                 </div>
             </div>
@@ -452,7 +452,7 @@
                     </h3>
 
                     <p class="text-secondary mb-0">
-                        {{ case_study.solution_3_body }}
+                        {{ case_study.solution_3_body|linebreaks }}
                     </p>
                 </div>
             </div>
@@ -476,7 +476,7 @@
             <!-- Intro -->
             {% if case_study.outcome_intro %}
             <p class="text-secondary prose mb-4">
-                {{ case_study.outcome_intro }}
+                {{ case_study.outcome_intro|linebreaks }}
             </p>
             {% endif %}
         </div>
@@ -534,7 +534,7 @@
 
             {% if case_study.reflection_intro %}
             <p class="text-secondary prose mb-4">
-                {{ case_study.reflection_intro }}
+                {{ case_study.reflection_intro|linebreaks }}
             </p>
             {% endif %}
         </div>
