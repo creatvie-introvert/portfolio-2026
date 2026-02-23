@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.contrib import messages
 from django.conf import settings
 from portfolio.models import Project
@@ -29,6 +29,10 @@ def contact(request):
             email = request.POST.get("email")
             message = request.POST.get("message")
 
+            # Validate first
+            if not name or not email or not message:
+                return redirect("/?contact=error")
+
             full_message = f"""
 New enquiry from your portfolio:
 
@@ -39,19 +43,18 @@ Message:
 {message}
 """
 
-            user_email = email if email else "noreply@leannebedeaurogers.com"
-
-            send_mail(
-                subject=f"New contact form submission from {name}",
-                message=full_message,
+            email_message = EmailMessage(
+                subject=f"New message form submission from {name}",
+                body=full_message,
                 from_email="hello@leannebedeaurogers.com",
-                recipient_list=["hello@leannebedeaurogers.com"],
-                reply_to=[user_email],
+                to=["hello@leannebedeaurogers.com"],  # ✅ correct
+                reply_to=[email],
             )
 
-            if not name or not email or not message:
-                messages.success(request, "Message sent successfully!")
-                return redirect("/")
+            email_message.send(fail_silently=False)
+
+            messages.success(request, "Message sent successfully!")
+            return redirect("/")
 
         except Exception as e:
             print("EMAIL ERROR:", e)
@@ -63,7 +66,8 @@ Message:
 def privacy(request):
     context = {
         "title": "Privacy Policy",
-        "intro": "This privacy policy explains what data is collected when you use this website, and how it’s used.",
+        "intro": "This privacy policy explains what data is collected when you "
+        "use this website, and how it's used.",
         "updated": "February 2026",
         "content": """
         <h3>Who I am</h3>
