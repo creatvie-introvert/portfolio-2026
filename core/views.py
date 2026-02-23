@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.core.mail import EmailMessage
-from django.contrib import messages
 from django.conf import settings
+from django.core.mail import EmailMessage
+from django.utils.timezone import now
 from portfolio.models import Project
 
 
@@ -33,21 +33,33 @@ def contact(request):
             if not name or not email or not message:
                 return redirect("/?contact=error")
 
+            # Human readable timestamp
+            timestamp = now().strftime("%d %B %Y at %H:%M")
+
+            # Clean, structured email body
             full_message = f"""
-New enquiry from your portfolio:
+New Portfolio Enquiry
+━━━━━━━━━━━━━━━━━━━━━━
 
 Name: {name}
 Email: {email}
+Submitted: {timestamp}
 
 Message:
+----------------------------------------
 {message}
+----------------------------------------
+
+Source: leannebedeaurogers/contact
 """
 
+            subject = "New enquiry — Portfolio (leannebedeaurogers.com)"
+
             email_message = EmailMessage(
-                subject=f"New message form submission from {name}",
+                subject=subject,
                 body=full_message,
-                from_email="hello@leannebedeaurogers.com",
-                to=["hello@leannebedeaurogers.com"],  # ✅ correct
+                from_email=f"Leanne Bedeau-Rogers <{settings.DEFAULT_FROM_EMAIL}>",
+                to=["hello@leannebedeaurogers.com"],
                 reply_to=[email],
             )
 
