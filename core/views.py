@@ -43,7 +43,8 @@ Message:
                 subject=f"New contact form submission from {name}",
                 message=full_message,
                 from_email="hello@leannebedeaurogers.com",
-                recipient_list=["hello@leannebedeaurogers.com"]
+                recipient_list=["hello@leannebedeaurogers.com"],
+                reply_to=[email],
             )
 
             messages.success(request, "Message sent successfully!")
