@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- SEO: Description -->
-    <meta name="description" content="{% block meta_description %}UX-led web developer portfolio showcasing selected projects, case studies, and accessible builds.{% endblock %}">
+    {% block meta_description %}
+    UX-led web developer portfolio showcasing selected projects, case studies, and accessible builds.
+    {% endblock %}
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+
 
     <!-- SEO: Canonical -->
     <link rel="canonical" href="https://leannebedeaurogers.com{% block canonical_path %}{{ request.path }}{% endblock %}">
@@ -24,8 +28,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}{{ block.super }}{% endblock %}">
-    <meta name="twitter:description" content="{% block twitter_description %}{% block meta_description %}{% endblock %}{% endblock %}">
-    <meta name="twitter:image" content="https://leannebedeaurogers.com{% static 'core/images/og-image.png' %}">
+    <meta property="og:description" content="{% block og_description %}{% block meta_description %}{% endblock %}">    <meta name="twitter:image" content="https://leannebedeaurogers.com{% static 'core/images/og-image.png' %}">
 
     <title>{% block title %}Portfolio 2026{% endblock %}</title>
 
