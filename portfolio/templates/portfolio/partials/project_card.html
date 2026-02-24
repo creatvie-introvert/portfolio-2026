@@ -29,13 +29,25 @@
     </div>
 
     <div class="project-card__links d-flex justify-content-between">
-        <a href="{% url 'case_study' project.slug %}">
+        <a 
+            href="{% url 'case_study' project.slug %}"
+            class="js-track-project"
+            data-event="project_click"
+            data-link-type="case_study"
+            data-project="{{ project.name|escape }}"
+            data-slug="{{ project.slug|escape }}">
             View case study
         </a>
         <a 
             href="{{ project.case_study.live_url }}"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+            class="js-track-project"
+            data-event="project_click"
+            data-link-type="live"
+            data-project="{{ project.name|escape }}"
+            data-slug="{{ project.slug|escape }}"
+            data-outbound-url="{{ project.case_study.live_url|escape }}">
             View live
         </a>
     </div>

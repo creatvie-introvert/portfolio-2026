@@ -7,7 +7,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7B6E15QF5"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-K7B6E15QF5');
@@ -19,7 +19,8 @@
     <!-- Primary SEO -->
     <title>{% block title %}Portfolio 2026{% endblock %}</title>
 
-    <meta name="description" content="{% block meta_description %}UX-led Full Stack Developer portfolio showcasing real-world projects, case studies, and accessible, responsive web applications built with Django, JavaScript, and modern UI practices.{% endblock %}">
+    <meta name="description"
+        content="{% block meta_description %}UX-led Full Stack Developer portfolio showcasing real-world projects, case studies, and accessible, responsive web applications built with Django, JavaScript, and modern UI practices.{% endblock %}">
     <meta name="author" content="Leanne Bedeau-Rogers">
     <meta property="article:author" content="Leanne Bedeau-Rogers">
 
@@ -28,7 +29,8 @@
 
     <!-- Open Graph (Facebook, LinkedIn etc) -->
     <meta property="og:title" content="{% block og_title %}Portfolio 2026{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}UX-led web developer portfolio showcasing selected projects and case studies.{% endblock %}">
+    <meta property="og:description"
+        content="{% block og_description %}UX-led web developer portfolio showcasing selected projects and case studies.{% endblock %}">
     <meta property="og:url" content="https://leannebedeaurogers.com{% block og_url %}/{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://leannebedeaurogers.com{% static 'core/img/og-image.png' %}">
@@ -40,7 +42,8 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}Portfolio 2026{% endblock %}">
-    <meta name="twitter:description" content="{% block twitter_description %}UX-led web developer portfolio showcasing selected projects and case studies.{% endblock %}">
+    <meta name="twitter:description"
+        content="{% block twitter_description %}UX-led web developer portfolio showcasing selected projects and case studies.{% endblock %}">
     <meta name="twitter:image" content="https://leannebedeaurogers.com{% static 'core/img/og-image.png' %}">
 
     <!-- Favicon -->
@@ -57,7 +60,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +85,8 @@
                 <div class="d-flex align-items-center gap-2 ms-auto d-lg-none">
 
                     <!-- Theme toggle (mobile/tablet) -->
-                    <button type="button" class="theme-toggle btn btn-link p-0 border-0" aria-label="Toggle dark mode" data-theme-toggle>
+                    <button type="button" class="theme-toggle btn btn-link p-0 border-0" aria-label="Toggle dark mode"
+                        data-theme-toggle>
                         <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M22.0003 40.3333C32.1255 40.3333 40.3337 32.1252 40.3337 22C40.3337 11.8748 32.1255 3.66667 22.0003 3.66667C11.8751 3.66667 3.66699 11.8748 3.66699 22C3.66699 32.1252 11.8751 40.3333 22.0003 40.3333ZM22.0003 37.5833V6.41667C30.6068 6.41667 37.5837 13.3936 37.5837 22C37.5837 30.6064 30.6068 37.5833 22.0003 37.5833Z"
@@ -89,7 +95,9 @@
                     </button>
 
                     <!-- Hamburger -->
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
@@ -126,8 +134,10 @@
                     <div class="d-none d-lg-flex align-items-center gap-2 ms-lg-3">
 
                         <!-- Theme toggle (desktop) -->
-                        <button type="button" class="theme-toggle btn btn-link p-0 border-0" aria-label="Toggle dark mode" data-theme-toggle>
-                            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button type="button" class="theme-toggle btn btn-link p-0 border-0"
+                            aria-label="Toggle dark mode" data-theme-toggle>
+                            <svg width="44" height="44" viewBox="0 0 44 44" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M22.0003 40.3333C32.1255 40.3333 40.3337 32.1252 40.3337 22C40.3337 11.8748 32.1255 3.66667 22.0003 3.66667C11.8751 3.66667 3.66699 11.8748 3.66699 22C3.66699 32.1252 11.8751 40.3333 22.0003 40.3333ZM22.0003 37.5833V6.41667C30.6068 6.41667 37.5837 13.3936 37.5837 22C37.5837 30.6064 30.6068 37.5833 22.0003 37.5833Z"
                                     fill="currentColor" />
@@ -159,7 +169,8 @@
                         Want to work together?
                     </h2>
                     <p class="mb-3">
-                        If you've got a project in mind, I'm happy to chat. No pressure — just a quick message to see if we're a good fit.
+                        If you've got a project in mind, I'm happy to chat. No pressure — just a quick message to see if
+                        we're a good fit.
                     </p>
 
                     <div class="d-grid d-md-inline-block">
@@ -170,7 +181,7 @@
                 </div>
 
                 <!-- Right column -->
-                 <div class="col-12 col-lg-4">
+                <div class="col-12 col-lg-4">
                     <div class="row g-4">
 
                         <!-- Explore -->
@@ -188,7 +199,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/#journey"  class="footer-link">Journey</a>
+                                    <a href="/#journey" class="footer-link">Journey</a>
                                 </li>
                                 <li>
                                     <a href="/#process" class="footer-link">
@@ -215,25 +226,19 @@
                             </p>
                             <ul class="list-unstyled mb-0">
                                 <li>
-                                    <a 
-                                        href="https://github.com/creatvie-introvert"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="footer-link">
+                                    <a href="https://github.com/creatvie-introvert" target="_blank"
+                                        rel="noopener noreferrer" class="footer-link">
                                         GitHub
                                     </a>
                                 </li>
                                 <li>
-                                    <a 
-                                        href="https://www.linkedin.com/in/leanne-bedeau-rogers/"
-                                        target="_blank"
+                                    <a href="https://www.linkedin.com/in/leanne-bedeau-rogers/" target="_blank"
                                         rel="noopener noreferrer" class="footer-link">
                                         LinkedIn
                                     </a>
                                 </li>
                                 <li>
-                                    <a 
-                                        href="mailto:hello@leannebedeaurogers.com?subject=Portfolio enquiry" 
+                                    <a href="mailto:hello@leannebedeaurogers.com?subject=Portfolio enquiry"
                                         class="footer-link">
                                         Email
                                     </a>
@@ -242,7 +247,7 @@
                         </div>
 
                     </div>
-                 </div>
+                </div>
 
             </div>
 
@@ -281,9 +286,60 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 
     <script src="{% static 'core/js/contact.js' %}"></script>
+
+    <script>
+        (function () {
+            function fireGAEvent(params, callback) {
+                if (typeof gtag === "function") {
+                    gtag("event", params.event_name, params.payload);
+                    // Give GA a moment; then continue navigation
+                    setTimeout(callback, 250);
+                } else {
+                    callback();
+                }
+            }
+
+            document.addEventListener("click", function (e) {
+                const link = e.target.closest("a.js-track-project");
+                if (!link) return;
+
+                const eventName = link.dataset.event || "project_click";
+                const linkType = link.dataset.linkType || "unknown";
+                const projectName = link.dataset.project || "";
+                const slug = link.dataset.slug || "";
+                const outboundUrl = link.dataset.outboundUrl || link.href;
+
+                const isNewTab = link.target === "_blank" || e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1;
+
+                const payload = {
+                    project_name: projectName,
+                    project_slug: slug,
+                    link_type: linkType,
+                    link_url: outboundUrl
+                };
+
+                // If it’s opening in a new tab/window, we can just fire and let it proceed.
+                if (isNewTab) {
+                    if (typeof gtag === "function") gtag("event", eventName, payload);
+                    return;
+                }
+
+                // Same-tab navigation: prevent default, send event, then navigate
+                e.preventDefault();
+                const href = link.href;
+
+                fireGAEvent(
+                    { event_name: eventName, payload },
+                    function () { window.location.href = href; }
+                );
+            });
+        })();
+    </script>
 </body>
 
 </html>
