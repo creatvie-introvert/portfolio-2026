@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [
     "portfolio-2026-leanne-7489bcf03221.herokuapp.com",
 ]
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 CSRF_TRUSTED_ORIGINS = ["https://leannebedeaurogers.com"]
 
 

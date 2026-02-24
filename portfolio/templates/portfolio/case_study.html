@@ -1,22 +1,9 @@
 {% extends "core/base.html" %}
 
-{% block title %}{{ project.title }} | Case Study | Leanne Bedeau-Rogers{% endblock %}
+{% block title %}{{ project.title }} | Case Study{% endblock %}
 
 {% block meta_description %}
 {{ project.short_description }}
-{% endblock %}
-
-{% block canonical_path %}/portfolio/work/{{ project.slug }}/{% endblock %}
-{% block og_url %}/portfolio/work/{{ project.slug }}/{% endblock %}
-
-{% block og_title %}{{ project.title }} | Case Study{% endblock %}
-{% block og_description %}
-{{ project.summary }}
-{% endblock %}
-
-{% block twitter_title %}{{ project.title }} | Case Study{% endblock %}
-{% block twitter_description %}
-{{ project.summary }}
 {% endblock %}
 
 {% block content %}
