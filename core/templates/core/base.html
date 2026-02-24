@@ -14,12 +14,12 @@
 
 
     <!-- SEO: Canonical -->
-    <link rel="canonical" href="https://leannebedeaurogers.com{% block canonical_path %}{{ request.path }}{% endblock %}">
+    <link rel="canonical" href="https://leannebedeaurogers.com{% block canonical_path %}/{% endblock %}">
 
     <!-- Open Graph -->
     <meta property="og:title" content="{% block og_title %}{{ block.super }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{% block meta_description %}{% endblock %}{% endblock %}">
-    <meta property="og:url" content="https://leannebedeaurogers.com{% block og_url %}{{ request.path }}{% endblock %}">
+    <meta property="og:url" content="https://leannebedeaurogers.com{% block og_url %}/{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://leannebedeaurogers.com{% static 'core/images/og-image.png' %}">
     <meta property="og:image:width" content="1200">
