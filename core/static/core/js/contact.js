@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!status) return;
 
   if (status === "success") {
+    // 🔥 GA4 conversion event (fires only on successful submit)
+    if (typeof gtag === "function") {
+      gtag("event", "contact_submit", {
+        event_category: "engagement",
+        event_label: "contact_form",
+      });
+    }
+
     const modalEl = document.getElementById("contactSuccessModal");
     if (modalEl) {
       const modal = new bootstrap.Modal(modalEl);
