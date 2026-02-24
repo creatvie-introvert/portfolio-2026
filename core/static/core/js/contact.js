@@ -15,12 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".contact-form form");
     if (form) form.reset();
 
-    // ✅ Track conversion with context
+    // ✅ Track conversion with project context
     if (typeof gtag === "function") {
       gtag("event", "contact_submit", {
         page_path: window.location.pathname,
         page_title: document.title,
         referrer: document.referrer,
+        project_source: document.referrer.includes("/portfolio/work/")
+          ? document.referrer
+          : "direct_or_unknown"
       });
     }
   }
