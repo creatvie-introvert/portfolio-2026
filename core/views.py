@@ -80,6 +80,13 @@ def privacy(request):
         "intro": "This privacy policy explains what data is collected when you "
         "use this website, and how it's used.",
         "updated": "February 2026",
+
+        # SEO
+        "meta_description": "Read the privacy policy for leannebedeaurogers.com and understand how your data is used.",
+        "canonical_path": "/privacy/",
+        "og_title": "Privacy Policy | Leanne Bedeau-Rogers",
+        "og_description": "Read the privacy policy for leannebedeaurogers.com.",
+
         "content": """
         <h3>Who I am</h3>
         <p class="text-secondary">This website is a personal portfolio operated by Leanne Bedeau-Rogers.</p>
@@ -114,6 +121,13 @@ def accessibility(request):
         "title": "Accessibility Statement",
         "intro": "This website is designed to be accessible and usable for as many people as possible, including users who rely on assistive technology.",
         "updated": "February 2026",
+
+        # SEO
+        "meta_description": "Accessibility statement for leannebedeaurogers.com, outlining usability and inclusivity standards.",
+        "canonical_path": "/accessibility/",
+        "og_title": "Accessibility Statement | Leanne Bedeau-Rogers",
+        "og_description": "Accessibility statement for leannebedeaurogers.com.",
+
         "content": """
         <h3>Commitment</h3>
         <p class="text-secondary">I'm committed to making this website accessible, inclusive, and easy to use across devices and assistive technologies.</p>
@@ -142,6 +156,13 @@ def terms(request):
         "title": "Terms of Use",
         "intro": "These terms explain how this website and its content can be used. By browsing the site, you agree to these terms.",
         "updated": "February 2026",
+
+        # SEO
+        "meta_description": "Terms of use for leannebedeaurogers.com explaining how the website and content can be used.",
+        "canonical_path": "/terms/",
+        "og_title": "Terms of Use | Leanne Bedeau-Rogers",
+        "og_description": "Terms of use for leannebedeaurogers.com.",
+
         "content": """
         <h3>About this website</h3>
         <p class="text-secondary">This website is a personal portfolio operated by Leanne Bedeau-Rogers. It showcases selected work, case studies, and contact information.</p>
