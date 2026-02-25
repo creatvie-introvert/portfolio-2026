@@ -3,6 +3,21 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (GA4) - loaded, but tracking is blocked until consent is granted -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7B6E15QF5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        // Default: deny analytics until the user chooses
+        gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -285,9 +300,9 @@
     <script>
         (function () {
             function fireGAEvent(params, callback) {
-                if (typeof gtag === "function") {
+                const consent = localStorage.getItem("lbr_cookie_consent");
+                if (consent === "accepted" && typeof gtag === "function") {
                     gtag("event", params.event_name, params.payload);
-                    // Give GA a moment; then continue navigation
                     setTimeout(callback, 250);
                 } else {
                     callback();
@@ -315,7 +330,10 @@
 
                 // If it’s opening in a new tab/window, we can just fire and let it proceed.
                 if (isNewTab) {
-                    if (typeof gtag === "function") gtag("event", eventName, payload);
+                    const consent = localStorage.getItem("lbr_cookie_consent");
+                    if (consent === "accepted" && typeof gtag === "function") {
+                        gtag("event", eventName, payload);
+                    }
                     return;
                 }
 
