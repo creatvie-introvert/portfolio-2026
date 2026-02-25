@@ -20,7 +20,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
 
             <!-- Text column -->
             <div class="col-12 col-lg-6">
-                <div class="prose">
+                <div class="prose animate">
 
                     <h1 class="display-5 fw-bold mb-3">
                         Leanne Bedeau-Rogers
@@ -37,7 +37,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
                         Focused on creating interfaces that feel calm, accessible, and easy to navigate.
                     </p>
 
-                    <div class="d-grid gap-2 d-sm-flex">
+                    <div class="d-grid gap-2 d-sm-flex animate animate-delay-1">
                         <a href="#work" class="btn btn-dark btn-lg">
                             View my work
                         </a>
@@ -55,7 +55,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
 
             <!-- Image column -->
             <div class="col-12 col-lg-6">
-                <div class="hero-image u-surface">
+                <div class="hero-image u-surface animate animate--right">
                     <picture class="hero-media hero-media--light">
                         <source media="(min-width: 992px)"
                             srcset="{% static 'core/img/hero/hero-illustration-desktop-light.webp' %}">
@@ -89,7 +89,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
     <div class="container">
 
         <!-- Section header -->
-        <div class="section-header">
+        <div class="section-header animate">
             <h2 class="h2 fw-bold mb-2">
                 Selected work
             </h2>
@@ -103,7 +103,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
         <div class="row g-4">
 
             {% for project in featured_projects %}
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-4 animate">
                 {% include "portfolio/partials/project_card.html" %}
             </div>
             {% empty %}
@@ -138,7 +138,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
         <div class="row g-4 g-lg-5">
             <!-- LEFT: Client work -->
             <div class="col-12 col-lg-6">
-                <div class="u-surface p-4 p-md-5 h-100">
+                <div class="u-surface p-4 p-md-5 h-100 animate">
                     <h3 class="h4 fw-semibold mb-3">Client work</h3>
 
                     <ul class="timeline list-unstyled mb-0">
@@ -254,7 +254,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
         <div class="how-grid">
 
             <!-- Card 1 -->
-            <article class="how-card u-surface">
+            <article class="how-card u-surface animate animate-delay-1">
 
                 <div class="how-card__icon u-glow">
                     <!-- Discover icon -->
@@ -276,7 +276,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
             </article>
 
             <!-- Card 2 -->
-            <article class="how-card u-surface">
+            <article class="how-card u-surface animate animate-delay-2">
 
                 <div class="how-card__icon u-glow">
                     <!-- Design icon -->
@@ -298,7 +298,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
             </article>
 
             <!-- Card 3 -->
-            <article class="how-card u-surface">
+            <article class="how-card u-surface animate animate-delay-3">
 
                 <div class="how-card__icon u-glow">
                     <!-- Build icon -->
@@ -320,7 +320,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
             </article>
 
             <!-- Card 4 -->
-            <article class="how-card u-surface">
+            <article class="how-card u-surface animate animate-delay-4">
 
                 <div class="how-card__icon u-glow">
                     <!-- Refine & Launch icon -->
@@ -365,7 +365,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
         <div class="skills-grid">
 
             <!-- Card 1 -->
-            <article class="skills-card u-surface">
+            <article class="skills-card u-surface animate">
                 <h3 class="h4 fw-semibold">
                     Frontend
                 </h3>
@@ -501,7 +501,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
         </div>
 
         <!-- About layout -->
-        <div class="about-grid">
+        <div class="about-grid animate">
 
             <!-- Image -->
             <div class="about-media">
@@ -566,7 +566,7 @@ Explore UX-focused web development projects, case studies, and accessible builds
         </div>
 
         <!-- Contact layout -->
-        <div class="contact-grid u-surface">
+        <div class="contact-grid u-surface animate">
 
             <!-- LEFT COLUMN -->
             <div class="contact-left">
