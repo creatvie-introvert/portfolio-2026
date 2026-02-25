@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function grantAnalytics() {
     if (!hasGtag()) return;
 
-    // Tell GA consent is granted
     gtag("consent", "update", {
       analytics_storage: "granted",
       ad_storage: "denied",
@@ -43,14 +42,20 @@ document.addEventListener("DOMContentLoaded", () => {
       ad_personalization: "denied",
     });
 
-    // Optional debug mode (helps DebugView)
     if (debugMode) {
       gtag("set", "debug_mode", true);
     }
 
-    // Ensure GA config runs after consent
+    // Enable GA config now that consent is granted
     gtag("config", GA_MEASUREMENT_ID, {
       anonymize_ip: true,
+      send_page_view: true,
+    });
+
+    // Force an immediate page_view (helps Realtime update instantly)
+    gtag("event", "page_view", {
+      page_path: window.location.pathname + window.location.search,
+      page_title: document.title,
     });
   }
 

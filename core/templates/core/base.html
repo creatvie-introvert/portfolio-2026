@@ -3,19 +3,24 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (GA4) - loaded, but tracking is blocked until consent is granted -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7B6E15QF5"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
 
-        // Default: deny analytics until the user chooses
+        // Default: deny analytics until user accepts
         gtag('consent', 'default', {
             analytics_storage: 'denied',
             ad_storage: 'denied',
             ad_user_data: 'denied',
             ad_personalization: 'denied'
         });
+
+        gtag('js', new Date());
+
+        // Don't auto pageview until consent is granted
+        gtag('config', 'G-K7B6E15QF5', { send_page_view: false });
     </script>
 
     <meta charset="utf-8">
