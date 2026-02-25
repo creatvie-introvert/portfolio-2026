@@ -333,6 +333,8 @@
                     link_url: outboundUrl
                 };
 
+                if (slug) localStorage.setItem("lbr_last_project", slug);
+
                 // If it’s opening in a new tab/window, we can just fire and let it proceed.
                 if (isNewTab) {
                     const consent = localStorage.getItem("lbr_cookie_consent");

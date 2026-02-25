@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         referrer: document.referrer,
         project_source: localStorage.getItem("lbr_last_project") || "direct_or_unknown",
       });
+      localStorage.removeItem("lbr_last_project");
     }
   }
 
