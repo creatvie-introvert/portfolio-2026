@@ -121,9 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         page_path: window.location.pathname,
         page_title: document.title,
         referrer: document.referrer,
-        project_source: document.referrer.includes("/portfolio/work/")
-          ? document.referrer
-          : "direct_or_unknown",
+        project_source: localStorage.getItem("lbr_last_project") || "direct_or_unknown",
       });
     }
   }
