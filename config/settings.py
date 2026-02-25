@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [
 
 SECURE_SSL_REDIRECT = True
 CSRF_TRUSTED_ORIGINS = ["https://leannebedeaurogers.com"]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # Application definition
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.sitemaps",
     'cloudinary',
     'cloudinary_storage',
     'core',
