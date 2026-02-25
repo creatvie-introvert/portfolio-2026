@@ -98,7 +98,24 @@ def privacy(request):
         <p class="text-secondary">Your information is only used to respond to your message and discuss potential work opportunities.</p>
 
         <h3>Cookies and analytics</h3>
-        <p class="text-secondary">This website may use basic analytics to understand how visitors use the site. If analytics are enabled, they may collect anonymous usage information such as pages visited and device type.</p>
+        <p class="text-secondary">
+        This website uses Google Analytics, a web analytics service provided by Google, to understand how visitors interact with the site.
+        </p>
+
+        <p class="text-secondary">
+        Google Analytics uses cookies to collect information such as pages visited, time spent on the site, approximate location, device type, and how users navigate the website. This information is used to improve the website and understand user behaviour.
+        </p>
+
+        <p class="text-secondary">
+        Where possible, data is collected in an anonymised form and is not used to personally identify individual users.
+        </p>
+
+        <p class="text-secondary">
+        You can learn more about how Google uses data here:
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+        https://policies.google.com/privacy
+        </a>
+        </p>
 
         <h3>Third-party services</h3>
         <p class="text-secondary">If this site uses third-party services (such as hosting providers, form handling, or analytics), those services may process limited data as part of providing their functionality.</p>
@@ -145,7 +162,7 @@ def accessibility(request):
         <p class="text-secondary">Some visual content, such as project screenshots, may not include full descriptive text in every context, but I aim to improve this over time.</p>
 
         <h3>Feedback and contact</h3>
-        <p class="text-secondary">If you experience any accessibility barriers while using this site, please contact me and I’ll do my best to fix the issue.</p>
+        <p class="text-secondary">If you experience any accessibility barriers while using this site, please contact me and I'll do my best to fix the issue.</p>
         """
     }
     return render(request, "core/legal.html", context)

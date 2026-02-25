@@ -883,7 +883,7 @@
         line-height: 1.4;
     }
 
-    /* 5.X) Modal (Contact feedback) */
+    /* 5.8) Modal (Contact feedback) */
 
     /* Modal container */
     .modal-content {
@@ -959,6 +959,26 @@
     /* Modal backdrop */
     .modal-backdrop.show {
         opacity: 0.6;
+    }
+
+    /* 5.9) Cookie banner */
+    .cookie-banner {
+        position: fixed;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 480px;
+        width: calc(100% - 2rem);
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 9999;
+        display: none;
+    }
+
+    .cookie-banner__content {
+        display: flex;
+        flex-direction: column;
     }
 
     /* 6) UTILITIES (tiny reusable helpers) */
