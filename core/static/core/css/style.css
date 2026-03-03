@@ -729,6 +729,21 @@
         padding: 16px;
     }
 
+    @media (max-width: 390px) {
+        .contact-grid {
+            padding: 1.5rem !important;
+        }
+        
+        .contact-form .form-control {
+            padding: 0.5rem 0.75rem !important;
+            font-size: 0.875rem !important;
+        }
+        
+        .contact-card {
+            padding: 0.75rem 0 !important;
+        }
+    }
+
     /* Tablet */
     @media (min-width: 768px) {
         .contact-grid {
