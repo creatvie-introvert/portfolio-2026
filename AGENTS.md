@@ -1,157 +1,340 @@
 # AGENTS.md
 
-## Project
+# Portfolio 2026 — AI Development Guide
 
-This repository contains the source code for Leanne Bedeau-Rogers' professional portfolio website.
+This document defines how AI coding agents (Codex, ChatGPT and future agents) should work on this repository.
 
-The purpose of the site is to demonstrate professional full-stack development skills while providing an excellent user experience across desktop, tablet and mobile devices.
-
----
-
-# Primary Goal
-
-Improve the portfolio without introducing regressions.
-
-Every change should make the project:
-
-- Cleaner
-- Faster
-- More accessible
-- Easier to maintain
-- More professional
+The goal is to produce production-quality code through small, well-tested, well-documented changes.
 
 ---
 
-# Technology
+# Core Principles
 
-- Python 3.12
-- Django 6
-- HTML5
-- CSS3
-- JavaScript
-- SQLite (local)
-- PostgreSQL (production)
-- Cloudinary
-- WhiteNoise
+Always favour:
 
----
+- Simplicity
+- Readability
+- Accessibility
+- Maintainability
+- Small focused commits
+- Incremental improvements
 
-# Development Rules
+Never introduce unnecessary complexity.
 
-Always inspect the existing implementation before proposing changes.
-
-Never redesign unrelated parts of the application.
-
-Work on ONE task at a time.
-
-Keep edits as small as possible.
-
-Explain your reasoning before editing.
-
-After making changes explain:
-
-- Root cause
-- Files changed
-- Why those files changed
-- Risks
-- Manual testing required
+If a task can be completed with a simple solution, prefer that over a more clever one.
 
 ---
 
-# Git Rules
+# General Rules
 
-Never:
+Before making any code changes:
 
-- switch branches
-- push
-- commit
-- deploy
-- rewrite Git history
+- Understand the existing implementation.
+- Understand the reason the current code behaves as it does.
+- Preserve existing behaviour unless the task explicitly changes it.
+- Minimise the size of each change.
+- Avoid unrelated refactoring.
 
-unless explicitly instructed.
+If unsure, ask rather than guess.
 
 ---
 
-# Database Rules
+# Code Quality Standards
 
-Never create migrations automatically.
+All code should:
 
-Instead run
+- Follow existing project conventions.
+- Be readable.
+- Be self-explanatory where possible.
+- Avoid duplication.
+- Prefer reusable components.
+- Avoid premature optimisation.
 
-python manage.py makemigrations --dry-run --verbosity 3
+---
 
-and report the proposed migration.
+# Accessibility Standards
+
+Accessibility is a core project requirement.
+
+Every implementation should consider:
+
+- Keyboard navigation
+- Visible focus states
+- Semantic HTML
+- Screen readers
+- Colour contrast
+- Skip links
+- Appropriate ARIA usage where required
+
+Accessibility regressions are considered bugs.
+
+---
+
+# Testing Standards
+
+Where practical:
+
+- Add automated regression tests.
+- Avoid reducing existing test coverage.
+- Preserve existing behaviour.
+
+After implementation run:
+
+```bash
+env -u DEBUG .venv/bin/python manage.py check
+env -u DEBUG .venv/bin/python manage.py test
+git diff --check
+```
+
+The `env -u DEBUG` wrapper is used only because the Codex execution environment injects `DEBUG=release` into subprocesses.
+
+Do not modify:
+
+- `.env`
+- `config/settings.py`
+- environment precedence
+
+to work around this behaviour.
+
+---
+
+# Documentation Standards
+
+Documentation is part of every completed task.
+
+Review whether the following files require updating:
+
+- CHANGELOG.md
+- TASKS.md
+- PROJECT.md
+- TESTING.md
+- AGENTS.md
+- PROMPTS.md
+- README.md
+
+Only update files genuinely affected by the task.
+
+Do not duplicate information across documentation.
+
+---
+
+# Task Workflow
+
+Every task follows the same workflow.
+
+## Phase 1 — Investigation
+
+Before editing any files:
+
+- Inspect the existing implementation.
+- Understand the current behaviour.
+- Identify the root cause.
+- Identify affected files.
+- Identify tests required.
+- Identify documentation likely to change.
+
+Produce:
+
+- implementation summary
+- risks
+- proposed approach
 
 Wait for approval.
 
 ---
 
-# Deployment
+## Phase 2 — Implementation
 
-Never deploy.
+After approval:
 
-Never modify production settings.
+- Apply only the agreed changes.
+- Preserve existing behaviour.
+- Avoid unrelated refactoring.
+- Keep changes focused.
+- Update or add regression tests where appropriate.
 
-Never modify secrets inside .env.
+Do not commit.
 
 ---
 
-# Code Style
+## Phase 3 — Validation
+
+Run:
+
+```bash
+env -u DEBUG .venv/bin/python manage.py check
+env -u DEBUG .venv/bin/python manage.py test
+git diff --check
+```
+
+If validation fails:
+
+- Stop.
+- Report the exact command.
+- Report the exact error.
+- Investigate the cause.
+- Do not continue.
+
+Never hide errors.
+
+---
+
+## Phase 4 — Manual QA
+
+Provide a concise checklist describing:
+
+- expected behaviour
+- edge cases
+- accessibility checks
+- browser behaviour (if applicable)
+
+Wait for confirmation before preparing a commit.
+
+---
+
+## Phase 5 — Documentation Review
+
+Review whether documentation needs updating.
+
+Possible files:
+
+- CHANGELOG.md
+- TASKS.md
+- PROJECT.md
+- TESTING.md
+- AGENTS.md
+- PROMPTS.md
+- README.md
+
+Before editing:
+
+Provide:
+
+1. Documentation summary
+2. Files requiring updates
+3. Files not requiring updates
+4. Proposed diffs
+
+Wait for approval.
+
+---
+
+## Phase 6 — Commit Preparation
+
+Before committing:
+
+Review the complete working tree.
+
+Confirm:
+
+- no secrets
+- no database files
+- no backup files
+- no generated files
+- no unrelated edits
+
+Show:
+
+```bash
+git status
+```
+
+Provide:
+
+- staged file summary
+- validation summary
+- proposed Conventional Commit message
+
+Wait for approval.
+
+---
+
+## Phase 7 — Commit
+
+Only commit after explicit approval.
+
+Never commit automatically.
+
+---
+
+## Phase 8 — Push
+
+Only push after explicit approval.
+
+Never push automatically.
+
+After pushing provide:
+
+- branch name
+- commit hash
+- commit message
+- confirmation that the repository is clean
+
+---
+
+# Conventional Commits
 
 Prefer:
 
-- readable code
-- reusable components
-- responsive layouts
-- semantic HTML
-- accessibility
-- maintainability
+```
+feat:
+fix:
+refactor:
+docs:
+style:
+test:
+build:
+ci:
+perf:
+```
 
-Avoid:
+Examples:
 
-- duplicated code
-- unnecessary dependencies
-- magic numbers
-- fixed widths on responsive layouts
+```
+fix(accessibility): implement proper skip link navigation
 
----
+feat(projects): add case study filtering
 
-# CSS Rules
+docs: update testing workflow
 
-Desktop layouts must not regress.
-
-Always test:
-
-320px
-
-375px
-
-390px
-
-430px
-
-768px
-
-1024px
-
-Desktop
-
-Never introduce horizontal scrolling.
+refactor(core): simplify navigation component
+```
 
 ---
 
-# Response Format
+# Things To Avoid
 
-After completing work always provide:
+Never:
 
-## Summary
+- rewrite unrelated code
+- rename files unnecessarily
+- introduce breaking changes
+- remove tests without good reason
+- commit secrets
+- commit databases
+- commit backup files
+- commit generated artefacts
 
-## Root Cause
+---
 
-## Files Changed
+# Definition of Done
 
-## Tests Performed
+A task is complete only when:
 
-## Manual Testing Required
+✓ Implementation finished
 
-## Suggested Next Task
+✓ Automated tests pass
+
+✓ Manual QA completed
+
+✓ Documentation updated where required
+
+✓ Validation completed
+
+✓ No unrelated changes remain
+
+✓ Commit approved
+
+✓ Push approved
+
+Anything less is work in progress.
