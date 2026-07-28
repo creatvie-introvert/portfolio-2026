@@ -128,6 +128,83 @@ No blocked tasks.
 
 # Completed
 
+## Task 004
+
+### Title
+
+Strengthen the contact form
+
+### Status
+
+✅ Complete
+
+### Priority
+
+High
+
+---
+
+### Problem
+
+The contact endpoint performed only basic presence checks, discarded submitted values after errors, ignored privacy consent, and had no meaningful spam protection.
+
+---
+
+### Acceptance Criteria
+
+- [x] Dedicated Django form provides authoritative server-side validation
+- [x] Name, email, and message validation rules enforced
+- [x] Privacy consent required server-side
+- [x] Invalid submissions retain user input
+- [x] Validation errors render inline with an accessible summary
+- [x] Honeypot field rejects likely automated submissions
+- [x] Existing success redirect and modal preserved
+- [x] Email-only delivery preserved
+- [x] Existing responsive form layout preserved
+- [x] Comprehensive regression tests added
+- [x] No CAPTCHA, timing token, rate limiter, dependency, model, or migration added
+
+---
+
+### Root Cause
+
+The view read raw POST values instead of using Django’s form-validation system. Invalid requests redirected to a new homepage request, browser-only consent could be bypassed, and every request containing three truthy strings reached the email backend.
+
+---
+
+### Solution
+
+- Added a dedicated `ContactForm` with whitespace, length, email, consent, and honeypot validation.
+- Rendered bound forms after validation and email-delivery errors.
+- Added accessible error summaries, inline errors, invalid-field relationships, and focus handling.
+- Continued to redirect successful submissions to the existing success modal.
+- Added regression coverage for validation, preservation, consent, spam protection, email delivery, delivery failure, CSRF, and routing.
+
+---
+
+### Testing
+
+#### Automated
+
+- `env -u DEBUG .venv/bin/python manage.py check`
+- `env -u DEBUG .venv/bin/python manage.py test`
+- `git diff --check`
+
+#### Manual
+
+- Verify valid, invalid, and failed-delivery form states.
+- Verify keyboard and screen-reader relationships for the error summary and fields.
+- Verify the honeypot remains hidden and outside the Tab order.
+- Verify light and dark themes at all supported responsive widths.
+
+---
+
+### Completed
+
+28 July 2026
+
+---
+
 ## Task 003
 
 ### Title

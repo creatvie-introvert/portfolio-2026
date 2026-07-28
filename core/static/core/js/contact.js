@@ -101,6 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------
   // Contact form success tracking
   // -----------------------------
+  const errorSummary = document.getElementById("contact-error-summary");
+  if (errorSummary) {
+    errorSummary.focus();
+  }
+
   const status = params.get("contact");
   if (!status) return;
 
@@ -127,11 +132,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (status === "error") {
-    const modalEl = document.getElementById("contactErrorModal");
-    if (modalEl) {
-      const modal = new bootstrap.Modal(modalEl);
-      modal.show();
-    }
-  }
 });

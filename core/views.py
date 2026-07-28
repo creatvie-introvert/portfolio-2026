@@ -4,40 +4,46 @@ from django.core.mail import EmailMessage
 from django.utils.timezone import now
 from portfolio.models import Project
 
+from .forms import ContactForm
 
-def home(request):
+
+def _home_context(contact_form=None):
     featured_projects = (
         Project.objects.filter(is_featured=True, is_published=True)
         .prefetch_related("tags")
         .order_by("-created_at")
     )
 
-    success = request.GET.get("contact") == "success"
-
-    context = {
+    return {
         "featured_projects": featured_projects,
-        "contact_success": success,
+        "contact_form": contact_form or ContactForm(),
     }
 
-    return render(request, "core/home.html", context)
+
+def home(request):
+    return render(request, "core/home.html", _home_context())
 
 
 def contact(request):
-    if request.method == "POST":
-        try:
-            name = request.POST.get("name")
-            email = request.POST.get("email")
-            message = request.POST.get("message")
+    if request.method != "POST":
+        return redirect("/")
 
-            # Validate first
-            if not name or not email or not message:
-                return redirect("/?contact=error")
+    contact_form = ContactForm(request.POST)
 
-            # Human readable timestamp
-            timestamp = now().strftime("%d %B %Y at %H:%M")
+    if not contact_form.is_valid():
+        return render(
+            request,
+            "core/home.html",
+            _home_context(contact_form),
+            status=400,
+        )
 
-            # Clean, structured email body
-            full_message = f"""
+    name = contact_form.cleaned_data["name"]
+    email = contact_form.cleaned_data["email"]
+    message = contact_form.cleaned_data["message"]
+    timestamp = now().strftime("%d %B %Y at %H:%M")
+
+    full_message = f"""
 New Portfolio Enquiry
 ━━━━━━━━━━━━━━━━━━━━━━
 
@@ -53,25 +59,30 @@ Message:
 Source: leannebedeaurogers/contact
 """
 
-            subject = "New enquiry — Portfolio (leannebedeaurogers.com)"
+    email_message = EmailMessage(
+        subject="New enquiry — Portfolio (leannebedeaurogers.com)",
+        body=full_message,
+        from_email=f"Leanne Bedeau-Rogers <{settings.DEFAULT_FROM_EMAIL}>",
+        to=["hello@leannebedeaurogers.com"],
+        reply_to=[email],
+    )
 
-            email_message = EmailMessage(
-                subject=subject,
-                body=full_message,
-                from_email=f"Leanne Bedeau-Rogers <{settings.DEFAULT_FROM_EMAIL}>",
-                to=["hello@leannebedeaurogers.com"],
-                reply_to=[email],
-            )
+    try:
+        email_message.send(fail_silently=False)
+    except Exception:
+        contact_form.add_error(
+            None,
+            "There was an issue sending your message. Please try again or "
+            "email me directly.",
+        )
+        return render(
+            request,
+            "core/home.html",
+            _home_context(contact_form),
+            status=502,
+        )
 
-            email_message.send(fail_silently=False)
-
-            return redirect("/?contact=success")
-
-        except Exception as e:
-            print("EMAIL ERROR:", e)
-            return redirect("/?contact=error")
-
-    return redirect("/")
+    return redirect("/?contact=success")
 
 
 def privacy(request):

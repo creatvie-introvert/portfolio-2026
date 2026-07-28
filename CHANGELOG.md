@@ -19,6 +19,7 @@ The format is based on Keep a Changelog.
 ### Fixed
 
 - Added a dedicated main-content skip link and restored the Home link to normal navigation behaviour.
+- Strengthened contact-form validation, preserved invalid submissions, enforced privacy consent, and added honeypot spam protection.
 
 ---
 

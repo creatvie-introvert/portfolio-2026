@@ -1,3 +1,5 @@
+# PROJECT.md
+
 # Portfolio 2026
 
 ## Project Overview
@@ -10,28 +12,29 @@ The project serves three primary purposes:
 - Generate freelance opportunities.
 - Provide a platform to experiment with modern web development practices and AI-assisted development.
 
-The project should prioritise quality over speed. Every change should improve the project without introducing unnecessary complexity.
+The project prioritises quality over speed. Every change should improve the project while keeping the codebase simple, accessible and maintainable.
 
 ---
 
-# Goals
+# Project Goals
 
 ## Primary Goals
 
 - Showcase development projects professionally.
 - Demonstrate front-end and back-end skills.
-- Maintain excellent performance and accessibility.
+- Maintain excellent accessibility and performance.
 - Create an enjoyable user experience on every device.
-- Keep the codebase clean and maintainable.
+- Build a portfolio that reflects production-quality development practices.
 
 ## Technical Goals
 
-- Responsive across all screen sizes.
-- Accessible (WCAG best practices).
+- Responsive across all supported screen sizes.
+- Accessible using WCAG best practices.
 - High Lighthouse scores.
-- Clean, reusable components.
-- Well documented.
-- Easy to extend.
+- Reusable components.
+- Clean architecture.
+- Comprehensive documentation.
+- Easy to extend and maintain.
 
 ---
 
@@ -59,50 +62,78 @@ The project should prioritise quality over speed. Every change should improve th
 
 # Development Workflow
 
-## Planning
+Every development task follows the same lifecycle.
 
-Every piece of work begins in `TASKS.md`.
+## 1. Planning
 
-Each task should include:
+- Define the task in `TASKS.md`.
+- Understand the current behaviour.
+- Identify the root cause.
+- Review affected files.
+- Define acceptance criteria.
 
-- Title
-- Problem
-- Acceptance Criteria
-- Priority
-- Status
-
-Only work on one task at a time.
+No implementation begins until the task is understood.
 
 ---
 
-## AI Workflow
+## 2. Investigation
 
-Codex should always follow this process:
+Codex should inspect the existing implementation and provide:
 
-1. Inspect the task.
-2. Identify the root cause.
-3. Explain the proposed solution.
-4. Wait for approval.
-5. Implement the smallest safe change.
-6. Report exactly what changed.
-7. Never modify unrelated code.
+- Current behaviour
+- Root cause
+- Files involved
+- Proposed solution
+- Tests required
+- Documentation likely to require updates
+
+Wait for approval before editing.
 
 ---
 
-## Testing Workflow
+## 3. Implementation
 
-Before completing any task:
+After approval:
+
+- Apply only the agreed changes.
+- Keep changes as small as possible.
+- Preserve existing behaviour unless intentionally changing it.
+- Avoid unrelated refactoring.
+- Add regression tests where appropriate.
+
+---
+
+## 4. Validation
+
+Before a task is considered complete:
 
 - Run Django system checks.
-- Test manually where appropriate.
-- Test all affected responsive breakpoints.
-- Test desktop and mobile.
-- Verify existing functionality still works.
-- Record the outcome in `TASKS.md`.
+- Run automated tests.
+- Check for whitespace errors.
+- Complete manual QA.
+- Verify responsive layouts.
+- Verify accessibility.
+- Confirm existing functionality still works.
 
 ---
 
-## Git Workflow
+## 5. Documentation
+
+Review whether the following require updates:
+
+- CHANGELOG.md
+- TASKS.md
+- PROJECT.md
+- TESTING.md
+- AGENTS.md
+- PROMPTS.md
+- README.md
+
+Only update documentation genuinely affected by the completed task.
+
+---
+
+## 6. Git Workflow
 
 Development branch:
 
@@ -114,11 +145,42 @@ Production branch:
 
 Workflow:
 
-1. Complete a task.
-2. Review all changes.
-3. Commit using Conventional Commits.
-4. Push to `portfolio-v2`.
-5. Merge into `main` once the feature or milestone is complete.
+1. Review completed work.
+2. Stage only intended files.
+3. Review staged changes.
+4. Commit using Conventional Commits.
+5. Push to `portfolio-v2`.
+6. Merge into `main` after the feature or milestone is complete.
+
+---
+
+# AI Development Workflow
+
+AI assistance is used throughout the project.
+
+### ChatGPT
+
+Responsible for:
+
+- Planning
+- Architecture review
+- Code review
+- Design feedback
+- Workflow improvements
+- Documentation review
+
+### Codex
+
+Responsible for:
+
+- Repository inspection
+- Code implementation
+- Regression tests
+- Documentation updates
+- Validation
+- Commit preparation
+
+Codex must never commit or push without explicit approval.
 
 ---
 
@@ -127,29 +189,43 @@ Workflow:
 The site should feel:
 
 - Modern
-- Clean
 - Minimal
 - Professional
 - Fast
 - Accessible
+- Consistent
 
-Avoid unnecessary animations or visual clutter.
+Avoid unnecessary animations, clutter or decorative effects that do not improve usability.
 
-Every design decision should improve usability.
+Every design decision should improve the user experience.
 
 ---
 
-## Accessibility Standards
+# Accessibility Standards
 
-- The shared base template provides a dedicated main-content skip link as the first focusable element in the page body.
-- Each rendered page must contain one unique `main-content` target.
-- Navigation links must not reuse the `skip-link` class.
+Accessibility is a project requirement, not an optional enhancement.
+
+Every page should support:
+
+- Keyboard navigation
+- Visible focus states
+- Semantic HTML
+- Screen readers
+- Sufficient colour contrast
+
+The shared base template must provide:
+
+- A dedicated "Skip to main content" link.
+- One unique `main-content` target.
+- Navigation links must never reuse the `skip-link` class.
+
+Accessibility regressions should be treated as bugs.
 
 ---
 
 # Code Standards
 
-The project should prioritise:
+The project prioritises:
 
 - Readability
 - Simplicity
@@ -162,34 +238,43 @@ General principles:
 - Avoid duplication.
 - Prefer reusable solutions.
 - Keep files organised.
-- Remove unused code.
-- Comment only when the intention is not obvious.
+- Remove dead code.
+- Comment only where intent is not obvious.
+- Follow existing project conventions.
+
+Form handling:
+
+- Django forms provide authoritative server-side validation.
+- Browser validation is progressive enhancement and must not be the only enforcement.
+- Invalid submissions should render bound forms with preserved values and accessible errors.
+- Spam controls must not interfere with keyboard or assistive-technology users.
 
 ---
 
 # Performance Standards
 
-Aim for:
+Target Lighthouse scores:
 
-- Lighthouse Performance: 95+
+- Performance: 95+
 - Accessibility: 100
 - Best Practices: 100
 - SEO: 100
 
-Optimise:
+Optimise only where there is measurable benefit.
+
+Areas to monitor:
 
 - Images
 - CSS
 - JavaScript
 - Fonts
-
-Only optimise when there is measurable benefit.
+- Rendering performance
 
 ---
 
 # Responsive Support
 
-The website must work correctly across:
+The website must support:
 
 - 320px
 - 375px
@@ -199,32 +284,58 @@ The website must work correctly across:
 - 1024px
 - Desktop
 
-No horizontal scrolling should occur unless intentionally designed.
+Requirements:
+
+- No unintended horizontal scrolling.
+- Consistent navigation.
+- Readable typography.
+- Appropriate spacing.
+- Touch-friendly interactions.
 
 ---
 
 # Documentation
 
-Project documentation consists of:
+The project documentation consists of:
 
-- `README.md` — Project overview
-- `AGENTS.md` — Instructions for AI assistants
-- `PROJECT.md` — Project standards and workflow
-- `TASKS.md` — Development backlog and completed work
-- `TESTING.md` — Testing procedures
-- `PROMPTS.md` — Reusable AI prompts
-- `CHANGELOG.md` — Version history
+| File | Purpose |
+|------|---------|
+| `README.md` | Project overview and setup |
+| `PROJECT.md` | Standards, architecture and workflow |
+| `AGENTS.md` | AI development instructions |
+| `TASKS.md` | Backlog and completed tasks |
+| `TESTING.md` | Automated and manual testing procedures |
+| `PROMPTS.md` | Reusable Codex prompt library |
+| `CHANGELOG.md` | Developer-facing project history |
 
-Documentation should be updated whenever significant changes are made.
+Documentation should remain concise, accurate and consistent.
+
+---
+
+# Known Development Environment Notes
+
+When Django management commands are executed through the current Codex runner, the execution environment may inherit an external `DEBUG=release` environment variable.
+
+For Codex validation, run:
+
+```bash
+env -u DEBUG .venv/bin/python manage.py check
+env -u DEBUG .venv/bin/python manage.py test
+git diff --check
+```
+
+This workaround applies only to the current Codex execution environment.
+
+Normal local development should continue to use the project's existing `.env` configuration.
 
 ---
 
 # Success Criteria
 
-The project is considered successful if it:
+The project is successful if it:
 
-- Demonstrates professional development skills.
-- Is enjoyable to use.
-- Performs well across devices.
-- Is easy to maintain.
-- Continues to evolve through small, well-tested improvements.
+- Demonstrates professional software engineering practices.
+- Provides an excellent user experience.
+- Achieves high accessibility and performance standards.
+- Remains easy to maintain.
+- Evolves through small, well-tested, well-documented improvements.
