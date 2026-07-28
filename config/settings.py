@@ -146,7 +146,17 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+USE_CONSOLE_EMAIL_BACKEND = config(
+    "USE_CONSOLE_EMAIL_BACKEND",
+    default=False,
+    cast=bool,
+)
+
+EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"
+    if USE_CONSOLE_EMAIL_BACKEND
+    else "django.core.mail.backends.smtp.EmailBackend"
+)
 
 EMAIL_HOST = "smtp.zoho.eu"
 EMAIL_PORT = 587
