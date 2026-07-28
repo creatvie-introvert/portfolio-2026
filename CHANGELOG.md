@@ -18,7 +18,7 @@ The format is based on Keep a Changelog.
 
 ### Fixed
 
-- Nothing yet.
+- Added a dedicated main-content skip link and restored the Home link to normal navigation behaviour.
 
 ---
 

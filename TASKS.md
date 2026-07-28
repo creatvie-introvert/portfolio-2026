@@ -128,6 +128,90 @@ No blocked tasks.
 
 # Completed
 
+## Task 003
+
+### Title
+
+Proper skip link accessibility fix
+
+### Status
+
+✅ Complete
+
+### Priority
+
+High
+
+---
+
+### Problem
+
+The Home navigation link incorrectly used the `skip-link` class. This hid Home off-screen by default and left the page without a dedicated link for bypassing repeated navigation.
+
+---
+
+### Acceptance Criteria
+
+- [x] Dedicated “Skip to main content” link added as the first focusable element in the page body
+- [x] Skip link points to `#main-content`
+- [x] Shared main content has one unique `main-content` target
+- [x] Main-content target can receive focus without entering the normal Tab sequence
+- [x] Home behaves as a normal navigation link
+- [x] Existing navigation design and behaviour preserved
+- [x] Regression test added
+- [x] Django system check passes
+- [x] Full automated test suite passes
+- [x] `git diff --check` passes
+
+---
+
+### Root Cause
+
+The existing off-screen `.skip-link` styling was attached to the Home navigation link instead of a dedicated accessibility link. The shared main element also lacked a fragment target.
+
+---
+
+### Solution
+
+- Added a dedicated skip link to the shared base template.
+- Added `id="main-content"` and `tabindex="-1"` to the shared main element.
+- Removed the `skip-link` class from Home.
+- Reused the existing skip-link CSS.
+- Added regression coverage for the shared markup.
+
+---
+
+### Testing
+
+#### Automated
+
+- ✅ `.venv/bin/python manage.py check`
+- ✅ `.venv/bin/python manage.py test`
+- ✅ `git diff --check`
+
+Result:
+
+```
+System check identified no issues (0 silenced).
+Ran 10 tests.
+OK
+```
+
+#### Manual
+
+- Confirm the first Tab press reveals the skip link.
+- Confirm Enter moves focus to the main content.
+- Confirm Home remains visible and behaves as normal navigation.
+- Confirm the focused skip link is visible in light and dark themes.
+
+---
+
+### Completed
+
+28 July 2026
+
+---
+
 ## Task 001
 
 ### Title
@@ -246,6 +330,8 @@ Future CSS testing should always include a hard refresh or cache clear before as
 
 ## Future Tasks
 
+- Use `env -u DEBUG` when running Django validation through Codex because the Codex command runner injects `DEBUG=release` into subprocesses.
+- Review the local static-files setup to remove the missing `staticfiles/` directory warning during tests.
 - Review overall visual polish
 - Improve project case studies
 - Improve homepage copy

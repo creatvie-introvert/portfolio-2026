@@ -139,6 +139,14 @@ Every design decision should improve usability.
 
 ---
 
+## Accessibility Standards
+
+- The shared base template provides a dedicated main-content skip link as the first focusable element in the page body.
+- Each rendered page must contain one unique `main-content` target.
+- Navigation links must not reuse the `skip-link` class.
+
+---
+
 # Code Standards
 
 The project should prioritise:

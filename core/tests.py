@@ -49,6 +49,32 @@ def get_head_metadata(response):
 
 
 @override_settings(STORAGES=TEST_STORAGES)
+class SkipLinkAccessibilityTests(TestCase):
+    def test_shared_layout_has_dedicated_main_content_skip_link(self):
+        response = self.client.get("/", HTTP_HOST="localhost")
+        content = response.content.decode()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            '<a class="skip-link" href="#main-content">'
+            "Skip to main content</a>",
+            html=True,
+        )
+        self.assertContains(
+            response,
+            '<main id="main-content" tabindex="-1">',
+            count=1,
+        )
+        self.assertNotIn('class="nav-link skip-link"', content)
+        self.assertContains(
+            response,
+            '<a href="/" class="nav-link">Home</a>',
+            html=True,
+        )
+
+
+@override_settings(STORAGES=TEST_STORAGES)
 class HomepageMetadataTests(TestCase):
     def test_homepage_metadata_remains_unchanged(self):
         response = self.client.get("/", HTTP_HOST="localhost")

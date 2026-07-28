@@ -42,7 +42,11 @@ Check:
 
 ## Accessibility
 
-Keyboard navigation
+- Press Tab immediately after loading the page.
+- Confirm “Skip to main content” appears above the header.
+- Press Enter and confirm focus moves to the main content.
+- Confirm Home remains visible and behaves as normal navigation.
+- Repeat the skip-link check in light and dark themes.
 
 Visible focus states
 
@@ -51,6 +55,24 @@ Alt text
 ARIA labels
 
 Colour contrast
+
+---
+
+## Automated Tests
+
+Run:
+
+```text
+.venv/bin/python manage.py check
+.venv/bin/python manage.py test
+git diff --check
+```
+
+Expected:
+
+- Django reports no system-check issues.
+- All tests pass, including the shared skip-link regression test.
+- Git reports no whitespace errors.
 
 ---
 
