@@ -23,7 +23,100 @@ No tasks currently.
 
 # In Progress
 
-No tasks currently.
+## Task 002
+
+### Title
+
+Fix shared SEO metadata and sitemap output
+
+### Status
+
+In Progress
+
+### Priority
+
+High
+
+---
+
+### Problem
+
+Several non-home pages inherit the homepage metadata instead of outputting metadata for their own route.
+
+Current issues include:
+
+- Work, case-study, and legal pages declare the homepage as their canonical URL.
+- Non-home pages output the homepage as their Open Graph URL.
+- Legal pages render the generic title `Portfolio 2026`.
+- Case-study titles use `project.title`, but the model field is `project.name`.
+- The contact POST endpoint is included in the sitemap even though it is not a standalone page.
+- The project sitemap can include unpublished projects.
+
+This may cause incorrect search indexing, duplicate-page signals, and inaccurate social sharing previews.
+
+---
+
+### Acceptance Criteria
+
+- [ ] Every indexable page outputs its own canonical URL.
+- [ ] Every indexable page outputs its own Open Graph URL.
+- [ ] The Work page has a specific page title and metadata.
+- [ ] Each case study uses `project.name` in its page title.
+- [ ] Each case study has route-specific title, description, canonical URL, and Open Graph URL.
+- [ ] Privacy, Accessibility, and Terms pages output their supplied page titles and route-specific metadata.
+- [ ] `/contact/` is removed from the sitemap.
+- [ ] Project sitemap entries include only projects where `is_published=True`.
+- [ ] Existing homepage metadata remains unchanged.
+- [ ] No visual layout changes are introduced.
+- [ ] `DEBUG=True .venv/bin/python manage.py check` passes.
+- [ ] Relevant automated tests are added where appropriate.
+
+---
+
+### Investigation Notes
+
+Pending Codex investigation.
+
+---
+
+### Files Likely Involved
+
+- `core/templates/core/base.html`
+- `core/templates/core/legal.html`
+- `portfolio/templates/portfolio/work.html`
+- `portfolio/templates/portfolio/case_study.html`
+- `core/sitemaps.py`
+- Relevant view or test files
+
+These files are provisional and must be verified before implementation.
+
+---
+
+### Testing Required
+
+#### Automated
+
+- Django system check
+- Metadata tests for homepage, Work, case studies, and legal pages
+- Sitemap tests for unpublished projects and the contact endpoint
+
+#### Manual
+
+Verify page source for:
+
+- Homepage
+- Work page
+- All published case studies
+- Privacy page
+- Accessibility page
+- Terms page
+
+Confirm that each page has:
+
+- Correct `<title>`
+- Correct canonical URL
+- Correct `og:url`
+- Correct page-specific social title and description where applicable
 
 ---
 

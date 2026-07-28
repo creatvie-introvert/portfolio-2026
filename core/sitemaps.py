@@ -10,7 +10,6 @@ class StaticViewSitemap(Sitemap):
     def items(self):
         return [
             "home",
-            "contact",
             "privacy",
             "accessibility",
             "terms",
@@ -26,7 +25,7 @@ class ProjectSitemap(Sitemap):
     changefreq = "monthly"
 
     def items(self):
-        return Project.objects.all()
+        return Project.objects.filter(is_published=True)
 
     def location(self, obj):
         return reverse("case_study", args=[obj.slug])

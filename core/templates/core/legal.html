@@ -1,8 +1,20 @@
 {% extends "core/base.html" %}
 
-{% block meta_description %}
-{{ title }} for leannebedeaurogers.com. Learn how this website handles privacy, accessibility, and terms of use.
-{% endblock %}
+{% block title %}{{ title }} | Leanne Bedeau-Rogers{% endblock %}
+
+{% block meta_description %}{{ meta_description }}{% endblock %}
+
+{% block canonical_path %}{{ canonical_path }}{% endblock %}
+
+{% block og_title %}{{ og_title }}{% endblock %}
+
+{% block og_description %}{{ og_description }}{% endblock %}
+
+{% block og_url %}{{ canonical_path }}{% endblock %}
+
+{% block twitter_title %}{{ og_title }}{% endblock %}
+
+{% block twitter_description %}{{ og_description }}{% endblock %}
 
 {% block content %}
 <section class="section page-legal">
