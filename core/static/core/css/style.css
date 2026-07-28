@@ -731,7 +731,7 @@
 
     @media (max-width: 390px) {
         .contact-grid {
-            padding: 1.5rem !important;
+            padding: 16px;
         }
         
         .contact-form .form-control {
@@ -800,6 +800,15 @@
             box-shadow 160ms ease;
     }
 
+    .contact-card > div:last-child {
+        min-width: 0;
+    }
+
+    .section-contact .contact-card:first-child .text-secondary,
+    .section-contact a[href^="mailto:"] {
+        overflow-wrap: anywhere;
+    }
+
     /* Subtle hover */
     .contact-card:hover {
         transform: translateY(-2px);
@@ -828,11 +837,13 @@
     .contact-left {
         display: flex;
         flex-direction: column;
+        min-width: 0;
     }
 
     /* Right form column */
     .contact-form {
         width: 100%;
+        min-width: 0;
     }
 
     /* Form labels */
