@@ -4,7 +4,13 @@ from django.test import TestCase, override_settings
 from django.template.defaultfilters import date
 from django.urls import reverse
 
-from .models import CaseStudy, Project, Tag
+from .models import (
+    CaseStudy,
+    CaseStudyMedia,
+    CaseStudySection,
+    Project,
+    Tag,
+)
 
 
 TEST_STORAGES = {
@@ -52,31 +58,33 @@ def get_head_metadata(response):
     return parser.metadata
 
 
-def create_case_study(project):
-    return CaseStudy.objects.create(
-        project=project,
-        intro="Case-study introduction.",
-        role="Designer and developer",
-        stack="Django, HTML, CSS",
-        timeline="Two weeks",
-        problem="The project problem.",
-        goals="Deliver a clear experience",
-        process_discover="Research the problem.",
-        process_design="Design the solution.",
-        process_build="Build the product.",
-        process_refine_launch="Test and launch.",
-        solution_intro="The solution.",
-        solution_1_title="Solution one",
-        solution_1_body="Solution one details.",
-        solution_2_title="Solution two",
-        solution_2_body="Solution two details.",
-        solution_3_title="Solution three",
-        solution_3_body="Solution three details.",
-        outcome_intro="The outcome.",
-        outcome_bullets="A useful result",
-        reflection_intro="The reflection.",
-        reflection_body="What was learned.",
-    )
+def create_case_study(project, **overrides):
+    values = {
+        "project": project,
+        "intro": "Case-study introduction.",
+        "role": "Designer and developer",
+        "stack": "Django, HTML, CSS",
+        "timeline": "Two weeks",
+        "problem": "The project problem.",
+        "goals": "Deliver a clear experience",
+        "process_discover": "Research the problem.",
+        "process_design": "Design the solution.",
+        "process_build": "Build the product.",
+        "process_refine_launch": "Test and launch.",
+        "solution_intro": "The solution.",
+        "solution_1_title": "Solution one",
+        "solution_1_body": "Solution one details.",
+        "solution_2_title": "Solution two",
+        "solution_2_body": "Solution two details.",
+        "solution_3_title": "Solution three",
+        "solution_3_body": "Solution three details.",
+        "outcome_intro": "The outcome.",
+        "outcome_bullets": "A useful result",
+        "reflection_intro": "The reflection.",
+        "reflection_body": "What was learned.",
+    }
+    values.update(overrides)
+    return CaseStudy.objects.create(**values)
 
 
 @override_settings(STORAGES=TEST_STORAGES)
@@ -234,3 +242,263 @@ class ProjectSitemapTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 404)
+
+
+class CaseStudyContentModelTests(TestCase):
+    def setUp(self):
+        project = Project.objects.create(
+            name="Structured project",
+            slug="structured-project",
+            short_description="A structured project.",
+        )
+        self.case_study = create_case_study(project)
+
+    def test_sections_are_ordered_and_types_can_repeat(self):
+        later = CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.PROBLEM,
+            title="Later problem",
+            sort_order=20,
+        )
+        first = CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.PROBLEM,
+            title="First problem",
+            sort_order=10,
+        )
+        last = CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.PROBLEM,
+            title="Last problem",
+            sort_order=20,
+        )
+
+        self.assertEqual(
+            list(self.case_study.sections.all()),
+            [first, later, last],
+        )
+        self.assertEqual(
+            self.case_study.sections.filter(
+                section_type=CaseStudySection.SectionType.PROBLEM
+            ).count(),
+            3,
+        )
+
+    def test_media_is_ordered_and_optional_fields_can_be_blank(self):
+        section = CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.SOLUTION,
+        )
+        later = CaseStudyMedia.objects.create(
+            section=section,
+            image="case-studies/sections/later.png",
+            media_type=CaseStudyMedia.MediaType.DESKTOP,
+            sort_order=20,
+        )
+        first = CaseStudyMedia.objects.create(
+            section=section,
+            image="case-studies/sections/first.png",
+            alt_text="A product screen",
+            caption="The completed product screen.",
+            media_type=CaseStudyMedia.MediaType.PRODUCT,
+            sort_order=10,
+        )
+
+        self.assertEqual(list(section.media.all()), [first, later])
+        self.assertEqual(section.title, "")
+        self.assertEqual(section.body, "")
+        self.assertEqual(later.alt_text, "")
+        self.assertEqual(later.caption, "")
+
+
+@override_settings(STORAGES=TEST_STORAGES)
+class CaseStudyStructuredRenderingTests(TestCase):
+    def setUp(self):
+        self.project = Project.objects.create(
+            name="Structured case study",
+            slug="structured-case-study",
+            short_description="A structured case study.",
+        )
+        self.case_study = create_case_study(self.project)
+        self.url = reverse("case_study", args=[self.project.slug])
+
+    def render_case_study(self):
+        return self.client.get(self.url, HTTP_HOST="localhost")
+
+    def test_legacy_content_renders_while_switch_is_false(self):
+        CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.SOLUTION,
+            title="Draft structured section",
+            body="Draft structured body.",
+        )
+
+        response = self.render_case_study()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "The project problem.")
+        self.assertContains(response, "What was learned.")
+        self.assertNotContains(response, "Draft structured section")
+        self.assertNotContains(response, "Draft structured body.")
+
+    def test_switch_with_no_renderable_sections_keeps_legacy_content(self):
+        self.case_study.use_structured_sections = True
+        self.case_study.save(update_fields=["use_structured_sections"])
+        CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.TESTING,
+            title="Empty draft section",
+        )
+
+        response = self.render_case_study()
+
+        self.assertContains(response, "The project problem.")
+        self.assertNotContains(response, "Empty draft section")
+
+    def test_structured_sections_render_in_order_and_omit_empty_sections(self):
+        self.case_study.use_structured_sections = True
+        self.case_study.save(update_fields=["use_structured_sections"])
+        CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.RESULTS,
+            title="Second section",
+            body="Second structured body.",
+            sort_order=20,
+        )
+        CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.PROBLEM,
+            title="First section",
+            body="First structured body.",
+            sort_order=10,
+        )
+        CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.TESTING,
+            title="Omitted empty section",
+            sort_order=15,
+        )
+
+        response = self.render_case_study()
+        content = response.content.decode()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertLess(
+            content.index("First section"),
+            content.index("Second section"),
+        )
+        self.assertNotContains(response, "Omitted empty section")
+        self.assertNotContains(response, "The project problem.")
+        self.assertEqual(content.count("<h1"), 1)
+        self.assertContains(
+            response,
+            '<h2 class="h3 fw-semibold mb-0">',
+            count=2,
+        )
+
+    def test_media_renders_ordered_accessible_markup_and_optional_caption(self):
+        self.case_study.use_structured_sections = True
+        self.case_study.save(update_fields=["use_structured_sections"])
+        section = CaseStudySection.objects.create(
+            case_study=self.case_study,
+            section_type=CaseStudySection.SectionType.SOLUTION,
+            body="Media evidence.",
+        )
+        CaseStudyMedia.objects.create(
+            section=section,
+            image="case-studies/sections/authored.png",
+            alt_text="Dashboard showing ordered enquiries",
+            caption="The staff enquiry dashboard.",
+            media_type=CaseStudyMedia.MediaType.DESKTOP,
+            sort_order=20,
+        )
+        CaseStudyMedia.objects.create(
+            section=section,
+            image="case-studies/sections/decorative.png",
+            alt_text="",
+            caption="",
+            media_type=CaseStudyMedia.MediaType.PRODUCT,
+            sort_order=10,
+        )
+
+        response = self.render_case_study()
+        content = response.content.decode()
+
+        self.assertLess(
+            content.index("decorative.png"),
+            content.index("authored.png"),
+        )
+        self.assertContains(response, 'alt=""')
+        self.assertContains(
+            response,
+            'alt="Dashboard showing ordered enquiries"',
+        )
+        self.assertContains(response, 'loading="lazy"', count=2)
+        self.assertContains(response, "<figure", count=2)
+        self.assertContains(response, "<figcaption", count=1)
+        self.assertContains(response, "The staff enquiry dashboard.")
+
+
+@override_settings(STORAGES=TEST_STORAGES)
+class ProjectCardRenderingTests(TestCase):
+    def test_project_without_case_study_has_no_project_links(self):
+        project = Project.objects.create(
+            name="Catalogue-only project",
+            slug="catalogue-only-project",
+            short_description="A project without a case study.",
+            thumbnail="projects/thumbnails/catalogue.jpg",
+            thumbnail_alt="Catalogue project interface",
+        )
+
+        response = self.client.get(reverse("work"), HTTP_HOST="localhost")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(
+            response,
+            reverse("case_study", args=[project.slug]),
+        )
+        self.assertNotContains(response, "View live")
+        self.assertContains(
+            response,
+            'alt="Catalogue project interface"',
+        )
+
+    def test_case_study_without_live_url_has_only_case_study_link(self):
+        project = Project.objects.create(
+            name="Case-study-only project",
+            slug="case-study-only-project",
+            short_description="A project without a live URL.",
+        )
+        create_case_study(project, live_url="")
+
+        response = self.client.get(reverse("work"), HTTP_HOST="localhost")
+
+        self.assertContains(
+            response,
+            reverse("case_study", args=[project.slug]),
+        )
+        self.assertContains(response, "View case study")
+        self.assertNotContains(response, "View live")
+
+    def test_related_projects_render_from_queryset(self):
+        related_project = Project.objects.create(
+            name="Related project",
+            slug="related-project",
+            short_description="Another published case study.",
+        )
+        create_case_study(related_project)
+        project = Project.objects.create(
+            name="Current project",
+            slug="current-project",
+            short_description="The current case study.",
+        )
+        create_case_study(project)
+
+        response = self.client.get(
+            reverse("case_study", args=[project.slug]),
+            HTTP_HOST="localhost",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "More work")
+        self.assertContains(response, "Related project")

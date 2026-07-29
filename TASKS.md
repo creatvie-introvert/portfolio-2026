@@ -128,6 +128,72 @@ No blocked tasks.
 
 # Completed
 
+## Task 005A
+
+### Title
+
+Reusable case-study foundation
+
+### Status
+
+✅ Implementation complete
+
+### Priority
+
+High
+
+---
+
+### Problem
+
+Case-study content was stored in a fixed set of fields, preventing sections and
+supporting evidence from being reordered, repeated, or omitted safely.
+
+---
+
+### Solution
+
+- Added ordered `CaseStudySection` and `CaseStudyMedia` models.
+- Preserved every existing fixed `CaseStudy` field.
+- Added an explicit switch so legacy content remains public until structured
+  content is ready.
+- Added dependency-free admin authoring for sections and media.
+- Added reusable section, media, project-link, and related-project partials.
+- Added authored project-thumbnail alt text.
+- Corrected legacy case-study markup, reflection rendering, card links, and
+  related-project queries.
+- Added regression coverage for models, rendering modes, media accessibility,
+  publication behaviour, metadata, and sitemap output.
+
+No BTR Directory case-study content was added during this foundation phase.
+
+---
+
+### Testing
+
+#### Automated
+
+- `env -u DEBUG .venv/bin/python manage.py check`
+- `env -u DEBUG .venv/bin/python manage.py test`
+- `env -u DEBUG .venv/bin/python manage.py makemigrations --check --dry-run`
+- `git diff --check`
+
+#### Manual
+
+- Verify legacy and structured case-study rendering.
+- Verify responsive media at all supported widths.
+- Verify captions and authored/decorative alt text.
+- Verify project-card link fallbacks.
+- Verify light and dark themes.
+
+---
+
+### Completed
+
+29 July 2026
+
+---
+
 ## Task 004
 
 ### Title
@@ -410,7 +476,7 @@ Future CSS testing should always include a hard refresh or cache clear before as
 - Use `env -u DEBUG` when running Django validation through Codex because the Codex command runner injects `DEBUG=release` into subprocesses.
 - Review the local static-files setup to remove the missing `staticfiles/` directory warning during tests.
 - Review overall visual polish
-- Improve project case studies
+- Populate BTR Directory using the reusable structured case-study foundation.
 - Improve homepage copy
 - Accessibility audit
 - Lighthouse performance improvements

@@ -10,16 +10,19 @@ The format is based on Keep a Changelog.
 
 ### Added
 
-- Nothing yet.
+- Added ordered, reusable case-study sections and section media.
+- Added dependency-free admin authoring and regression coverage for structured case studies.
 
 ### Changed
 
-- Nothing yet.
+- Existing case studies retain legacy rendering until structured content is explicitly enabled.
+- Case-study views now prefetch ordered sections, media, tags, and related projects.
 
 ### Fixed
 
 - Added a dedicated main-content skip link and restored the Home link to normal navigation behaviour.
 - Strengthened contact-form validation, preserved invalid submissions, enforced privacy consent, and added honeypot spam protection.
+- Corrected legacy case-study markup, reflection rendering, project-card links, thumbnail alt text, and related-project queries.
 
 ---
 

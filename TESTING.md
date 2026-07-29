@@ -100,6 +100,34 @@ Manual checks:
 
 ---
 
+## Reusable Case Studies
+
+Automated coverage includes:
+
+- Section and media ordering.
+- Repeated and optional section types.
+- Structured and legacy rendering modes.
+- Empty-section omission.
+- Authored and decorative image alt text.
+- Optional media captions.
+- Project-card link fallbacks.
+- Heading, metadata, publication, and sitemap regressions.
+
+Manual checks:
+
+- Confirm existing legacy case studies still display all current content.
+- Using a local test case study, confirm structured sections follow their
+  configured order.
+- Confirm empty structured sections do not appear.
+- Confirm media remains responsive without horizontal scrolling.
+- Confirm captions appear only when supplied.
+- Inspect informative and decorative image alt text.
+- Confirm projects without a case study do not show a case-study link.
+- Confirm case studies without a live URL do not show a live link.
+- Check light and dark themes at all supported responsive widths.
+
+---
+
 ## Browser Testing
 
 Chrome

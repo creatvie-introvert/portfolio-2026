@@ -251,6 +251,27 @@ Form handling:
 
 ---
 
+# Case Study Architecture
+
+`Project` remains the shared catalogue record and `CaseStudy` stores
+project-level context.
+
+Reusable case-study narratives use:
+
+- Ordered `CaseStudySection` records for semantic content.
+- Ordered `CaseStudyMedia` records attached to individual sections.
+- Author-controlled image alt text and optional captions.
+- A `use_structured_sections` switch for staged migration from legacy fields.
+
+Legacy fields remain available until each existing case study has been
+transferred. Structured sections render only when the switch is enabled and at
+least one section contains body text or media.
+
+Case-study templates must preserve semantic headings, omit empty sections, and
+render captioned content images with `figure` and `figcaption`.
+
+---
+
 # Performance Standards
 
 Target Lighthouse scores:
