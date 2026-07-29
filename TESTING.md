@@ -151,6 +151,40 @@ Manual checks:
 
 ---
 
+## Motion System
+
+Automated coverage includes:
+
+- Homepage-only loading of pinned GSAP, ScrollTrigger, and `motion.js`.
+- Dependency order and deferred script loading.
+- Exclusion of motion assets from Work, legal, 404, and 500 pages.
+- Approved semantic homepage hero hooks.
+- Removal of the old `.animate` reveal system.
+- Visible-by-default motion targets.
+- Defensive GSAP checks, conditional ScrollTrigger registration, and
+  `gsap.matchMedia()` reduced-motion handling.
+- Confirmation that Task 007A creates no ScrollTrigger animation.
+
+Manual checks:
+
+- Confirm the homepage hero copy enters in the intended five-item order and the
+  illustration enters independently.
+- Test at 320, 375, 390, 430, 768, 1024 pixels and desktop.
+- Test light and dark themes and resize across the 992-pixel breakpoint.
+- Confirm content remains visible with JavaScript disabled.
+- Block GSAP, ScrollTrigger, and `motion.js` separately and confirm safe
+  fallback behaviour.
+- Enable reduced motion before loading and change it after loading.
+- Confirm keyboard focus, hero links, browser history, and navigation remain
+  unaffected.
+- Simulate a slow network and confirm there is no persistent hidden content,
+  empty gap, or obvious backward jump.
+- Confirm completed animation styles are cleared in browser developer tools.
+
+Task 007A is not complete until this manual QA passes.
+
+---
+
 ## Browser Testing
 
 Chrome

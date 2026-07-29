@@ -1,0 +1,12 @@
+GSAP 3.15.0 vendor notice
+
+Copyright 2026, GreenSock. All rights reserved.
+
+Official source:
+https://github.com/greensock/GSAP/tree/3.15.0
+
+Standard licence:
+https://gsap.com/standard-license
+
+The adjacent gsap.min.js and ScrollTrigger.min.js files are unmodified
+distribution files from the official GreenSock GSAP 3.15.0 tag.

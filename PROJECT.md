@@ -272,6 +272,30 @@ render captioned content images with `figure` and `figcaption`.
 
 ---
 
+# Motion Architecture
+
+GSAP 3.15.0 and ScrollTrigger are stored as pinned local vendor files and
+served through Django static files and WhiteNoise. Pages opt in through the
+shared `page_scripts` template block; motion assets must not be loaded globally.
+
+`core/static/core/js/motion.js` is the single owner of site motion. Templates
+use semantic `data-motion` hooks rather than presentation classes, and reusable
+durations, distances, staggers, easing, and media queries live in one immutable
+configuration object.
+
+Motion is progressive enhancement:
+
+- Content remains visible in base HTML and CSS.
+- Missing JavaScript, GSAP, or ScrollTrigger must not hide content.
+- Animation-added inline styles are cleared after completion and cleanup.
+- `gsap.matchMedia()` handles responsive and reduced-motion behaviour.
+- Reduced-motion users receive immediately visible, stationary content.
+
+Task 007A animates only the homepage hero. ScrollTrigger is available for
+future approved work but no scroll-triggered animation is part of this phase.
+
+---
+
 # Performance Standards
 
 Target Lighthouse scores:

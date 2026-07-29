@@ -23,6 +23,64 @@ No tasks currently.
 
 # In Progress
 
+## Task 007A
+
+### Title
+
+GSAP foundation and homepage hero motion
+
+### Status
+
+Implementation complete — manual QA pending
+
+### Priority
+
+Medium
+
+---
+
+### Scope
+
+- Vendor GSAP 3.15.0 and ScrollTrigger locally.
+- Load motion assets only on pages that opt in.
+- Establish `motion.js` as the single owner of site motion.
+- Add semantic motion hooks and a restrained homepage hero entrance.
+- Preserve visible content when JavaScript or GSAP is unavailable.
+- Respect `prefers-reduced-motion: reduce`.
+- Remove the old hidden-by-default `.animate` and IntersectionObserver system.
+
+ScrollTrigger is registered when available but Task 007A does not create any
+scroll-triggered animation.
+
+---
+
+### Testing
+
+#### Automated
+
+- Confirm homepage-only asset loading, dependency order, and `defer`.
+- Confirm legal, Work, 404, and 500 pages do not load motion assets.
+- Confirm the approved hero hooks and removal of old reveal hooks.
+- Confirm defensive GSAP loading and reduced-motion handling.
+- Run the full Django test suite and migration check.
+
+#### Manual
+
+- Test the homepage hero at all supported widths and in both themes.
+- Test JavaScript disabled and blocked GSAP or ScrollTrigger files.
+- Test reduced motion before load and when changed after load.
+- Check keyboard access, slow-network behaviour, resizing, and browser history.
+
+Task 007A remains in progress until manual QA passes.
+
+---
+
+### Follow-up
+
+Task 007B will assess and implement the approved limited ScrollTrigger reveals.
+
+---
+
 ## Task 002
 
 ### Title

@@ -1,6 +1,7 @@
 from html.parser import HTMLParser
 from unittest.mock import patch
 
+from django.conf import settings
 from django.core import mail
 from django.test import (
     Client,
@@ -82,6 +83,111 @@ class SkipLinkAccessibilityTests(TestCase):
             '<a href="/" class="nav-link">Home</a>',
             html=True,
         )
+
+
+@override_settings(
+    DEBUG=False,
+    SECURE_SSL_REDIRECT=False,
+    STORAGES=TEST_STORAGES,
+)
+class MotionFoundationTests(TestCase):
+    motion_assets = (
+        "/static/core/vendor/gsap/3.15.0/gsap.min.js",
+        "/static/core/vendor/gsap/3.15.0/ScrollTrigger.min.js",
+        "/static/core/js/motion.js",
+    )
+
+    def test_homepage_loads_deferred_motion_assets_once_in_order(self):
+        response = self.client.get("/", HTTP_HOST="localhost")
+        content = response.content.decode()
+
+        self.assertEqual(response.status_code, 200)
+
+        asset_positions = []
+        for asset in self.motion_assets:
+            self.assertEqual(content.count(asset), 1)
+            self.assertContains(
+                response,
+                f'<script defer src="{asset}"></script>',
+                html=True,
+            )
+            asset_positions.append(content.index(asset))
+
+        self.assertEqual(asset_positions, sorted(asset_positions))
+
+    def test_motion_assets_are_not_loaded_on_unrelated_pages(self):
+        paths = (
+            "/portfolio/work/",
+            "/privacy/",
+            "/accessibility/",
+            "/terms/",
+            "/definitely-not-a-real-page/",
+        )
+
+        for path in paths:
+            with self.subTest(path=path):
+                response = self.client.get(path, HTTP_HOST="localhost")
+                content = response.content.decode()
+
+                for asset in self.motion_assets:
+                    self.assertNotIn(asset, content)
+
+        request = RequestFactory().get("/forced-server-error/")
+        handler = get_resolver().resolve_error_handler("500")
+        response = handler(request)
+        content = response.content.decode()
+
+        for asset in self.motion_assets:
+            self.assertNotIn(asset, content)
+
+    def test_homepage_has_only_the_approved_hero_motion_hooks(self):
+        response = self.client.get("/", HTTP_HOST="localhost")
+        content = response.content.decode()
+
+        self.assertEqual(content.count('data-motion-root="hero"'), 1)
+        self.assertEqual(content.count('data-motion="hero-copy"'), 5)
+        self.assertEqual(content.count('data-motion="hero-visual"'), 1)
+        self.assertNotRegex(
+            content,
+            r'class="[^"]*\banimate(?:\s|")',
+        )
+
+    def test_motion_targets_are_not_hidden_by_default_css(self):
+        css = (
+            settings.BASE_DIR
+            / "core"
+            / "static"
+            / "core"
+            / "css"
+            / "style.css"
+        ).read_text()
+
+        self.assertNotIn(".animate", css)
+        self.assertNotIn("[data-motion", css)
+
+    def test_motion_script_is_defensive_and_reduced_motion_aware(self):
+        motion_js = (
+            settings.BASE_DIR
+            / "core"
+            / "static"
+            / "core"
+            / "js"
+            / "motion.js"
+        ).read_text()
+
+        self.assertIn("const gsap = window.gsap;", motion_js)
+        self.assertIn('typeof gsap.timeline !== "function"', motion_js)
+        self.assertIn('typeof gsap.matchMedia !== "function"', motion_js)
+        self.assertIn("const motionMedia = gsap.matchMedia();", motion_js)
+        self.assertIn("(prefers-reduced-motion: reduce)", motion_js)
+        self.assertRegex(
+            motion_js,
+            r"if\s*\(\s*window\.ScrollTrigger",
+        )
+        self.assertIn("gsap.registerPlugin(window.ScrollTrigger)", motion_js)
+        self.assertIn("immediateRender: false", motion_js)
+        self.assertNotIn("ScrollTrigger.create", motion_js)
+        self.assertNotIn("scrollTrigger:", motion_js)
 
 
 @override_settings(
