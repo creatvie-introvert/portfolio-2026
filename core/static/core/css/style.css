@@ -1542,10 +1542,53 @@
     /* 7.4 Legal */
     .page-legal {}
 
-    /* 7.5 Thank you + 404 */
+    /* 7.5 Thank you + error pages */
     .page-thanks {}
 
-    .page-404 {}
+    .page-error {
+        min-height: calc(100vh - var(--nav-height));
+        display: grid;
+        align-items: center;
+    }
+
+    .page-error__card {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 24px;
+        text-align: center;
+    }
+
+    .page-error__code {
+        margin-bottom: 8px;
+        color: var(--text-muted);
+        font-family: var(--font-heading);
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+    }
+
+    .page-error__message {
+        max-width: 55ch;
+        margin: 16px auto 0;
+    }
+
+    .page-error__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 32px;
+    }
+
+    @media (min-width: 576px) {
+        .page-error__card {
+            padding: 48px;
+        }
+
+        .page-error__actions {
+            flex-direction: row;
+        }
+    }
 
     /* ==========================================
     ANIMATIONS (Home - Phase 1)

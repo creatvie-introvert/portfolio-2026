@@ -128,6 +128,68 @@ No blocked tasks.
 
 # Completed
 
+## Task 006
+
+### Title
+
+Custom 404 and 500 error pages
+
+### Status
+
+✅ Implementation complete
+
+### Priority
+
+Medium
+
+---
+
+### Problem
+
+With `DEBUG=False`, unknown URLs and server failures used Django’s plain
+fallback HTML instead of the portfolio design.
+
+---
+
+### Solution
+
+- Added a custom 404 page using the normal shared layout.
+- Added a minimal standalone 500 page with no request or database dependency.
+- Included homepage and Work links on both pages.
+- Added noindex metadata, semantic headings, keyboard access, responsive
+  styling, and light/dark theme support.
+- Added DEBUG=False regression tests for status codes, templates, links,
+  headings, metadata, and sensitive-detail exclusion.
+
+No custom handlers, URL changes, deployment changes, or JavaScript were added.
+
+---
+
+### Testing
+
+#### Automated
+
+- `env -u DEBUG .venv/bin/python manage.py check`
+- `env -u DEBUG .venv/bin/python manage.py test`
+- `env -u DEBUG .venv/bin/python manage.py makemigrations --check --dry-run`
+- `git diff --check`
+
+#### Manual
+
+- Verify 404 and 500 responses with `DEBUG=False`.
+- Verify response status codes in the browser network panel.
+- Verify homepage and Work links, keyboard focus, themes, zoom, and responsive
+  layouts.
+- Confirm no exception or configuration details are exposed.
+
+---
+
+### Completed
+
+29 July 2026
+
+---
+
 ## Task 005A
 
 ### Title

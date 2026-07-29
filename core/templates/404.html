@@ -1,0 +1,53 @@
+{% extends "core/base.html" %}
+
+{% block title %}Page not found | Leanne Bedeau-Rogers{% endblock %}
+
+{% block meta_description %}
+The requested page could not be found. Return to the portfolio homepage or browse selected work.
+{% endblock %}
+
+{% block og_title %}Page not found | Leanne Bedeau-Rogers{% endblock %}
+
+{% block og_description %}
+The requested page could not be found. Return to the portfolio homepage or browse selected work.
+{% endblock %}
+
+{% block twitter_title %}Page not found | Leanne Bedeau-Rogers{% endblock %}
+
+{% block twitter_description %}
+The requested page could not be found. Return to the portfolio homepage or browse selected work.
+{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
+<section class="section page-error page-404">
+    <div class="container">
+        <div class="page-error__card u-surface">
+            <p class="page-error__code" aria-hidden="true">404</p>
+
+            <h1 class="h2 fw-bold">
+                Page not found
+            </h1>
+
+            <p class="page-error__message text-secondary">
+                We couldn’t find the page you were looking for. It may have
+                moved, or the address might be incorrect. Let’s get you back
+                somewhere useful.
+            </p>
+
+            <div class="page-error__actions">
+                <a href="/" class="btn btn-dark btn-lg">
+                    Back to homepage
+                </a>
+
+                <a href="/portfolio/work/" class="btn btn-outline-secondary btn-lg">
+                    View my work
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

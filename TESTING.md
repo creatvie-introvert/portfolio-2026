@@ -128,6 +128,29 @@ Manual checks:
 
 ---
 
+## Error Pages
+
+Automated coverage runs with `DEBUG=False` and includes:
+
+- Unknown URLs returning the custom 404 page and status.
+- Safe standalone 500-handler rendering and status.
+- One h1 per error page.
+- Homepage and Work links.
+- `noindex, nofollow` metadata.
+- Exclusion of traceback, exception, secret, and request details.
+
+Manual checks:
+
+- Trigger an unknown URL and a temporary runtime-only server error with
+  `DEBUG=False`.
+- Confirm 404 and 500 status codes in the browser network panel.
+- Confirm both links work without JavaScript.
+- Confirm keyboard focus, skip links, 200% zoom, and no horizontal scrolling.
+- Check light and dark themes at all supported responsive widths.
+- Confirm no technical error details are visible.
+
+---
+
 ## Browser Testing
 
 Chrome

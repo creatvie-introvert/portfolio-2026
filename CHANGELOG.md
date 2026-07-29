@@ -12,6 +12,7 @@ The format is based on Keep a Changelog.
 
 - Added ordered, reusable case-study sections and section media.
 - Added dependency-free admin authoring and regression coverage for structured case studies.
+- Added responsive, accessible custom 404 and 500 error pages with safe fallback navigation.
 
 ### Changed
 

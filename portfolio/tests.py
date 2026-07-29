@@ -199,6 +199,7 @@ class CaseStudyMetadataTests(TestCase):
         )
 
 
+@override_settings(STORAGES=TEST_STORAGES)
 class ProjectSitemapTests(TestCase):
     def test_sitemap_includes_published_and_excludes_unpublished_projects(self):
         published = Project.objects.create(

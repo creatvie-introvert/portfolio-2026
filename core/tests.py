@@ -2,7 +2,13 @@ from html.parser import HTMLParser
 from unittest.mock import patch
 
 from django.core import mail
-from django.test import Client, TestCase, override_settings
+from django.test import (
+    Client,
+    RequestFactory,
+    TestCase,
+    override_settings,
+)
+from django.urls import get_resolver
 
 from .forms import ContactForm
 
@@ -76,6 +82,79 @@ class SkipLinkAccessibilityTests(TestCase):
             '<a href="/" class="nav-link">Home</a>',
             html=True,
         )
+
+
+@override_settings(
+    DEBUG=False,
+    SECURE_SSL_REDIRECT=False,
+    STORAGES=TEST_STORAGES,
+)
+class ErrorPageTests(TestCase):
+    def test_unknown_url_renders_custom_404_page(self):
+        response = self.client.get(
+            "/definitely-not-a-real-page/",
+            HTTP_HOST="localhost",
+        )
+        content = response.content.decode()
+        metadata = get_head_metadata(response)
+
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, "404.html")
+        self.assertEqual(content.count("<h1"), 1)
+        self.assertContains(response, "Page not found", status_code=404)
+        self.assertContains(
+            response,
+            "We couldn’t find the page you were looking for.",
+            status_code=404,
+        )
+        self.assertContains(response, 'href="/"', status_code=404)
+        self.assertContains(
+            response,
+            'href="/portfolio/work/"',
+            status_code=404,
+        )
+        self.assertEqual(
+            metadata["title"],
+            "Page not found | Leanne Bedeau-Rogers",
+        )
+        self.assertEqual(metadata["robots"], "noindex, nofollow")
+        self.assertNotIn("Traceback", content)
+        self.assertNotIn("Resolver404", content)
+        self.assertNotIn("SECRET_KEY", content)
+
+    def test_configured_500_handler_renders_safe_standalone_page(self):
+        request = RequestFactory().get("/forced-server-error/")
+        request.META["TASK006_SECRET"] = "TASK006_QA_SENTINEL"
+        handler = get_resolver().resolve_error_handler("500")
+
+        with self.assertTemplateUsed("500.html"):
+            response = handler(request)
+
+        content = response.content.decode()
+        metadata = get_head_metadata(response)
+
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(content.count("<h1"), 1)
+        self.assertContains(
+            response,
+            "Something went wrong",
+            status_code=500,
+        )
+        self.assertContains(response, 'href="/"', status_code=500)
+        self.assertContains(
+            response,
+            'href="/portfolio/work/"',
+            status_code=500,
+        )
+        self.assertEqual(
+            metadata["title"],
+            "Something went wrong | Leanne Bedeau-Rogers",
+        )
+        self.assertEqual(metadata["robots"], "noindex, nofollow")
+        self.assertNotIn("Traceback", content)
+        self.assertNotIn("RuntimeError", content)
+        self.assertNotIn("TASK006_QA_SENTINEL", content)
+        self.assertNotIn("SECRET_KEY", content)
 
 
 @override_settings(
