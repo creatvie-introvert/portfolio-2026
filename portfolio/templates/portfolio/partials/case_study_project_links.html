@@ -1,0 +1,23 @@
+{% if case_study.live_url or case_study.repo_url %}
+<div class="case-hero__actions">
+    {% if case_study.live_url %}
+    <a
+        href="{{ case_study.live_url }}"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-dark btn-lg u-btn-fluid">
+        View live
+    </a>
+    {% endif %}
+
+    {% if case_study.repo_url %}
+    <a
+        href="{{ case_study.repo_url }}"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-outline-secondary btn-lg u-btn-fluid">
+        View code
+    </a>
+    {% endif %}
+</div>
+{% endif %}

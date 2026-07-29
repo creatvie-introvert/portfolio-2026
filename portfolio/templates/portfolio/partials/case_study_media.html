@@ -1,0 +1,14 @@
+<figure class="case-study-media u-surface">
+    <img
+        src="{{ media.image.url }}"
+        alt="{{ media.alt_text }}"
+        class="case-study-media__image"
+        loading="lazy"
+        decoding="async">
+
+    {% if media.caption %}
+    <figcaption class="case-study-media__caption text-secondary">
+        {{ media.caption }}
+    </figcaption>
+    {% endif %}
+</figure>

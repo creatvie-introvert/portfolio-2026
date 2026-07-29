@@ -1,0 +1,23 @@
+<section class="section section--compact case-study-section case-study-section--{{ section.section_type }}">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="h3 fw-semibold mb-0">
+                {{ section.title|default:section.get_section_type_display }}
+            </h2>
+        </div>
+
+        {% if section.body %}
+        <div class="prose case-study-section__body">
+            {{ section.body|linebreaks }}
+        </div>
+        {% endif %}
+
+        {% if section.ordered_media %}
+        <div class="case-study-section__media">
+            {% for media in section.ordered_media %}
+                {% include "portfolio/partials/case_study_media.html" %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>

@@ -3,7 +3,7 @@
     {% if project.thumbnail %}
         <div class="project-card__media u-glow">
             <img src="{{ project.thumbnail.url }}"
-                 alt="{{ project.name }} thumbnail"
+                 alt="{{ project.thumbnail_alt }}"
                  class="project-card__img">
         </div>
     {% endif %}
@@ -28,6 +28,7 @@
         {% endif %}
     </div>
 
+    {% if project.case_study %}
     <div class="project-card__links d-flex justify-content-between">
         <a 
             href="{% url 'case_study' project.slug %}"
@@ -38,6 +39,7 @@
             data-slug="{{ project.slug|escape }}">
             View case study
         </a>
+        {% if project.case_study.live_url %}
         <a 
             href="{{ project.case_study.live_url }}"
             target="_blank"
@@ -50,5 +52,7 @@
             data-outbound-url="{{ project.case_study.live_url|escape }}">
             View live
         </a>
+        {% endif %}
     </div>
+    {% endif %}
 </article>

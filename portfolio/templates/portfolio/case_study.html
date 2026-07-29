@@ -27,14 +27,14 @@
 
         <!-- Hero -->
         <div class="case-hero">
-            <div class="case_hero__content prose">
+            <div class="case-hero__content prose">
                 <h1 class="h2 fw-bold mb-3">
                     {{ project.name }}
                 </h1>
 
-                <p class="text-secondary">
+                <div class="text-secondary">
                     {{ case_study.intro|linebreaks }}
-                </p>
+                </div>
 
                 <!-- Tags -->
                 {% if project.tags.all %}
@@ -47,28 +47,7 @@
                 </div>
                 {% endif %}
 
-                <!-- Buttons -->
-                <div class="case-hero__actions">
-                    {% if case_study.live_url %}
-                    <a 
-                        href="{{ case_study.live_url }}" 
-                        target="_blank"
-                        rel="noopener"
-                        class="btn btn-dark btn-lg u-btn-fluid">
-                        View live
-                    </a>
-                    {% endif %}
-
-                    {% if case_study.repo_url %}
-                    <a 
-                        href="{{ case_study.repo_url }}" 
-                        target="_blank"
-                        rel="noopener"
-                        class="btn btn-outline-secondary btn-lg u-btn-fluid">
-                        View code
-                    </a>
-                    {% endif %}
-                </div>
+                {% include "portfolio/partials/case_study_project_links.html" %}
             </div>
 
             {% if case_study.hero_image_light or case_study.hero_image_dark %}
@@ -179,6 +158,11 @@
     </div>
 </section>
 
+{% if case_study.use_structured_sections and structured_sections %}
+    {% for section in structured_sections %}
+        {% include "portfolio/partials/case_study_section.html" %}
+    {% endfor %}
+{% else %}
 <!-- The Problem -->
 {% if case_study.problem %}
 <section class="section section--compact page-case-study-problem">
@@ -262,9 +246,9 @@
                             Discover
                         </h3>
 
-                        <p class="mb-0">
+                        <div class="mb-0">
                             {{ case_study.process_discover|linebreaks }}
-                        </p>
+                        </div>
                     </div>
                 </div>
                 {% endif %}
@@ -285,9 +269,9 @@
                             Design
                         </h3>
 
-                        <p class="mb-0">
+                        <div class="mb-0">
                             {{ case_study.process_design|linebreaks }}
-                        </p>
+                        </div>
                     </div>
                 </div>
                 {% endif %}
@@ -308,9 +292,9 @@
                             Build
                         </h3>
 
-                        <p class="mb-0">
+                        <div class="mb-0">
                             {{ case_study.process_build|linebreaks }}
-                        </p>
+                        </div>
                     </div>
                 </div>
                 {% endif %}
@@ -333,9 +317,9 @@
                             Refine & Launch
                         </h3>
 
-                        <p class="mb-0">
+                        <div class="mb-0">
                             {{ case_study.process_refine_launch|linebreaks }}
-                        </p>
+                        </div>
                     </div>
                 </div>
                 {% endif %}
@@ -358,9 +342,9 @@
             </h2>
 
             {% if case_study.solution_intro %}
-            <p class="prose mb-4">
+            <div class="prose mb-4">
                 {{ case_study.solution_intro|linebreaks }}
-            </p>
+            </div>
             {% endif %}
         </div>
 
@@ -396,9 +380,9 @@
                         {{ case_study.solution_1_title }}
                     </h3>
 
-                    <p class="text-secondary mb-0">
+                    <div class="text-secondary mb-0">
                         {{ case_study.solution_1_body|linebreaks }}
-                    </p>
+                    </div>
                 </div>
             </div>
             {% endif %}
@@ -433,9 +417,9 @@
                         {{ case_study.solution_2_title }}
                     </h3>
 
-                    <p class="text-secondary mb-0">
+                    <div class="text-secondary mb-0">
                         {{ case_study.solution_2_body|linebreaks }}
-                    </p>
+                    </div>
                 </div>
             </div>
             {% endif %}
@@ -470,9 +454,9 @@
                         {{ case_study.solution_3_title }}
                     </h3>
 
-                    <p class="text-secondary mb-0">
+                    <div class="text-secondary mb-0">
                         {{ case_study.solution_3_body|linebreaks }}
-                    </p>
+                    </div>
                 </div>
             </div>
             {% endif %}
@@ -494,9 +478,9 @@
 
             <!-- Intro -->
             {% if case_study.outcome_intro %}
-            <p class="text-secondary prose mb-4">
+            <div class="text-secondary prose mb-4">
                 {{ case_study.outcome_intro|linebreaks }}
-            </p>
+            </div>
             {% endif %}
         </div>
 
@@ -540,7 +524,7 @@
 {% endif %}
 
 <!-- Reflections -->
-{% if case_study.reflection_intro or case_study.relection.reflection_body %}
+{% if case_study.reflection_intro or case_study.reflection_body %}
 <section class="section section--compact page-case-study-reflection">
     <div class="container">
 
@@ -552,9 +536,9 @@
             </h2>
 
             {% if case_study.reflection_intro %}
-            <p class="text-secondary prose mb-4">
+            <div class="text-secondary prose mb-4">
                 {{ case_study.reflection_intro|linebreaks }}
-            </p>
+            </div>
             {% endif %}
         </div>
 
@@ -567,6 +551,9 @@
     </div>
 </section>
 {% endif %}
+{% endif %}
+
+{% include "portfolio/partials/related_projects.html" %}
 
 <!-- CTA section -->
 <section class="section section-cta">

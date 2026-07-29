@@ -10,6 +10,7 @@ from .forms import ContactForm
 def _home_context(contact_form=None):
     featured_projects = (
         Project.objects.filter(is_featured=True, is_published=True)
+        .select_related("case_study")
         .prefetch_related("tags")
         .order_by("-created_at")
     )

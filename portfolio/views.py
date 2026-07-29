@@ -1,6 +1,13 @@
+from django.db.models import Prefetch
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .models import Project, Tag, CaseStudy
+from .models import (
+    CaseStudy,
+    CaseStudyMedia,
+    CaseStudySection,
+    Project,
+    Tag,
+)
 
 
 def work(request):
@@ -25,6 +32,7 @@ def work(request):
     projects = (
         Project.objects
         .filter(is_published=True)
+        .select_related("case_study")
         .prefetch_related("tags")
     )
 
@@ -49,27 +57,54 @@ def work(request):
 
 
 def case_study(request, slug):
-    project = get_object_or_404(
-        Project.objects.prefetch_related("tags"),
-        slug=slug,
-        is_published=True,
+    media_queryset = CaseStudyMedia.objects.order_by("sort_order", "pk")
+    section_queryset = (
+        CaseStudySection.objects
+        .order_by("sort_order", "pk")
+        .prefetch_related(
+            Prefetch(
+                "media",
+                queryset=media_queryset,
+                to_attr="ordered_media",
+            )
+        )
     )
 
     case_study = get_object_or_404(
-        CaseStudy.objects.prefetch_related("project"),
-        project=project,
+        CaseStudy.objects
+        .select_related("project")
+        .prefetch_related(
+            "project__tags",
+            Prefetch(
+                "sections",
+                queryset=section_queryset,
+                to_attr="ordered_sections",
+            ),
+        ),
+        project__slug=slug,
+        project__is_published=True,
     )
+    project = case_study.project
 
-    other_projects = {
+    structured_sections = [
+        section
+        for section in case_study.ordered_sections
+        if section.body.strip() or section.ordered_media
+    ]
+
+    other_projects = (
         Project.objects
-        .filter(is_published=True)
+        .filter(is_published=True, case_study__isnull=False)
         .exclude(pk=project.pk)
+        .select_related("case_study")
+        .prefetch_related("tags")
         .order_by("-created_at")[:3]
-    }
+    )
 
     context = {
         "project": project,
         "case_study": case_study,
+        "structured_sections": structured_sections,
         "other_projects": other_projects,
     }
 
