@@ -75,12 +75,6 @@ Task 007A remains in progress until manual QA passes.
 
 ---
 
-### Follow-up
-
-Task 007B will assess and implement the approved limited ScrollTrigger reveals.
-
----
-
 ## Task 002
 
 ### Title
@@ -185,6 +179,69 @@ No blocked tasks.
 ---
 
 # Completed
+
+## Task 007B
+
+### Title
+
+ScrollTrigger section reveals
+
+### Status
+
+✅ Implementation complete
+
+### Priority
+
+Medium
+
+---
+
+### Scope
+
+- Reveal the Homepage Selected Work introduction and project grid.
+- Reveal the Work page introduction and project grid.
+- Reveal each complete structured case-study section.
+- Use one trigger per introduction, one trigger per grid, and one trigger per
+  semantic structured section.
+- Keep filters, card internals, CTAs, legacy case studies, and unrelated pages
+  static.
+
+All reveals use the existing responsive motion configuration, `once: true`,
+progressive enhancement, and reduced-motion handling. No pinning, scrubbing,
+batching, parallax, or persistent replay state was added.
+
+---
+
+### Testing
+
+#### Automated
+
+- Confirm Home and Work load motion assets once and in dependency order.
+- Confirm project-list roots, grids, and card-level hooks.
+- Confirm structured case studies load motion assets and use one hook per
+  semantic section.
+- Confirm legacy and empty structured fallbacks load no motion assets.
+- Confirm prohibited ScrollTrigger features and hidden CSS states are absent.
+- Run the full Django test suite and migration check.
+
+#### Manual
+
+- Test Home, Work, one structured case study, and one legacy case study.
+- Test responsive widths, themes, keyboard access, and fast or slow scrolling.
+- Test JavaScript and individual motion dependencies disabled.
+- Test reduced motion before and after page load.
+- Check direct deep links, browser history, resizing, empty and long grids,
+  layout stability, and inline-style cleanup.
+
+Manual QA passed.
+
+---
+
+### Completed
+
+30 July 2026
+
+---
 
 ## Task 006
 

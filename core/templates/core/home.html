@@ -85,11 +85,11 @@ Explore UX-focused web development projects, case studies, and accessible builds
     </div>
 </section>
 
-<section class="section section-work" id="work">
+<section class="section section-work" id="work" data-motion-root="project-list">
     <div class="container">
 
         <!-- Section header -->
-        <div class="section-header">
+        <div class="section-header" data-motion="section-intro">
             <h2 class="h2 fw-bold mb-2">
                 Selected work
             </h2>
@@ -100,10 +100,10 @@ Explore UX-focused web development projects, case studies, and accessible builds
         </div>
 
         <!-- Projects grid -->
-        <div class="row g-4">
+        <div class="row g-4" data-motion="project-grid">
 
             {% for project in featured_projects %}
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-4" data-motion="project-card">
                 {% include "portfolio/partials/project_card.html" %}
             </div>
             {% empty %}

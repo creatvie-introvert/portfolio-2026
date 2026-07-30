@@ -294,6 +294,21 @@ Motion is progressive enhancement:
 Task 007A animates only the homepage hero. ScrollTrigger is available for
 future approved work but no scroll-triggered animation is part of this phase.
 
+Task 007B adds restrained, once-only ScrollTrigger reveals under these
+conventions:
+
+- Project introductions use one trigger each.
+- Project grids use one trigger for the grid and stagger complete card columns.
+- Structured case studies use one trigger per complete semantic section.
+- Selectors are scoped to their component root.
+- Filters, card internals, and legacy case-study layouts remain static.
+- Work always opts into page-level motion assets.
+- Case studies opt in only when structured sections are enabled and renderable.
+
+Scroll content remains visible when JavaScript, GSAP, or ScrollTrigger is
+unavailable and when reduced motion is enabled. Motion code must not add
+hidden-by-default CSS, pinning, scrubbing, batching, or scroll-jacking.
+
 ---
 
 # Performance Standards

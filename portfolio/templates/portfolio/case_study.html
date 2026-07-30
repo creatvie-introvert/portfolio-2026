@@ -596,3 +596,9 @@
     </div>
 </section>
 {% endblock %}
+
+{% block page_scripts %}
+{% if case_study.use_structured_sections and structured_sections %}
+{% include "core/partials/motion_scripts.html" %}
+{% endif %}
+{% endblock %}

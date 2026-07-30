@@ -15,6 +15,8 @@ The format is based on Keep a Changelog.
 - Added responsive, accessible custom 404 and 500 error pages with safe fallback navigation.
 - Added a locally hosted GSAP 3.15.0 motion foundation and restrained
   homepage hero entrance.
+- Added restrained ScrollTrigger reveals for approved project lists and
+  structured case-study sections.
 
 ### Changed
 
@@ -22,6 +24,8 @@ The format is based on Keep a Changelog.
 - Case-study views now prefetch ordered sections, media, tags, and related projects.
 - Replaced the hidden-by-default reveal system with opt-in, progressively
   enhanced motion that respects reduced-motion preferences.
+- Expanded page-level motion loading to the Work page and renderable structured
+  case studies while keeping legacy and utility pages static.
 
 ### Fixed
 

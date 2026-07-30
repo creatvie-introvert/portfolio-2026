@@ -1,5 +1,6 @@
 from html.parser import HTMLParser
 
+from django.conf import settings
 from django.test import TestCase, override_settings
 from django.template.defaultfilters import date
 from django.urls import reverse
@@ -21,6 +22,12 @@ TEST_STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
+
+MOTION_ASSETS = (
+    "/static/core/vendor/gsap/3.15.0/gsap.min.js",
+    "/static/core/vendor/gsap/3.15.0/ScrollTrigger.min.js",
+    "/static/core/js/motion.js",
+)
 
 
 class HeadMetadataParser(HTMLParser):
@@ -87,6 +94,29 @@ def create_case_study(project, **overrides):
     return CaseStudy.objects.create(**values)
 
 
+class MotionAssetAssertions:
+    def assert_motion_assets_loaded_once_in_order(self, response):
+        content = response.content.decode()
+        positions = []
+
+        for asset in MOTION_ASSETS:
+            self.assertEqual(content.count(asset), 1)
+            self.assertContains(
+                response,
+                f'<script defer src="{asset}"></script>',
+                html=True,
+            )
+            positions.append(content.index(asset))
+
+        self.assertEqual(positions, sorted(positions))
+
+    def assert_motion_assets_not_loaded(self, response):
+        content = response.content.decode()
+
+        for asset in MOTION_ASSETS:
+            self.assertNotIn(asset, content)
+
+
 @override_settings(STORAGES=TEST_STORAGES)
 class WorkMetadataTests(TestCase):
     def test_work_page_uses_page_specific_metadata(self):
@@ -142,6 +172,52 @@ class WorkMetadataTests(TestCase):
             metadata["canonical"],
             "https://leannebedeaurogers.com/portfolio/work/",
         )
+
+
+@override_settings(STORAGES=TEST_STORAGES)
+class WorkMotionTests(MotionAssetAssertions, TestCase):
+    def test_work_page_loads_motion_and_uses_card_level_hooks(self):
+        Project.objects.create(
+            name="First project",
+            slug="first-project",
+            short_description="First project.",
+        )
+        Project.objects.create(
+            name="Second project",
+            slug="second-project",
+            short_description="Second project.",
+        )
+
+        response = self.client.get(reverse("work"), HTTP_HOST="localhost")
+        content = response.content.decode()
+
+        self.assert_motion_assets_loaded_once_in_order(response)
+        self.assertEqual(
+            content.count('data-motion-root="project-list"'),
+            1,
+        )
+        self.assertEqual(content.count('data-motion="section-intro"'), 1)
+        self.assertEqual(content.count('data-motion="project-grid"'), 1)
+        self.assertEqual(content.count('data-motion="project-card"'), 2)
+
+        project_card_partial = (
+            settings.BASE_DIR
+            / "portfolio"
+            / "templates"
+            / "portfolio"
+            / "partials"
+            / "project_card.html"
+        ).read_text()
+        self.assertNotIn("data-motion", project_card_partial)
+
+    def test_empty_work_grid_has_no_card_hooks(self):
+        response = self.client.get(reverse("work"), HTTP_HOST="localhost")
+        content = response.content.decode()
+
+        self.assert_motion_assets_loaded_once_in_order(response)
+        self.assertEqual(content.count('data-motion="project-grid"'), 1)
+        self.assertNotIn('data-motion="project-card"', content)
+        self.assertContains(response, "No projects found for this tag yet.")
 
 
 @override_settings(STORAGES=TEST_STORAGES)
@@ -313,7 +389,10 @@ class CaseStudyContentModelTests(TestCase):
 
 
 @override_settings(STORAGES=TEST_STORAGES)
-class CaseStudyStructuredRenderingTests(TestCase):
+class CaseStudyStructuredRenderingTests(
+    MotionAssetAssertions,
+    TestCase,
+):
     def setUp(self):
         self.project = Project.objects.create(
             name="Structured case study",
@@ -341,6 +420,11 @@ class CaseStudyStructuredRenderingTests(TestCase):
         self.assertContains(response, "What was learned.")
         self.assertNotContains(response, "Draft structured section")
         self.assertNotContains(response, "Draft structured body.")
+        self.assert_motion_assets_not_loaded(response)
+        self.assertNotContains(
+            response,
+            'data-motion="case-study-section"',
+        )
 
     def test_switch_with_no_renderable_sections_keeps_legacy_content(self):
         self.case_study.use_structured_sections = True
@@ -355,6 +439,11 @@ class CaseStudyStructuredRenderingTests(TestCase):
 
         self.assertContains(response, "The project problem.")
         self.assertNotContains(response, "Empty draft section")
+        self.assert_motion_assets_not_loaded(response)
+        self.assertNotContains(
+            response,
+            'data-motion="case-study-section"',
+        )
 
     def test_structured_sections_render_in_order_and_omit_empty_sections(self):
         self.case_study.use_structured_sections = True
@@ -395,6 +484,16 @@ class CaseStudyStructuredRenderingTests(TestCase):
             response,
             '<h2 class="h3 fw-semibold mb-0">',
             count=2,
+        )
+        self.assert_motion_assets_loaded_once_in_order(response)
+        self.assertContains(
+            response,
+            'data-motion="case-study-section"',
+            count=2,
+        )
+        self.assertEqual(
+            content.count('data-motion="case-study-section"'),
+            content.count("data-motion="),
         )
 
     def test_media_renders_ordered_accessible_markup_and_optional_caption(self):

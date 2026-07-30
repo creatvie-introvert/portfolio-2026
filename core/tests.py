@@ -10,6 +10,7 @@ from django.test import (
     override_settings,
 )
 from django.urls import get_resolver
+from portfolio.models import Project
 
 from .forms import ContactForm
 
@@ -117,7 +118,6 @@ class MotionFoundationTests(TestCase):
 
     def test_motion_assets_are_not_loaded_on_unrelated_pages(self):
         paths = (
-            "/portfolio/work/",
             "/privacy/",
             "/accessibility/",
             "/terms/",
@@ -140,13 +140,27 @@ class MotionFoundationTests(TestCase):
         for asset in self.motion_assets:
             self.assertNotIn(asset, content)
 
-    def test_homepage_has_only_the_approved_hero_motion_hooks(self):
+    def test_homepage_has_only_the_approved_motion_hooks(self):
+        Project.objects.create(
+            name="Featured project",
+            slug="featured-project",
+            short_description="A featured project.",
+            is_featured=True,
+        )
+
         response = self.client.get("/", HTTP_HOST="localhost")
         content = response.content.decode()
 
         self.assertEqual(content.count('data-motion-root="hero"'), 1)
         self.assertEqual(content.count('data-motion="hero-copy"'), 5)
         self.assertEqual(content.count('data-motion="hero-visual"'), 1)
+        self.assertEqual(
+            content.count('data-motion-root="project-list"'),
+            1,
+        )
+        self.assertEqual(content.count('data-motion="section-intro"'), 1)
+        self.assertEqual(content.count('data-motion="project-grid"'), 1)
+        self.assertEqual(content.count('data-motion="project-card"'), 1)
         self.assertNotRegex(
             content,
             r'class="[^"]*\banimate(?:\s|")',
@@ -186,8 +200,33 @@ class MotionFoundationTests(TestCase):
         )
         self.assertIn("gsap.registerPlugin(window.ScrollTrigger)", motion_js)
         self.assertIn("immediateRender: false", motion_js)
+        self.assertIn('wideSectionStart: "top 82%"', motion_js)
+        self.assertIn('wideGridStart: "top 70%"', motion_js)
+        self.assertIn('compactSectionStart: "top 88%"', motion_js)
+        self.assertIn('compactGridStart: "top 78%"', motion_js)
+        self.assertIn("start: settings.sectionStart", motion_js)
+        self.assertIn("start: settings.gridStart", motion_js)
+        self.assertIn("once: true", motion_js)
+        self.assertIn("createSectionReveal", motion_js)
+        self.assertIn("createProjectGridReveal", motion_js)
+        self.assertIn(
+            "gridElement.querySelectorAll("
+            "'[data-motion=\"project-card\"]'",
+            motion_js,
+        )
+        self.assertIn(
+            "each: MOTION_CONFIG.staggers.standard",
+            motion_js,
+        )
+        self.assertIn('from: "start"', motion_js)
+        self.assertNotIn("Math.min(", motion_js)
+        self.assertNotIn("amount:", motion_js)
         self.assertNotIn("ScrollTrigger.create", motion_js)
-        self.assertNotIn("scrollTrigger:", motion_js)
+        self.assertNotIn("ScrollTrigger.batch", motion_js)
+        self.assertNotIn("WeakSet", motion_js)
+        self.assertNotIn("pin:", motion_js)
+        self.assertNotIn("scrub:", motion_js)
+        self.assertNotIn("markers:", motion_js)
 
 
 @override_settings(

@@ -23,11 +23,11 @@ Browse selected web development projects and UX case studies, including real-wor
 {% endblock %}
 
 {% block content %}
-<section class="section section-work-page" id="top">
+<section class="section section-work-page" id="top" data-motion-root="project-list">
     <div class="container">
 
         <!-- Page header -->
-        <div class="section-header">
+        <div class="section-header" data-motion="section-intro">
             <h1 class="h2 fw-bold mb-2">
                 Work
             </h1>
@@ -87,10 +87,10 @@ Browse selected web development projects and UX case studies, including real-wor
         </div>
 
         <!-- Projects grid -->
-        <div class="row g-4">
+        <div class="row g-4" data-motion="project-grid">
 
             {% for project in projects %}
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-4" data-motion="project-card">
                 {% include "portfolio/partials/project_card.html" %}
             </div>
             {% empty %}
@@ -144,4 +144,8 @@ Browse selected web development projects and UX case studies, including real-wor
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block page_scripts %}
+{% include "core/partials/motion_scripts.html" %}
 {% endblock %}

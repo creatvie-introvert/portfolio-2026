@@ -164,6 +164,13 @@ Automated coverage includes:
 - Defensive GSAP checks, conditional ScrollTrigger registration, and
   `gsap.matchMedia()` reduced-motion handling.
 - Confirmation that Task 007A creates no ScrollTrigger animation.
+- One-trigger-per-grid project-list reveals on Home and Work.
+- One trigger per complete structured case-study section.
+- Conditional motion loading for structured case studies and exclusion from
+  legacy or empty structured fallbacks.
+- Scoped card hooks, separate section and grid trigger starts, fixed per-card
+  grid staggering, and absence of pinning, scrubbing, batching, markers, or
+  persistent replay state.
 
 Manual checks:
 
@@ -180,8 +187,20 @@ Manual checks:
 - Simulate a slow network and confirm there is no persistent hidden content,
   empty gap, or obvious backward jump.
 - Confirm completed animation styles are cleared in browser developer tools.
+- Confirm Home and Work introductions reveal once and each grid uses a single
+  coordinated card stagger.
+- Confirm filters, CTA content, and card internals remain static.
+- Compare one structured and one legacy case study: structured sections should
+  reveal as complete units, while the legacy page loads no motion assets.
+- Test empty, one-card, two-card, and longer project grids.
+- Test slow and rapid scrolling, direct loading partway down a page, browser
+  back/forward navigation, and resizing across 992 pixels.
+- Confirm blocking ScrollTrigger leaves the homepage hero functional and all
+  scroll-reveal content visible.
+- Confirm resizing or reduced-motion changes leave no duplicate triggers,
+  stale transforms, backward flash, or layout shift.
 
-Task 007A is not complete until this manual QA passes.
+Task 007B automated and manual QA passed.
 
 ---
 
